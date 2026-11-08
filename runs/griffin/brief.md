@@ -1,0 +1,1 @@
+i want to add the minoan griffin to the story. it is thought to have died out before the story but during jon's training with the sherden one (or some) are discovered. he ends up befriending and he joins him on his journey. 

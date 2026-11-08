@@ -49,8 +49,8 @@ def fake_result(node: str, prompt: str, schema: dict | None) -> AgentResult:
             "summary": "Placeholder arc plan summary.",
             "characters_present": ["Tiye", "Pentawere"],
             "entries": [
-                {"kind": "sub_event", "entity": "Grain convoys fail", "change": "1", "detail": "Placeholder milestone", "ref_id": "", "confidence": "medium"},
-                {"kind": "sub_event", "entity": "Sherden demand pay", "change": "2", "detail": "Placeholder milestone", "ref_id": "", "confidence": "medium"},
+                {"kind": "sub_event", "entity": "Grain convoys fail", "change": "1", "detail": "Placeholder milestone", "ref_id": "", "characters": ["Tiye"], "confidence": "medium"},
+                {"kind": "sub_event", "entity": "Sherden demand pay", "change": "2", "detail": "Placeholder milestone", "ref_id": "", "characters": [], "confidence": "medium"},
             ],
         })
     if node == "archivist":
@@ -58,8 +58,8 @@ def fake_result(node: str, prompt: str, schema: dict | None) -> AgentResult:
             "summary": "Placeholder summary of the run.",
             "characters_present": ["Tiye", "Pentawere"],
             "entries": [
-                {"kind": "lore", "entity": "Tiye", "change": "status", "detail": "Placeholder lore change", "ref_id": "", "confidence": "medium"},
-                {"kind": "new_question", "entity": "Sherden", "change": "question", "detail": "Who pays the Sherden after the coup?", "ref_id": "", "confidence": "medium"},
+                {"kind": "lore", "entity": "Tiye", "change": "status", "detail": "Placeholder lore change", "ref_id": "", "characters": ["Tiye"], "confidence": "medium"},
+                {"kind": "new_question", "entity": "Sherden", "change": "question", "detail": "Who pays the Sherden after the coup?", "ref_id": "", "characters": [], "confidence": "medium"},
             ],
         })
     raise ValueError(f"no fake for node {node}")

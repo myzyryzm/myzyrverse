@@ -121,3 +121,48 @@ def test_lore_flow_with_regenerate_and_adopt(client):
 def test_adopt_rejects_non_lore_runs(client):
     client.post("/api/runs", json={"id": "r2", "type": "research", "researchers": []})
     assert client.post("/api/runs/r2/adopt", json={"file": "world"}).status_code == 400
+
+
+def test_timelines_api(client):
+    w = client.post("/api/lore/events", json={"title": "Elam attacks Babylon"}).json()
+    p = client.post("/api/lore/events", json={"title": "The embassy", "category": "personal", "scope": "chapter"}).json()
+    assert w["category"] == "world" and p["category"] == "personal"
+
+    r = client.put("/api/lore/timelines/Ramesses%20III", json={"ids": [p["id"], w["id"]]})
+    assert r.status_code == 200, r.text
+    view = client.get("/api/lore/timelines").json()
+    assert view["lanes"]["Ramesses III"] == [p["id"], w["id"]]
+    assert "Ramesses III" in view["characters"]
+    evs = {e["id"]: e for e in client.get("/api/lore/events").json()}
+    assert evs[p["id"]]["characters"] == ["Ramesses III"]
+
+    assert client.put("/api/lore/timelines/Jon", json={"ids": ["ev-nope"]}).status_code == 400
+    assert client.put("/api/lore/timelines/bad%2Aname", json={"ids": []}).status_code == 400
+
+
+def test_author_research_notes_reach_every_later_node(client):
+    client.post("/api/runs", json={"id": "ch01", "type": "chapter", "title": "T", "brief": "b",
+                                   "pov": "Tiye", "researchers": ["historian"]})
+    client.post("/api/runs/ch01/start")
+    _wait(client, "ch01")
+    client.post("/api/runs/ch01/resume", json={"edits": {"author_research_notes": "TIYE IS LEFT-HANDED"}})
+    s = _wait(client, "ch01")
+    assert s["next"] == ["human_gate_outline"]
+    assert "Author's notes on the research" in s["values"]["chapter_outline"]
+    assert "TIYE IS LEFT-HANDED" in s["values"]["chapter_outline"]
+    notes = app_module.runs.run_dir("ch01") / "notes.md"
+    assert notes.read_text() == "TIYE IS LEFT-HANDED"
+
+    client.post("/api/runs/ch01/resume", json={"edits": {"author_research_notes": "TIYE SWITCHED HANDS"}})
+    s = _wait(client, "ch01")
+    assert s["next"] == ["human_gate_final"]
+    assert "TIYE SWITCHED HANDS" in s["values"]["draft_prose"]
+    assert notes.read_text() == "TIYE SWITCHED HANDS"
+
+    client.post("/api/runs/ch01/resume", json={"edits": {}})
+    s = _wait(client, "ch01")
+    assert all("characters" in e for e in s["values"]["proposed_ledger"])
+    client.post("/api/runs/ch01/resume", json={"edits": {}})
+    s = _wait(client, "ch01")
+    assert s["values"]["review_status"] == "COMMITTED"
+    assert notes.read_text() == "TIYE SWITCHED HANDS"

@@ -25,6 +25,7 @@ export interface LedgerEntry {
   change: string;
   detail: string;
   ref_id: string;
+  characters?: string[];
   confidence?: "low" | "medium" | "high";
   source?: "ai" | "user";
   accepted?: boolean;
@@ -55,6 +56,7 @@ export interface RunValues {
   proposed_ledger?: LedgerEntry[];
   summary?: string;
   characters_present?: string[];
+  author_research_notes?: string;
   [key: string]: unknown;
 }
 
@@ -87,11 +89,14 @@ export interface OpenQuestion {
   source_run: string | null;
 }
 
+export type EventCategory = "world" | "personal";
+
 export interface StoryEvent {
   id: string;
   title: string;
   description: string;
   scope: "arc" | "chapter";
+  category: EventCategory;
   parent_id: string | null;
   characters: string[];
   target_run: string;
@@ -123,4 +128,18 @@ export interface NewRunPrefill {
   target_event_id?: string;
   title?: string;
   brief?: string;
+}
+
+export interface StoryOrder {
+  levels: string[][];
+  cycle: string[] | null;
+}
+
+export interface TimelinesView {
+  characters: string[];
+  /** The order the author placed events in, per lane. Only these create story order. */
+  lanes: Record<string, string[]>;
+  /** Events that belong on the lane (the character takes part, or a world event) but are not placed yet. */
+  unplaced: Record<string, string[]>;
+  story_order: StoryOrder;
 }

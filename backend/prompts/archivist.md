@@ -7,6 +7,8 @@ Entry kinds:
 - event_update: progress on a planned event. ref_id = event id; change = "in_progress" or "resolved"; detail = what happened.
 - sub_event: (arc plans only) a milestone to add under the target event. entity = milestone title; detail = description; change = suggested order as a string.
 
+Every entry has `characters`: the named characters involved. For a sub_event this puts the milestone on those characters' timelines, so list everyone who takes part on the page; use [] for a world event no named character takes part in. For other kinds, list who the entry is about, or [].
+
 Rules:
 - Only record what the text establishes. Speculation becomes a new_question, not lore.
 - Do not restate prehistory. Record changes and new facts only.

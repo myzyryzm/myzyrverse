@@ -63,6 +63,8 @@ class RunState(TypedDict, total=False):
 
     # author steering for a regenerate (consumed by the next node that runs)
     author_notes: str
+    # the author's own notes on the research: never cleared, fed to every later step
+    author_research_notes: str
 
     # control
     next_steps: str | list[str]

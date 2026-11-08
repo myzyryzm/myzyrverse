@@ -13,6 +13,7 @@ def tmp_project(tmp_path, monkeypatch):
     monkeypatch.setattr(config, "SOURCES_DIR", lore / "sources")
     monkeypatch.setattr(config, "OPEN_QUESTIONS_FILE", lore / "open_questions.json")
     monkeypatch.setattr(config, "EVENTS_FILE", lore / "events.json")
+    monkeypatch.setattr(config, "TIMELINES_FILE", lore / "timelines.json")
     monkeypatch.setattr(config, "RUNS_DIR", tmp_path / "runs")
     monkeypatch.setattr(config, "MANUSCRIPT_FILE", tmp_path / "manuscript.md")
     monkeypatch.setattr(config, "DATA_DIR", tmp_path / "data")

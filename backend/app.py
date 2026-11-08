@@ -34,7 +34,8 @@ ERRORS: dict[str, str] = {}
 
 # Fields the UI may edit at a gate. Anything else in an edit payload is rejected.
 EDITABLE = {"research_notes", "chapter_outline", "arc_plan", "lore_doc", "draft_prose", "critique_notes",
-            "proposed_ledger", "summary", "characters_present", "pov", "brief", "title"}
+            "proposed_ledger", "summary", "characters_present", "pov", "brief", "title",
+            "author_research_notes"}
 
 
 @asynccontextmanager
@@ -197,6 +198,7 @@ async def start_run(run_id: str):
         "researchers": meta.get("researchers", []),
         "target_event_id": meta.get("target_event_id", ""),
         "canon": lore.build_canon(run_id),
+        "author_research_notes": "",
         "revision_count": 0,
         "review_status": RESEARCHING,
     }
@@ -356,6 +358,7 @@ class NewEvent(BaseModel):
     title: str
     description: str = ""
     scope: Literal["arc", "chapter"] = "arc"
+    category: Literal["world", "personal"] = "world"
     parent_id: str | None = None
     characters: list[str] = Field(default_factory=list)
     target_run: str = ""
@@ -438,6 +441,23 @@ def events_update(item_id: str, patch: dict):
 def events_delete(item_id: str):
     lore.delete_event(item_id)
     return {"ok": True}
+
+
+class LaneBody(BaseModel):
+    ids: list[str] = Field(default_factory=list)
+
+
+@app.get("/api/lore/timelines")
+def timelines_get():
+    return lore.timelines_view()
+
+
+@app.put("/api/lore/timelines/{lane}")
+def timelines_put(lane: str, body: LaneBody):
+    try:
+        return lore.set_lane(lane, body.ids)
+    except ValueError as e:
+        raise HTTPException(400, str(e))
 
 
 @app.get("/api/timeline")

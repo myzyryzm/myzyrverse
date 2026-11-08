@@ -1,0 +1,18 @@
+{
+  "id": "griffin",
+  "type": "lore",
+  "title": "griffin",
+  "pov": "",
+  "researchers": [
+    "antiquarian",
+    "psychologist",
+    "historian",
+    "mythographer"
+  ],
+  "target_event_id": "",
+  "characters_present": [],
+  "order": null,
+  "status": "draft",
+  "created_at": "2026-11-08T18:28:18+00:00",
+  "committed_at": null
+}

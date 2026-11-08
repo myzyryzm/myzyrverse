@@ -20,13 +20,14 @@ ARCHIVIST_SCHEMA = {
             "items": {
                 "type": "object",
                 "additionalProperties": False,
-                "required": ["kind", "entity", "change", "detail", "ref_id", "confidence"],
+                "required": ["kind", "entity", "change", "detail", "ref_id", "characters", "confidence"],
                 "properties": {
                     "kind": {"type": "string", "enum": ENTRY_KINDS},
                     "entity": {"type": "string"},
                     "change": {"type": "string"},
                     "detail": {"type": "string"},
                     "ref_id": {"type": "string"},
+                    "characters": {"type": "array", "items": {"type": "string"}},
                     "confidence": {"type": "string", "enum": ["low", "medium", "high"]},
                 },
             },
@@ -59,6 +60,9 @@ async def archivist(state: RunState) -> dict:
         task = ("This was a research run, not a chapter. Propose lore entries only for things the author's brief and the "
                 "approved research settle about this universe, answers to open questions the research resolves, and new "
                 "questions it raises. Do not propose event_update or sub_event entries.")
+    if (state.get("author_research_notes") or "").strip():
+        task += (" The author left notes on the research: treat them as settled. Propose answer entries for open "
+                 "questions they resolve and lore entries for facts they establish.")
     prompt = build_prompt(state, *sections, task=task)
     result = await call("archivist", state, prompt, sys_prompt=system_prompt("archivist"),
                         output_schema=ARCHIVIST_SCHEMA)
@@ -97,6 +101,7 @@ async def commit(state: RunState) -> dict:
     runs.write_ledger(run_id, ledger)
     runs.write_artifact(run_id, "summary", state.get("summary", ""))
     runs.write_artifact(run_id, "research", state.get("research_notes", ""))
+    runs.write_artifact(run_id, "notes", state.get("author_research_notes", ""))
     if state.get("run_type") == "chapter":
         runs.write_artifact(run_id, "prose", state.get("draft_prose", ""))
     if state.get("run_type") == "plan_arc":

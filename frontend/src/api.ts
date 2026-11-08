@@ -1,5 +1,5 @@
 import type {
-  AppConfig, LedgerEntry, OpenQuestion, RunMeta, RunState, StoryEvent, TimelineItem,
+  AppConfig, LedgerEntry, OpenQuestion, RunMeta, RunState, StoryEvent, TimelineItem, TimelinesView,
 } from "./types";
 
 async function req<T>(method: string, path: string, body?: unknown): Promise<T> {
@@ -56,9 +56,12 @@ export const api = {
   deleteQuestion: (id: string) => req("DELETE", `/lore/open-questions/${enc(id)}`),
 
   events: () => req<StoryEvent[]>("GET", "/lore/events"),
-  addEvent: (body: Partial<StoryEvent>) => req("POST", "/lore/events", body),
+  addEvent: (body: Partial<StoryEvent>) => req<StoryEvent>("POST", "/lore/events", body),
   updateEvent: (id: string, patch: Partial<StoryEvent>) => req("PATCH", `/lore/events/${enc(id)}`, patch),
   deleteEvent: (id: string) => req("DELETE", `/lore/events/${enc(id)}`),
+
+  timelines: () => req<TimelinesView>("GET", "/lore/timelines"),
+  setLane: (lane: string, ids: string[]) => req<TimelinesView>("PUT", `/lore/timelines/${enc(lane)}`, { ids }),
 
   timeline: () => req<TimelineItem[]>("GET", "/timeline"),
   manuscript: () => req<{ text: string }>("GET", "/manuscript"),

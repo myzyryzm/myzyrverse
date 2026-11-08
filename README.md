@@ -48,7 +48,7 @@ Researchers can use web search and can read anything you drop in `lore/sources/`
 
 The graph pauses before each gate. The paused output appears in the center column, where you can edit it.
 
-1. **Research review**: edit the merged notes.
+1. **Research review**: edit the merged notes, and write **your notes on the research** below them (answers, decisions, corrections). Your notes are editable at every later gate too, are saved to `runs/<id>/notes.md`, and are placed above every later agent's task as the highest-priority input. Open questions can be answered right there without leaving the run.
 2. **Outline review**: edit the beat sheet, the arc plan, or the lore document.
 3. **Final prose review**: edit the chapter. The critic's notes are shown above it.
 4. **Lore ledger review**: accept, edit, reject or add proposed lore changes, answers, questions and sub-events.
@@ -63,10 +63,19 @@ The critic loop is automatic. A failed draft goes back to the writer with the cr
 lore/prehistory/*.md     your seed canon. Free-form markdown, any number of files. AI never writes here.
 lore/open_questions.json things not yet settled. You add them; runs may answer them or raise new ones.
 lore/events.json         where you want the story to go. Arcs (multi-chapter) and chapter events, with sub-events.
+                         Each is a world event (Elam attacks Babylon) or a personal one (someone dies saving Aegon).
+lore/timelines.json      the order each character lives through their events (edited in the Arc planner)
 lore/sources/            reference material for the researchers
 runs/<id>/ledger.json    what each committed run changed
 runs/<id>/lore.md        a lore run's approved document
+runs/<id>/notes.md       your notes on the research for that run
 ```
+
+## Arc planner
+
+**Arc planner** in the top bar opens a shared bank of events (world and personal) and one timeline per character: `Start → + → event → + → event → + → End`. Drag an event from the bank onto a `+`, or click a `+` to pick one or create a new one there. Being on a character's timeline means that character takes part. The **World** timeline orders world events.
+
+There is no single global sequence to maintain. The **Story order** view derives it from all timelines together: an event comes after everything that precedes it on any character's timeline, and events with no constraint between them share a row. If two timelines contradict each other the view says which events could not be ordered. Events a character takes part in but that you haven't placed yet are listed under the timeline and don't affect the order. Agents see both the story order and every timeline.
 
 A lore run's document is a proposal. From the ledger gate or after commit, **Adopt into prehistory** in the Lore doc tab appends it to a prehistory file you pick (or a new one). The AI still never writes prehistory on its own.
 

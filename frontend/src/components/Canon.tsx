@@ -11,6 +11,7 @@ interface Props {
   bump: () => void;
   notify: (m: string) => void;
   onPlanArc: (ev: StoryEvent) => void;
+  onOpenPlanner: () => void;
 }
 
 export default function Canon(props: Props) {
@@ -238,9 +239,10 @@ function Questions({ version, bump, notify }: Props) {
   );
 }
 
-function Events({ version, runs, bump, notify, onPlanArc }: Props) {
+function Events({ version, runs, bump, notify, onPlanArc, onOpenPlanner }: Props) {
   const [items, setItems] = useState<StoryEvent[]>([]);
-  const [form, setForm] = useState({ title: "", description: "", scope: "arc", parent_id: "", characters: "", target_run: "" });
+  const [form, setForm] = useState({ title: "", description: "", scope: "arc", category: "world", parent_id: "",
+                                     characters: "", target_run: "" });
 
   useEffect(() => {
     api.events().then(setItems).catch((e) => notify(errMsg(e)));
@@ -255,6 +257,11 @@ function Events({ version, runs, bump, notify, onPlanArc }: Props) {
     <div key={ev.id} className={`card ev ${ev.status}`} style={{ marginLeft: depth * 14 }}>
       <div className="card-head">
         <span className="tag">{ev.scope}</span>
+        <select className="small" value={ev.category} title="world or personal event"
+                onChange={(e) => run(() => api.updateEvent(ev.id, { category: e.target.value as StoryEvent["category"] }))}>
+          <option value="world">world</option>
+          <option value="personal">personal</option>
+        </select>
         {ev.created_by === "ai" && <span className="tag ai">from {ev.source_run}</span>}
         {ev.target_run && <span className="tag">→ {ev.target_run}</span>}
         <select className="small" value={ev.status}
@@ -285,6 +292,7 @@ function Events({ version, runs, bump, notify, onPlanArc }: Props) {
     run(async () => {
       await api.addEvent({
         title: form.title, description: form.description, scope: form.scope as StoryEvent["scope"],
+        category: form.category as StoryEvent["category"],
         parent_id: form.parent_id || null, target_run: form.target_run,
         characters: form.characters.split(",").map((s) => s.trim()).filter(Boolean),
       });
@@ -296,6 +304,7 @@ function Events({ version, runs, bump, notify, onPlanArc }: Props) {
   return (
     <div className="stack">
       <p className="hint">Where you want the story to go. Arcs span chapters; chapter events must happen in their target chapter. The Weaver steers toward both.</p>
+      <button onClick={onOpenPlanner}>Open arc planner (character timelines)…</button>
       {roots.map((e) => render(e, 0))}
       <fieldset>
         <legend>New event</legend>
@@ -307,6 +316,10 @@ function Events({ version, runs, bump, notify, onPlanArc }: Props) {
           <select value={form.scope} onChange={(e) => setForm({ ...form, scope: e.target.value })}>
             <option value="arc">arc (multi-chapter)</option>
             <option value="chapter">chapter (single event)</option>
+          </select>
+          <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })}>
+            <option value="world">world event</option>
+            <option value="personal">personal event</option>
           </select>
           <select value={form.parent_id} onChange={(e) => setForm({ ...form, parent_id: e.target.value })}>
             <option value="">no parent</option>

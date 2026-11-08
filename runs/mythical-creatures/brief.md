@@ -1,0 +1,1 @@
+i want the minoan griffin to exist in this story. i want it to be thought to be extinct at the start of the story but one (or some) are discovered on minos during jon's time training

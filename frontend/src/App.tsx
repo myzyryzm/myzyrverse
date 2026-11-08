@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { api } from "./api";
+import ArcPlanner from "./components/ArcPlanner";
 import Canon from "./components/Canon";
 import ControlDeck from "./components/ControlDeck";
 import Sandbox from "./components/Sandbox";
@@ -15,6 +16,7 @@ export default function App() {
   const [version, setVersion] = useState(0); // bump to make lore panels and timeline refetch
   const [prefill, setPrefill] = useState<NewRunPrefill | null>(null);
   const [toast, setToast] = useState<string | null>(null);
+  const [planner, setPlanner] = useState(false);
   const wasRunning = useRef(false);
   const gateEdits = useRef<() => Record<string, unknown>>(() => ({}));
   const registerEdits = useCallback((fn: () => Record<string, unknown>) => { gateEdits.current = fn; }, []);
@@ -79,6 +81,7 @@ export default function App() {
         <h1>Myzyrverse</h1>
         <span className="subtitle">Bronze Age Collapse · writing room</span>
         {config?.fake_llm && <span className="badge warn">FAKE_LLM: no Claude usage</span>}
+        <button className="planner-link small" onClick={() => setPlanner(true)}>Arc planner</button>
         <a className="manuscript-link" href="#" onClick={async (e) => {
           e.preventDefault();
           const m = await api.manuscript();
@@ -97,12 +100,13 @@ export default function App() {
 
       <main className="columns">
         <section className="col canon">
-          <Canon version={version} runs={runs} bump={bump} notify={notify}
+          <Canon version={version} runs={runs} bump={bump} notify={notify} onOpenPlanner={() => setPlanner(true)}
                  onPlanArc={(ev) => setPrefill({ type: "plan_arc", target_event_id: ev.id, title: ev.title,
                                                  brief: `Plan the path to: ${ev.title}\n\n${ev.description}` })} />
         </section>
         <section className="col sandbox">
-          <Sandbox key={selected ?? "none"} runState={runState} registerEdits={registerEdits} act={act} />
+          <Sandbox key={selected ?? "none"} runState={runState} registerEdits={registerEdits} act={act}
+                   version={version} bump={bump} notify={notify} />
         </section>
         <section className="col deck">
           <ControlDeck config={config} runs={runs} selected={selected} onSelect={setSelected}
@@ -111,6 +115,7 @@ export default function App() {
         </section>
       </main>
 
+      {planner && <ArcPlanner onClose={() => setPlanner(false)} bump={bump} notify={notify} />}
       {toast && <div className="toast" onClick={() => setToast(null)}>{toast}</div>}
     </div>
   );

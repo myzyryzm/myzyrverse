@@ -31,7 +31,8 @@ def _render_events(events: list[dict]) -> list[str]:
         for e in sorted(by_parent.get(parent, []), key=lambda x: x.get("order") or 0):
             target = f"; targets {e['target_run']}" if e.get("target_run") else ""
             chars = f"; characters: {', '.join(e['characters'])}" if e.get("characters") else ""
-            lines.append(f"{'  ' * depth}- [{e['id']}] ({e.get('scope', 'arc')}, {e.get('status', 'planned')}) "
+            lines.append(f"{'  ' * depth}- [{e['id']}] ({e.get('scope', 'arc')}, {e.get('category', 'world')}, "
+                         f"{e.get('status', 'planned')}) "
                          f"**{e.get('title', '')}**: {e.get('description', '')}{chars}{target}")
             walk(e["id"], depth + 1)
 
@@ -41,6 +42,38 @@ def _render_events(events: list[dict]) -> list[str]:
         if e.get("parent_id") and e["parent_id"] not in known:
             lines.append(f"- [{e['id']}] ({e.get('status', 'planned')}) **{e.get('title', '')}**: {e.get('description', '')}")
     return lines
+
+
+def _render_timelines(events: list[dict], timelines: dict) -> list[str]:
+    by_id = {e["id"]: e for e in events}
+
+    def label(i: str) -> str:
+        e = by_id.get(i) or {}
+        return f"[{i}] {e.get('title', '?')}"
+
+    out = ["## Story order (derived from character timelines)"]
+    order = timelines.get("story_order") or {}
+    levels = order.get("levels") or []
+    if levels:
+        out.append("Events on the same line are unordered relative to each other.")
+        for n, lvl in enumerate(levels, 1):
+            out.append(f"{n}. " + " · ".join(label(i) for i in lvl))
+    else:
+        out.append("(none yet)")
+    if order.get("cycle"):
+        out.append("WARNING: the character timelines contradict each other; these could not be ordered: "
+                   + " · ".join(label(i) for i in order["cycle"]))
+    out += ["", "## Character timelines (the order each character lives through their events)"]
+    unplaced = timelines.get("unplaced") or {}
+    lanes = {k: v for k, v in (timelines.get("lanes") or {}).items() if v}
+    if not lanes:
+        out.append("(none yet)")
+    for name, ids in lanes.items():
+        line = f"- {name}: " + " → ".join(label(i) for i in ids)
+        if unplaced.get(name):
+            line += "; also involved in, not yet ordered: " + " · ".join(label(i) for i in unplaced[name])
+        out.append(line)
+    return out
 
 
 def render_canon(canon: dict) -> str:
@@ -68,6 +101,8 @@ def render_canon(canon: dict) -> str:
     out.append("## Planned events (author's steering)")
     out += _render_events(canon.get("events") or []) or ["(none)"]
     out.append("")
+    out += _render_timelines(canon.get("events") or [], canon.get("timelines") or {})
+    out.append("")
 
     summaries = canon.get("previous_summaries") or []
     out.append("## Story so far")
@@ -93,6 +128,9 @@ def build_prompt(state: RunState, *sections: tuple[str, str], task: str) -> str:
     for title, body in sections:
         if body and body.strip():
             parts.append(f"# {title}\n\n{body.strip()}")
+    if (state.get("author_research_notes") or "").strip():
+        parts.append("# Author's notes on the research (highest priority; these drive every later step)\n\n"
+                     + state["author_research_notes"].strip())
     if state.get("author_notes"):
         parts.append(f"# Author's notes for this pass (highest priority)\n\n{state['author_notes'].strip()}")
     parts.append(f"## Your task\n\n{task.strip()}")

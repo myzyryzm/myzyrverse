@@ -79,6 +79,11 @@ async def test_plan_arc_run():
     gates, values = await _walk(g, "arc1", _start("arc1", run_type="plan_arc", researchers=[], target_event_id=ev["id"]))
     assert gates == ["human_gate_outline", "human_gate_ledger"]
     assert values["arc_plan"]
+    tl = lore.timelines_view()
+    subs = {e["title"]: e for e in lore.events() if e.get("parent_id") == ev["id"]}
+    assert subs["Grain convoys fail"]["category"] == "personal"
+    assert subs["Sherden demand pay"]["category"] == "world"
+    assert subs["Grain convoys fail"]["id"] in tl["unplaced"]["Tiye"]
 
 
 @pytest.mark.asyncio
