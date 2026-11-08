@@ -1,0 +1,131 @@
+{
+  "items": [
+    {
+      "id": "ev-1a583e2d",
+      "title": "The Babylon–Elam embassy",
+      "description": "Early in the story. Ramesses III hosts the kings (or envoys) of Babylon and Elam to ally them against Assyria. They have never gotten along: big brother and little brother. Tense.",
+      "scope": "chapter",
+      "parent_id": null,
+      "characters": [
+        "Ramesses III"
+      ],
+      "target_run": "",
+      "order": 0,
+      "status": "planned",
+      "created_by": "user",
+      "source_run": null,
+      "created_at": "2026-11-08T16:19:49+00:00"
+    },
+    {
+      "id": "ev-0248236c",
+      "title": "The Deir el-Medina strike",
+      "description": "Early, before the assassination. The first recorded labor strike, quietly started by nefarious people; a precursor to the assassination.",
+      "scope": "chapter",
+      "parent_id": null,
+      "characters": [],
+      "target_run": "",
+      "order": 0,
+      "status": "planned",
+      "created_by": "user",
+      "source_run": null,
+      "created_at": "2026-11-08T16:19:49+00:00"
+    },
+    {
+      "id": "ev-3f5d0b6c",
+      "title": "Someone dies protecting Aegon",
+      "description": "Early. Someone dies protecting him because he was off drinking, whoring or taking purple instead of being where he should have been. This sets up his growth arc.",
+      "scope": "chapter",
+      "parent_id": null,
+      "characters": [
+        "Aegon"
+      ],
+      "target_run": "",
+      "order": 0,
+      "status": "planned",
+      "created_by": "user",
+      "source_run": null,
+      "created_at": "2026-11-08T16:19:49+00:00"
+    },
+    {
+      "id": "ev-52e9ab82",
+      "title": "The harem conspiracy",
+      "description": "Tiye and the nobles assassinate Ramesses III and put Pentawer on the throne. The older princes are away. No royal children die; Isis survives (probably away, e.g. in Tyre).",
+      "scope": "arc",
+      "parent_id": null,
+      "characters": [
+        "Tiye",
+        "Ramesses III",
+        "Pentawer"
+      ],
+      "target_run": "",
+      "order": 0,
+      "status": "planned",
+      "created_by": "user",
+      "source_run": null,
+      "created_at": "2026-11-08T16:19:49+00:00"
+    },
+    {
+      "id": "ev-3f94686f",
+      "title": "The Assyrian marriage",
+      "description": "After the coup, a princess of Assyria arrives, promised to the new pharaoh, Pentawer. They marry, joining Egypt and Assyria and leaving Tyre in a precarious position.",
+      "scope": "chapter",
+      "parent_id": null,
+      "characters": [
+        "Pentawer"
+      ],
+      "target_run": "",
+      "order": 0,
+      "status": "planned",
+      "created_by": "user",
+      "source_run": null,
+      "created_at": "2026-11-08T16:19:49+00:00"
+    },
+    {
+      "id": "ev-e561771d",
+      "title": "Tyre against Assyria",
+      "description": "After the coup, fighting breaks out between Tyre and Assyria. It is led by Isis's brother or another of her sons (open).",
+      "scope": "arc",
+      "parent_id": null,
+      "characters": [
+        "Isis"
+      ],
+      "target_run": "",
+      "order": 0,
+      "status": "planned",
+      "created_by": "user",
+      "source_run": null,
+      "created_at": "2026-11-08T16:19:49+00:00"
+    },
+    {
+      "id": "ev-2d2dca15",
+      "title": "Jon's exodus",
+      "description": "Away at Sherden training (Knossos, Crete?) when the coup strikes. He travels through ruined Greece and Anatolia, meets the Drought's evil, and leads refugees to shelter in Egypt, uniting people to fight. Jon Snow crossed with Moses.",
+      "scope": "arc",
+      "parent_id": null,
+      "characters": [
+        "Jon"
+      ],
+      "target_run": "",
+      "order": 0,
+      "status": "planned",
+      "created_by": "user",
+      "source_run": null,
+      "created_at": "2026-11-08T16:19:49+00:00"
+    },
+    {
+      "id": "ev-bb07bb83",
+      "title": "Elam attacks Babylon",
+      "description": "Later in the story, little-brother Elam turns on big-brother Babylon, undoing Ramesses III's planned alliance. Historically, Elam sacked Babylon around 1158 BCE and carried off the stele of Hammurabi.",
+      "scope": "arc",
+      "parent_id": null,
+      "characters": [],
+      "target_run": "",
+      "order": 0,
+      "status": "planned",
+      "created_by": "user",
+      "source_run": null,
+      "created_at": "2026-11-08T16:33:00+00:00"
+    }
+  ],
+  "overrides": {}
+}

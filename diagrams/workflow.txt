@@ -1,0 +1,43 @@
+               ┌──────────────────────────────────────┐
+               │  [User Inputs]: Master Lore Documents │
+               │  Factions, Characters, Setup Prompts │
+               └──────────────────┬───────────────────┘
+                                  │
+                                  ▼
+ ┌────────────────────────────────────────────────────────────────────────┐
+ │                      👑 MAESTRO ORCHESTRATOR                           │
+ │  Evaluates State Tracker | Distributes Tasks | Manages Flow Directions  │
+ └──────┬──────────────┬──────────────┬──────────────┬──────────────▲─────┘
+        │              │              │              │              │
+        │ [Task 1]     │ [Task 2]     │ [Task 3]     │ [Task 4]     │ (Returns data)
+        ▼              ▼              ▼              ▼              │
+  ┌───────────┐  ┌───────────┐  ┌───────────┐  ┌───────────┐        │
+  │ HISTORIAN │  │ PSYCHOLO- │  │  WEAVER   │  │  MAESTER  │        │
+  │  WORKER   │  │   GIST    │  │  WORKER   │  │  WRITER   │        │
+  │ (Research │  │ (Character│  │ (Outline  │  │  WORKER   │        │
+  │ Parallel) │  │  Flaws)   │  │ Compiler) │  │ (Prose/CLI│        │
+  └─────┬─────┘  └─────┬─────┘  └─────┬─────┘  └─── shadow)│        │
+        │              │              │              └──────┬──────┘        │
+        └───────┬──────┘              │                     │               │
+                │                     │                     ▼               │
+                ▼                     │              ┌─────────────┐        │
+     ===================              │              │ GRAND CRITIC│        │
+    ||   HUMAN GATE 1  ||             │              │   WORKER    │        │
+    || (Review Research||             ▼              │ (Tone/Rules)│        │
+     ===================     ===================     └──────┬──────┘        │
+                │           ||   HUMAN GATE 2  ||           │               │
+                │           || (Review Outline)||           ▼               │
+                │            ===================     [CRITIC ROUTER]        │
+                │                     │               /             \       │
+                │                     │       (FAILED)               (PASSED)
+                │                     │             /                 \     │
+                │                     │            ▼                   ▼    │
+                │                     │     [Wipe Prose]      ===================
+                │                     │     [Incr. Count]    ||   HUMAN GATE 3  ||
+                │                     │     [Loop Back]      ||  (Final Review) ||
+                │                     │            │          ===================
+                │                     │            │                   │
+                ▼                     ▼            ▼                   ▼
+    ┌───────────────────────────────────────────────────────────────────────┐
+    │              ALL ROADS REPORT DIRECTLY BACK TO THE STATE              │
+    └───────────────────────────────────────────────────────────────────────┘

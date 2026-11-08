@@ -1,0 +1,23 @@
+ ┌───────────────────────────┐       ┌───────────────────────────┐
+ │      HISTORIAN NODE       │       │     PSYCHOLOGIST NODE     │
+ │ (Finds historical events) │       │  (Finds character flaws)  │
+ └─────────────┬─────────────┘       └─────────────┬─────────────┘
+               │                                   │
+               └─────────────────┬─────────────────┘
+                                 │
+                                 ▼
+                   ┌───────────────────────────┐
+                   │    JOIN_RESEARCH NODE     │  <--- Simply merges the two
+                   │    (Syncs Data Streams)   │       parallel tracks together
+                   └─────────────┬─────────────┘
+                                 │
+                                 ▼
+                    ===========================
+                   ||   HUMAN GATE RESEARCH   ||  <--- You review & edit the raw
+                    ===========================        historical/character notes
+                                 │
+                                 ▼
+                   ┌───────────────────────────┐
+                   │        WEAVER NODE        │  <--- Takes your approved data 
+                   │     (Outline Builder)     │       and weaves it into beats
+                   └───────────────────────────┘

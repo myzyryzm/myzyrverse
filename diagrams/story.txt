@@ -1,0 +1,26 @@
+  ┌────────────────────────────────────────────────────────┐
+  │                   THE CANON (Base Lore)                │
+  │  - Rules of the World (Static until changed by YOU)    │
+  │  - Master Faction Directory                            │
+  └───────────────────────────┬────────────────────────────┘
+                              │ (Reads Constraints)
+                              ▼
+  ┌────────────────────────────────────────────────────────┐
+  │                 THE SANDBOX (Story State)              │
+  │  - Rolling Manuscript Text  - Active Scene Beats       │
+  │  - Current Character Moods   - Systemic Chaos Trackers │
+  └───────────────────────────┬────────────────────────────┘
+                              │
+                              ▼
+                 ===========================
+                ||  HUMAN-IN-THE-LOOP GATE  ||
+                 ===========================
+                              │
+                              ▼
+  [You discover something cool while gardening the plot]
+                              │
+  ┌───────────────────────────┴────────────────────────────┐
+  │              UPDATING THE FEEDBACK LOOP                │
+  │ 1. Text is saved to the Manuscript                     │
+  │ 2. You patch the CANON to document the new world rule  │
+  └────────────────────────────────────────────────────────┘
