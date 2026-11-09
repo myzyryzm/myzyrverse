@@ -1,8 +1,75 @@
 # Myzyrverse
 
-A research + writing room for a historical-fantasy saga set around 1160 BCE during the Late Bronze Age collapse. It is an alternate history: the harem conspiracy against Ramesses III succeeds.
+**A multi-agent research + synthesis pipeline with an automated critic and a human review loop.**
 
-A LangGraph state machine runs researchers, an outliner, a writer and a critic. It pauses at human gates so you can edit everything before it moves on. Every LLM call goes through the Claude Agent SDK, which drives your local `claude` CLI, so usage bills to your Claude Code subscription, not an API key.
+Four research agents work in parallel. Synthesis agents turn the research you approved into an outline, a chapter, an arc plan or a lore document. A critic agent rejects drafts that break tone or canon and sends them back to the writer. A human gate sits between every stage, so nothing becomes canon until you have read it, edited it and said yes. Every committed run is a ledger that replays into the shared canon, so the loop feeds itself.
+
+The use: a historical-fantasy saga set around 1160 BCE, during the Late Bronze Age collapse. It is an alternate history in which the harem conspiracy against Ramesses III succeeds. The agents are cast for that world (an Antiquarian for Bronze Age grounding, a Historian for analogues, a Mythographer for myth, a Psychologist for character), but the loop itself is generic.
+
+## The loop
+
+```mermaid
+flowchart TD
+    Brief(["Brief + your notes"]) --> M
+
+    Canon[("Canon on disk, read fresh at every step<br/>lore/prehistory/*.md, seed canon, humans only<br/>present lore, replayed from committed ledgers<br/>lore/sources/, your notes, PDFs, articles")]
+    Canon -.-> M
+
+    M{{"Maestro<br/>deterministic router, no LLM"}}
+
+    subgraph Research["1 · Research, four agents in parallel"]
+        direction LR
+        A["Antiquarian<br/>Bronze Age grounding"]
+        H["Historian<br/>analogues from any era"]
+        My["Mythographer<br/>analogues from myth and fiction"]
+        Ps["Psychologist<br/>wants, fears, friction"]
+    end
+    M --> A & H & My & Ps --> J["Join<br/>background · proposals · numbered sources"]
+    J --> G1
+
+    G1[/"GATE 1 · Research review<br/>accept, modify or reject each proposal; write your notes"/]
+
+    subgraph Synthesis["2 · Synthesis"]
+        direction LR
+        W["Weaver<br/>beat sheet or arc plan"]
+        LM["Loremaster<br/>lore document"]
+    end
+    G1 -- "chapter / arc plan" --> W
+    G1 -- "lore" --> LM
+    W --> G2
+    LM --> G2
+
+    G2[/"GATE 2 · Outline review<br/>edit the beats, plan or document; Regenerate with notes"/]
+
+    subgraph Draft["3 · Prose + critic loop, chapter runs"]
+        Wr["Writer<br/>drafts the chapter"]
+        C{"Grand Critic<br/>tone · canon · rules"}
+        Wr --> C
+        C -- "FAILED, revisions left<br/>(MAX_REVISIONS, default 3)" --> Wr
+    end
+    G2 -- "chapter" --> Wr
+    C -- "PASSED, or out of revisions" --> G3
+
+    G3[/"GATE 3 · Final prose review<br/>edit the chapter, or Force rewrite with notes"/]
+
+    Ar["Archivist<br/>proposes lore changes, answers, new questions, sub-events"]
+    G1 -- "research run" --> Ar
+    G2 -- "arc plan / lore" --> Ar
+    G3 --> Ar
+    Ar --> G4[/"GATE 4 · Lore ledger review<br/>accept, edit, reject or add entries"/]
+    G4 --> Co["Commit<br/>ledger.json written to runs/"]
+    Co -. "replayed into present lore" .-> Canon
+```
+
+How to read it:
+
+- **Slanted boxes are human gates.** The graph is compiled with `interrupt_before` on all four, so the run pauses, the paused output appears in the UI for editing, and nothing moves until you resume. A paused run survives a server restart.
+- **The Maestro is not an LLM.** Every node returns to it. It reads the state and picks the next node, so the path above is what emerges from those decisions, not a hard-coded sequence. Run types take different routes through the same graph (see [Run types](#run-types)).
+- **The critic loop is automatic, the human loop is not.** A failed draft goes back to the writer with the critique up to `MAX_REVISIONS` times, then escalates to you at Gate 3. At any gate you can Regenerate (or Force rewrite) that step with notes, which is the manual version of the same loop.
+- **Your notes outrank everything.** Notes written at Gate 1 are editable at every later gate and are placed above every later agent's task as the highest-priority input. Rejected proposals are removed from everything later agents see.
+- **Commit closes the loop.** Present lore is never one file. It is rebuilt by replaying committed ledgers in order, like replaying git commits, and it is read fresh at the start of every node. Revert a run and its lore, answers, questions and prose all drop out together.
+
+Every LLM call goes through the Claude Agent SDK, which drives your local `claude` CLI, so usage bills to your Claude Code subscription, not an API key.
 
 ## Run it
 
