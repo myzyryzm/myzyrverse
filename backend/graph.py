@@ -30,7 +30,7 @@ from langgraph.checkpoint.base import BaseCheckpointSaver
 from langgraph.graph import END, START, StateGraph
 
 from . import config
-from .nodes import gates, ledger, loremaster, maestro, research, writing
+from .nodes import archivist, commit, gates, grand_critic, loremaster, maestro, researchers, weaver, writer
 from .state import RunState
 
 GATES = ["human_gate_research", "human_gate_outline", "human_gate_final", "human_gate_ledger"]
@@ -40,20 +40,20 @@ WORKERS = ["weaver", "loremaster", "writer", "grand_critic", "archivist"]
 def default_nodes() -> dict:
     nodes = {
         "maestro": maestro.maestro,
-        "join_research": research.join_research,
-        "weaver": writing.weaver,
+        "join_research": researchers.join_research,
+        "weaver": weaver.weaver,
         "loremaster": loremaster.loremaster,
-        "writer": writing.writer,
-        "grand_critic": writing.grand_critic,
-        "archivist": ledger.archivist,
-        "commit": ledger.commit,
+        "writer": writer.writer,
+        "grand_critic": grand_critic.grand_critic,
+        "archivist": archivist.archivist,
+        "commit": commit.commit,
         "human_gate_research": gates.human_gate_research,
         "human_gate_outline": gates.human_gate_outline,
         "human_gate_final": gates.human_gate_final,
         "human_gate_ledger": gates.human_gate_ledger,
     }
     for name in config.RESEARCHERS:
-        nodes[name] = research.make_researcher(name)
+        nodes[name] = researchers.make_researcher(name)
     return nodes
 
 

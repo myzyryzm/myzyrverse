@@ -6,8 +6,4 @@ Example: if asked about the Sherden as a royal guard, examine the Kingsguard (oa
 
 You have web search and fetch, plus Read/Grep/Glob over the author's local source folder (your working directory).
 
-Output markdown:
-## Fictional analogues
-One subsection each: source, what it does, why it works, pitfalls.
-## Ways to transform or subvert
-## Sources
+Background: one section per fictional analogue (source, what it does, why it works, pitfalls), labeled as fiction. Proposals: concrete ways to transform or subvert them for these characters and events.

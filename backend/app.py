@@ -35,7 +35,7 @@ ERRORS: dict[str, str] = {}
 # Fields the UI may edit at a gate. Anything else in an edit payload is rejected.
 EDITABLE = {"research_notes", "chapter_outline", "arc_plan", "lore_doc", "draft_prose", "critique_notes",
             "proposed_ledger", "summary", "characters_present", "pov", "brief", "title",
-            "author_research_notes"}
+            "author_research_notes", "research_proposals"}
 
 
 @asynccontextmanager
@@ -263,7 +263,8 @@ async def regenerate(run_id: str, body: Regenerate):
     notes = body.notes.strip()
     if gate == "human_gate_research":
         patch = {"research_complete": False, "research_notes": "", "review_status": RESEARCHING,
-                 **{f"{r}_notes": "" for r in config.RESEARCHERS}}
+                 "research_background": [], "research_proposals": [], "research_sources": [],
+                 **{f"{r}_research": {} for r in config.RESEARCHERS}}
     elif gate == "human_gate_outline":
         field = {"plan_arc": "arc_plan", "lore": "lore_doc"}.get(meta["type"], "chapter_outline")
         patch = {field: ""}

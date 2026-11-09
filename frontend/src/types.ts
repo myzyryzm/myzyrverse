@@ -57,7 +57,46 @@ export interface RunValues {
   summary?: string;
   characters_present?: string[];
   author_research_notes?: string;
+  research_background?: BackgroundSection[];
+  research_proposals?: Proposal[];
+  research_sources?: ResearchSource[];
   [key: string]: unknown;
+}
+
+export interface BackgroundSection {
+  researcher: string;
+  heading: string;
+  body: string;
+  refs: number[];
+}
+
+export type Decision = "pending" | "accepted" | "modified" | "rejected";
+
+export interface ProposalPart {
+  label: "characterization" | "plot" | "world" | "integration" | string;
+  text: string;
+  refs: number[];
+  note: string;
+}
+
+/** One story or lore proposal from a researcher, reviewed in the proposal popup at the research gate. */
+export interface Proposal {
+  id: string;
+  researcher: string;
+  title: string;
+  pitch: string;
+  affects: string[];
+  parts: ProposalPart[];
+  questions: { q: string; answer: string }[];
+  decision: Decision;
+  note: string;
+}
+
+export interface ResearchSource {
+  n: number;
+  title: string;
+  url: string;
+  researchers: string[];
 }
 
 export interface LogLine {

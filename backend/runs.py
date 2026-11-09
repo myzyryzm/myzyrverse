@@ -25,6 +25,8 @@ ARTIFACTS = {
     "critique": "critique.md",
     "summary": "summary.md",
     "notes": "notes.md",
+    "sources": "sources.md",
+    "proposals": "proposals.json",
 }
 
 

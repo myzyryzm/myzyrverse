@@ -105,8 +105,7 @@ export default function App() {
                                                  brief: `Plan the path to: ${ev.title}\n\n${ev.description}` })} />
         </section>
         <section className="col sandbox">
-          <Sandbox key={selected ?? "none"} runState={runState} registerEdits={registerEdits} act={act}
-                   version={version} bump={bump} notify={notify} />
+          <Sandbox key={selected ?? "none"} runState={runState} registerEdits={registerEdits} act={act} />
         </section>
         <section className="col deck">
           <ControlDeck config={config} runs={runs} selected={selected} onSelect={setSelected}

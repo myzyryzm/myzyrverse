@@ -1,46 +1,9 @@
-"""Weaver (outline or arc plan), Maester writer, and Grand Critic."""
+"""Grand Critic: judges a draft and returns PASSED or FAILED; the Maestro loops FAILED drafts back to the writer."""
 
 from __future__ import annotations
 
-from ..state import PENDING_OUTLINE_REVIEW, RunState
+from ..state import RunState
 from .common import build_prompt, call, system_prompt, usage
-
-
-async def weaver(state: RunState) -> dict:
-    research = ("Approved research", state.get("research_notes", ""))
-    if state.get("run_type") == "plan_arc":
-        prompt = build_prompt(
-            state, research,
-            task=(f"Plan the arc toward target event {state.get('target_event_id') or '(see brief)'}. "
-                  "Write markdown: a short causal overview, then a numbered list of milestones. For each milestone give "
-                  "a bold title, what happens, who is involved, and why it follows from the previous one. "
-                  "End with a `## Risks` section."),
-        )
-        result = await call("weaver", state, prompt, sys_prompt=system_prompt("weaver_arc"))
-        return {"arc_plan": result.text, "review_status": PENDING_OUTLINE_REVIEW,
-                "author_notes": "", "usage": usage("weaver", result)}
-
-    prompt = build_prompt(state, research, task="Write the beat sheet for this chapter.")
-    result = await call("weaver", state, prompt, sys_prompt=system_prompt("weaver"))
-    return {"chapter_outline": result.text, "review_status": PENDING_OUTLINE_REVIEW,
-            "author_notes": "", "usage": usage("weaver", result)}
-
-
-async def writer(state: RunState) -> dict:
-    history = state.get("draft_history") or []
-    sections = [
-        ("Approved research (use for texture, not lectures)", state.get("research_notes", "")),
-        ("Approved chapter outline", state.get("chapter_outline", "")),
-    ]
-    if history:
-        sections += [("Previous draft", history[-1]), ("Critique of the previous draft", state.get("critique_notes", ""))]
-        task = ("Revise the previous draft into a stronger chapter. Fix every issue in the critique and any author notes. "
-                "Keep what works. Output the full revised chapter.")
-    else:
-        task = f"Write the chapter from {state.get('pov') or 'the POV character'}'s point of view, following the outline."
-    prompt = build_prompt(state, *sections, task=task)
-    result = await call("writer", state, prompt, sys_prompt=system_prompt("writer", tone=True))
-    return {"draft_prose": result.text, "author_notes": "", "usage": usage("writer", result)}
 
 
 CRITIC_SCHEMA = {

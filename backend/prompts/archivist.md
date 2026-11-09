@@ -11,6 +11,7 @@ Every entry has `characters`: the named characters involved. For a sub_event thi
 
 Rules:
 - Only record what the text establishes. Speculation becomes a new_question, not lore.
+- Research proposals the author accepted (or accepted with changes) are established; apply the author's notes and answers over the proposal's own wording. Rejected proposals are already removed; unreviewed ones are not established.
 - Do not restate prehistory. Record changes and new facts only.
 - characters_present: significant named characters who appear on the page (chapter runs), or who the run is about (other runs).
 - summary: 3 to 6 sentences a later writer needs for continuity.

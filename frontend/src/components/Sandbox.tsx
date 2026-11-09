@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { api } from "../api";
-import type { LedgerEntry, OpenQuestion, RunState, RunType } from "../types";
+import type { LedgerEntry, Proposal, RunState, RunType } from "../types";
 import { GATE_LABELS, errMsg } from "../util";
+import ProposalReview, { RESEARCHER_SHORT } from "./ProposalReview";
+import ResearchReader from "./ResearchReader";
 
 type TextField = "research_notes" | "chapter_outline" | "arc_plan" | "lore_doc" | "draft_prose" | "critique_notes" | "summary"
   | "author_research_notes";
-type TabId = TextField | "ledger" | `history-${number}`;
+type TabId = TextField | "ledger" | "sources" | `history-${number}`;
 
 const GATE_FIELD: Record<string, TextField | "ledger"> = {
   human_gate_research: "research_notes",
@@ -22,6 +24,7 @@ const TAB_LABELS: Record<string, string> = {
   critique_notes: "Critique",
   summary: "Summary",
   ledger: "Ledger",
+  sources: "Sources",
 };
 
 // What the outline gate edits, per run type.
@@ -33,12 +36,9 @@ interface Props {
   runState: RunState | null;
   registerEdits: (fn: () => Record<string, unknown>) => void;
   act: (fn: () => Promise<unknown>, after?: (r: unknown) => void) => Promise<void>;
-  version: number;
-  bump: () => void;
-  notify: (m: string) => void;
 }
 
-export default function Sandbox({ runState, registerEdits, act, version, bump, notify }: Props) {
+export default function Sandbox({ runState, registerEdits, act }: Props) {
   const v = runState?.values ?? {};
   const gate = runState && !runState.running ? runState.next[0] : undefined;
   const runType = runState?.meta.type;
@@ -51,6 +51,9 @@ export default function Sandbox({ runState, registerEdits, act, version, bump, n
   const [ledger, setLedger] = useState<LedgerEntry[] | null>(null);
   const [chars, setChars] = useState<string | null>(null);
   const [tab, setTab] = useState<TabId | null>(null);
+  const [proposals, setProposals] = useState<Proposal[] | null>(null);
+  const [reviewAt, setReviewAt] = useState<number | null>(null);
+  const [flashSrc, setFlashSrc] = useState<number | null>(null);
 
   // Drop local edits once the run moves on (they were sent with Resume, or discarded by Regenerate).
   useEffect(() => {
@@ -58,6 +61,8 @@ export default function Sandbox({ runState, registerEdits, act, version, bump, n
       setDrafts({});
       setLedger(null);
       setChars(null);
+      setProposals(null);
+      setReviewAt(null);
     }
   }, [runState?.running]);
 
@@ -68,6 +73,10 @@ export default function Sandbox({ runState, registerEdits, act, version, bump, n
   const textValue = (f: TextField) => drafts[f] ?? (v[f] as string | undefined) ?? "";
   const ledgerValue = ledger ?? v.proposed_ledger ?? [];
   const charsValue = chars ?? (v.characters_present ?? []).join(", ");
+  const proposalsValue = proposals ?? v.research_proposals ?? [];
+  const sources = v.research_sources ?? [];
+  const structured = !!(v.research_background?.length || v.research_proposals?.length);
+  const canDecide = gate === "human_gate_research";
 
   useEffect(() => {
     registerEdits(() => {
@@ -76,16 +85,27 @@ export default function Sandbox({ runState, registerEdits, act, version, bump, n
         if (val !== undefined && val !== v[k]) edits[k] = val;
       }
       if (ledger) edits.proposed_ledger = ledger;
+      if (proposals) edits.research_proposals = proposals;
       if (chars !== null) edits.characters_present = chars.split(",").map((s) => s.trim()).filter(Boolean);
       return edits;
     });
-  }, [drafts, ledger, chars, v, registerEdits]);
+  }, [drafts, ledger, chars, proposals, v, registerEdits]);
+
+  // A superscript was clicked: show the Sources tab and bring that source into view.
+  useEffect(() => {
+    if (flashSrc === null || tab !== "sources") return;
+    document.getElementById(`src-${flashSrc}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+    const t = setTimeout(() => setFlashSrc(null), 1600);
+    return () => clearTimeout(t);
+  }, [flashSrc, tab]);
+  const showSource = (n: number) => { setTab("sources"); setFlashSrc(n); };
 
   const tabs = useMemo(() => {
     const t: TabId[] = [];
     const has = (f: string) => typeof v[f] === "string" && (v[f] as string).length > 0;
     // Always present at a gate: your notes on the research live on this tab and stay editable at every gate.
     if (has("research_notes") || editable === "research_notes" || gate) t.push("research_notes");
+    if (v.research_sources?.length) t.push("sources");
     if (has("arc_plan") || editable === "arc_plan") t.push("arc_plan");
     if (has("lore_doc") || editable === "lore_doc") t.push("lore_doc");
     if (has("chapter_outline") || editable === "chapter_outline") t.push("chapter_outline");
@@ -137,7 +157,20 @@ export default function Sandbox({ runState, registerEdits, act, version, bump, n
         )}
 
 
-        {active && active !== "ledger" && !active.startsWith("history-") && (
+        {active === "sources" && (
+          <ol className="sources">
+            {sources.map((s) => (
+              <li key={s.n} id={`src-${s.n}`} value={s.n} className={flashSrc === s.n ? "flash" : ""}>
+                {s.url && /^https?:/.test(s.url)
+                  ? <a href={s.url} target="_blank" rel="noreferrer">{s.title || s.url}</a>
+                  : <span>{s.title}{s.url && s.url !== s.title ? ` (${s.url})` : ""}</span>}
+                {" "}{s.researchers.map((r) => <span key={r} className="tag">{RESEARCHER_SHORT[r] ?? r}</span>)}
+              </li>
+            ))}
+          </ol>
+        )}
+
+        {active && active !== "ledger" && active !== "sources" && !active.startsWith("history-") && (
           <>
             {active === "lore_doc" && canAdopt && (
               <AdoptLore runId={runState.meta.id} adoptedTo={runState.meta.adopted_to ?? null} act={act} />
@@ -148,15 +181,23 @@ export default function Sandbox({ runState, registerEdits, act, version, bump, n
                 <pre>{v.critique_notes}</pre>
               </details>
             )}
-            <textarea
-              className={`editor prose${active === editable ? "" : " readonly"}${active === "research_notes" ? " research" : ""}`}
-              readOnly={active !== editable}
-              value={textValue(active as TextField)}
-              placeholder={active === "research_notes" && !textValue("research_notes") ? "(no research for this run)" : undefined}
-              onChange={(e) => setDrafts({ ...drafts, [active]: e.target.value })}
-            />
+            {active === "research_notes" && structured ? (
+              <ResearchReader background={v.research_background ?? []} proposals={proposalsValue} sources={sources}
+                              editable={canDecide} onOpen={setReviewAt} onRef={showSource} />
+            ) : (
+              <textarea
+                className={`editor prose${active === editable ? "" : " readonly"}${active === "research_notes" ? " research" : ""}`}
+                readOnly={active !== editable}
+                value={textValue(active as TextField)}
+                placeholder={active === "research_notes" && !textValue("research_notes") ? "(no research for this run)" : undefined}
+                onChange={(e) => setDrafts({ ...drafts, [active]: e.target.value })}
+              />
+            )}
             {active === editable && drafts[active as TextField] !== undefined && drafts[active as TextField] !== v[active] && (
               <div className="hint">Edited. Your version is sent when you press Resume.</div>
+            )}
+            {active === "research_notes" && proposals && canDecide && (
+              <div className="hint">Proposal decisions edited. They are sent when you press Resume.</div>
             )}
             {active === "research_notes" && (
               <>
@@ -176,10 +217,14 @@ export default function Sandbox({ runState, registerEdits, act, version, bump, n
                     ? "Edited. Sent when you press Resume, then placed above every later agent's task."
                     : "Editable at any gate. Sent on Resume and placed above every later agent's task."}
                 </div>
-                <OpenQuestionsQuick version={version} bump={bump} notify={notify} openByDefault={gate === "human_gate_research"} />
               </>
             )}
           </>
+        )}
+
+        {reviewAt !== null && proposalsValue.length > 0 && (
+          <ProposalReview proposals={proposalsValue} start={reviewAt} sources={sources} editable={canDecide}
+                          onChange={setProposals} onClose={() => setReviewAt(null)} />
         )}
 
         {active?.startsWith("history-") && (
@@ -278,51 +323,6 @@ function AdoptLore({ runId, adoptedTo, act }: { runId: string; adoptedTo: string
       <p className="hint">Appends the approved document (with your outline-gate edits) to the end of the file. Edit it there afterwards.</p>
       {err && <p className="hint">{err}</p>}
     </div>
-  );
-}
-
-/** Answer open questions without leaving the run. Answers go straight to canon; Resume reloads canon. */
-function OpenQuestionsQuick({ version, bump, notify, openByDefault }: {
-  version: number; bump: () => void; notify: (m: string) => void; openByDefault: boolean;
-}) {
-  const [items, setItems] = useState<OpenQuestion[]>([]);
-  const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [newQ, setNewQ] = useState("");
-
-  useEffect(() => {
-    api.questions().then(setItems).catch((e) => notify(errMsg(e)));
-  }, [version, notify]);
-
-  const open = items.filter((q) => q.status === "open");
-  // Called directly rather than through act(): act marks the run as just-finished and would refetch twice.
-  const run = (fn: () => Promise<unknown>) => fn().then(bump).catch((e) => notify(errMsg(e)));
-
-  return (
-    <details className="critique-peek quick-questions" open={openByDefault}>
-      <summary>Open questions ({open.length} open): quick answer</summary>
-      <p className="hint">Answers save to canon immediately and the run picks them up when you Resume.</p>
-      <div className="stack">
-        {open.map((q) => (
-          <div key={q.id} className="quick-q">
-            <div>{q.about && <span className="tag">{q.about}</span>} {q.question}</div>
-            <div className="row">
-              <input placeholder="answer" value={answers[q.id] ?? ""}
-                     onChange={(e) => setAnswers({ ...answers, [q.id]: e.target.value })}
-                     onKeyDown={(e) => e.key === "Enter" && answers[q.id]?.trim()
-                       && run(() => api.updateQuestion(q.id, { answer: answers[q.id] }))} />
-              <button disabled={!answers[q.id]?.trim()}
-                      onClick={() => run(() => api.updateQuestion(q.id, { answer: answers[q.id] }))}>Answer</button>
-            </div>
-          </div>
-        ))}
-        {!open.length && <p className="muted">No open questions.</p>}
-        <div className="row">
-          <input placeholder="add a new open question" value={newQ} onChange={(e) => setNewQ(e.target.value)} />
-          <button disabled={!newQ.trim()}
-                  onClick={() => run(async () => { await api.addQuestion(newQ.trim(), ""); setNewQ(""); })}>Add</button>
-        </div>
-      </div>
-    </details>
   );
 }
 

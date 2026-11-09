@@ -26,7 +26,19 @@ def _echo(prompt: str) -> str:
 
 def fake_result(node: str, prompt: str, schema: dict | None) -> AgentResult:
     if node in ("antiquarian", "historian", "mythographer", "psychologist"):
-        return AgentResult(text=f"- ({node}) placeholder finding one\n- ({node}) placeholder finding two" + _echo(prompt))
+        return AgentResult(text="", structured_output={
+            "background": [{"heading": f"{node} context", "refs": [1],
+                            "body": f"- ({node}) placeholder finding one [1]\n- ({node}) placeholder finding two" + _echo(prompt)}],
+            "proposals": [
+                {"title": f"{node} proposal A", "pitch": f"({node}) placeholder pitch A [1]", "affects": ["Tiye"],
+                 "parts": [{"label": "characterization", "text": "Placeholder characterization [1]", "refs": [1]},
+                           {"label": "integration", "text": "Placeholder integration", "refs": []}],
+                 "questions": [f"({node}) who pays for this?"]},
+                {"title": f"{node} proposal B", "pitch": f"({node}) placeholder pitch B", "affects": [],
+                 "parts": [{"label": "plot", "text": "Placeholder plot turn", "refs": []}], "questions": []},
+            ],
+            "sources": [{"n": 1, "title": "Placeholder source", "url": "https://example.org/source"}],
+        })
     if node == "weaver":
         return AgentResult(text="### Scene 1\n- Beat: placeholder\n\n### Scene 2\n- Beat: placeholder" + _echo(prompt))
     if node == "loremaster":

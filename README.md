@@ -44,11 +44,17 @@ Researchers run in parallel and are ticked per run. Ticking none skips research 
 
 Researchers can use web search and can read anything you drop in `lore/sources/` (notes, PDFs, articles).
 
+Each researcher returns three things:
+
+- **Background**: context to understand the material. It settles nothing about the story.
+- **Proposals**: concrete story and lore ideas. Each has parts (characterization, plot, world, integration with canon) and any questions it raises.
+- **Sources**: a numbered list. The text cites them only as superscript numbers, and they live on the **Sources** tab, numbered across the whole run.
+
 ## Gates
 
 The graph pauses before each gate. The paused output appears in the center column, where you can edit it.
 
-1. **Research review**: edit the merged notes, and write **your notes on the research** below them (answers, decisions, corrections). Your notes are editable at every later gate too, are saved to `runs/<id>/notes.md`, and are placed above every later agent's task as the highest-priority input. Open questions can be answered right there without leaving the run.
+1. **Research review**: the Research tab switches between **Background** and **Proposals**. **Review proposals** opens a popup that steps through the proposals one at a time (arrows or ← →). On each one you can note any part, answer the questions it raises, add an overall note, and **Accept**, **Modify** (your notes say what to change) or **Reject**. Rejected proposals are removed from everything later agents see. Accepted and modified ones reach them as settled, together with your notes and answers. Proposals you leave unreviewed reach them as unreviewed ideas. Decisions are saved to `runs/<id>/proposals.json`. Below the research, write **your notes on the research** (answers, decisions, corrections). Your notes are editable at every later gate too, are saved to `runs/<id>/notes.md`, and are placed above every later agent's task as the highest-priority input.
 2. **Outline review**: edit the beat sheet, the arc plan, or the lore document.
 3. **Final prose review**: edit the chapter. The critic's notes are shown above it.
 4. **Lore ledger review**: accept, edit, reject or add proposed lore changes, answers, questions and sub-events.
@@ -69,6 +75,8 @@ lore/sources/            reference material for the researchers
 runs/<id>/ledger.json    what each committed run changed
 runs/<id>/lore.md        a lore run's approved document
 runs/<id>/notes.md       your notes on the research for that run
+runs/<id>/proposals.json research proposals with your decisions, notes and answers
+runs/<id>/sources.md     the run's numbered research sources
 ```
 
 ## Arc planner
@@ -89,7 +97,7 @@ Your manual edits to questions and events are stored as overrides and always win
 backend/
   graph.py         the StateGraph (read its docstring for the LangGraph concepts used)
   nodes/maestro.py deterministic router: decides the next node from state
-  nodes/*.py       researchers, weaver, loremaster, writer, critic, archivist, gates, commit
+  nodes/*.py       one file per node: researchers, weaver, loremaster, writer, grand_critic, archivist, gates, commit
   prompts/*.md     every system prompt. Edit these to tune voice and tone.
   runner.py        Claude Agent SDK wrapper (one function: run_agent)
   lore.py runs.py  files on disk, ledger replay, revert

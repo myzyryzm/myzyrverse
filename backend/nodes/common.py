@@ -14,8 +14,10 @@ def load_prompt(name: str) -> str:
     return (config.PROMPTS_DIR / f"{name}.md").read_text().strip()
 
 
-def system_prompt(node_prompt: str, *, tone: bool = False) -> str:
+def system_prompt(node_prompt: str, *, tone: bool = False, research: bool = False) -> str:
     parts = [load_prompt("canon_rules"), load_prompt(node_prompt)]
+    if research:
+        parts.append(load_prompt("research_format"))
     if tone:
         parts.append(load_prompt("tone"))
     return "\n\n---\n\n".join(parts)

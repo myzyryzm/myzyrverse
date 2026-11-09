@@ -33,10 +33,17 @@ def test_chapter_flow_with_regenerate_and_revert(client):
     s = _wait(client, "ch01")
     assert s["next"] == ["human_gate_research"]
 
-    client.post("/api/runs/ch01/resume", json={"edits": {"research_notes": "EDITED RESEARCH"}})
+    proposals = s["values"]["research_proposals"]
+    assert len(proposals) == 2 and s["values"]["research_sources"]
+    proposals[0].update(decision="modified", note="MAKE IT THE SHERDEN CAPTAIN")
+    proposals[0]["questions"][0]["answer"] = "THE TEMPLE OF AMUN"
+    proposals[1]["decision"] = "rejected"
+    client.post("/api/runs/ch01/resume", json={"edits": {"research_proposals": proposals}})
     s = _wait(client, "ch01")
     assert s["next"] == ["human_gate_outline"]
-    assert "EDITED RESEARCH" in s["values"]["chapter_outline"]
+    notes = s["values"]["research_notes"]
+    assert "MAKE IT THE SHERDEN CAPTAIN" in notes and "THE TEMPLE OF AMUN" in notes
+    assert "historian proposal B" not in notes and "ACCEPTED WITH CHANGES" in notes
 
     client.post("/api/runs/ch01/regenerate", json={"notes": "make beat 3 a betrayal"})
     s = _wait(client, "ch01")
@@ -166,3 +173,14 @@ def test_author_research_notes_reach_every_later_node(client):
     s = _wait(client, "ch01")
     assert s["values"]["review_status"] == "COMMITTED"
     assert notes.read_text() == "TIYE SWITCHED HANDS"
+
+
+def test_regenerate_research_clears_proposals(client):
+    client.post("/api/runs", json={"id": "r9", "type": "research", "researchers": ["historian"]})
+    client.post("/api/runs/r9/start")
+    s = _wait(client, "r9")
+    s["values"]["research_proposals"][0]["decision"] = "rejected"
+    client.post("/api/runs/r9/regenerate", json={"notes": "dig deeper"})
+    s = _wait(client, "r9")
+    assert s["next"] == ["human_gate_research"]
+    assert {p["decision"] for p in s["values"]["research_proposals"]} == {"pending"}

@@ -36,12 +36,17 @@ class RunState(TypedDict, total=False):
     target_event_id: str
     canon: dict  # prehistory, present_lore, open_questions, events, previous_summaries
 
-    # research
-    antiquarian_notes: str
-    historian_notes: str
-    mythographer_notes: str
-    psychologist_notes: str
+    # research: each researcher's structured output (background, proposals, sources)
+    antiquarian_research: dict
+    historian_research: dict
+    mythographer_research: dict
+    psychologist_research: dict
     research_complete: bool
+    # merged by join_research; proposals carry the author's decisions and notes from the research gate
+    research_background: list[dict]
+    research_proposals: list[dict]
+    research_sources: list[dict]
+    # rendered from background + proposals (no sources); what every later node reads
     research_notes: str
 
     # outline / arc plan / lore document

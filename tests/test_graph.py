@@ -51,9 +51,16 @@ async def test_parallel_research_honors_subset():
     cfg = {"configurable": {"thread_id": "ch01"}}
     await g.ainvoke(initial, cfg)
     v = (await g.aget_state(cfg)).values
-    assert v["antiquarian_notes"] and v["mythographer_notes"]
-    assert not v.get("historian_notes") and not v.get("psychologist_notes")
+    assert v["antiquarian_research"] and v["mythographer_research"]
+    assert not v.get("historian_research") and not v.get("psychologist_research")
     assert "Antiquarian" in v["research_notes"] and "Mythographer" in v["research_notes"]
+    # proposals are merged with stable ids, all pending; the shared source URL is numbered once
+    props = v["research_proposals"]
+    assert [p["id"] for p in props] == ["antiquarian-1", "antiquarian-2", "mythographer-1", "mythographer-2"]
+    assert {p["decision"] for p in props} == {"pending"}
+    assert v["research_sources"] == [{"n": 1, "title": "Placeholder source", "url": "https://example.org/source",
+                                      "researchers": ["antiquarian", "mythographer"]}]
+    assert "example.org" not in v["research_notes"] and "[1]" not in v["research_notes"]
 
 
 @pytest.mark.asyncio

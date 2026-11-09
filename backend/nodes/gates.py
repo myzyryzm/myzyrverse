@@ -7,8 +7,11 @@ the phase approved so the Maestro moves on.
 
 from __future__ import annotations
 
+import json
+
 from .. import logbus, runs
 from ..state import FINAL_APPROVED, LEDGER_APPROVED, OUTLINE_APPROVED, RESEARCH_APPROVED, RunState
+from .researchers import render_research, render_sources
 
 
 def _save_notes(state: RunState) -> None:
@@ -18,9 +21,19 @@ def _save_notes(state: RunState) -> None:
 
 async def human_gate_research(state: RunState) -> dict:
     _save_notes(state)
-    runs.write_artifact(state["run_id"], "research", state.get("research_notes", ""))
+    update = {"review_status": RESEARCH_APPROVED, "author_notes": ""}
+    proposals = state.get("research_proposals") or []
+    background = state.get("research_background") or []
+    if proposals or background:
+        # Re-render with the author's decisions: rejected proposals drop out, notes and answers go in.
+        update["research_notes"] = render_research(background, proposals)
+        runs.write_artifact(state["run_id"], "sources", render_sources(state.get("research_sources") or []))
+        runs.write_artifact(state["run_id"], "proposals", json.dumps(proposals, indent=2, ensure_ascii=False) + "\n")
+        counts = {d: sum(p.get("decision") == d for p in proposals) for d in ("accepted", "modified", "rejected", "pending")}
+        logbus.log(state["run_id"], "gate: proposals " + ", ".join(f"{n} {d}" for d, n in counts.items() if n))
+    runs.write_artifact(state["run_id"], "research", update.get("research_notes", state.get("research_notes", "")))
     logbus.log(state["run_id"], "gate: research approved")
-    return {"review_status": RESEARCH_APPROVED, "author_notes": ""}
+    return update
 
 
 async def human_gate_outline(state: RunState) -> dict:
