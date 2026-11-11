@@ -4,6 +4,7 @@ import type { LedgerEntry, Proposal, RunState, RunType } from "../types";
 import { GATE_LABELS, errMsg } from "../util";
 import ProposalReview, { RESEARCHER_SHORT, normalizeDecision } from "./ProposalReview";
 import ResearchReader from "./ResearchReader";
+import LedgerReview, { LEDGER_GROUPS } from "./LedgerReview";
 
 type TextField = "research_notes" | "chapter_outline" | "arc_plan" | "lore_doc" | "draft_prose" | "critique_notes" | "summary"
   | "author_research_notes";
@@ -30,17 +31,6 @@ const TAB_LABELS: Record<string, string> = {
 // What the outline gate edits, per run type.
 const OUTLINE_FIELD: Partial<Record<RunType, TextField>> = { plan_arc: "arc_plan", lore: "lore_doc" };
 
-const KINDS: LedgerEntry["kind"][] = ["lore", "answer", "new_question", "hook", "event_update", "sub_event"];
-
-const KIND_GROUPS: Record<LedgerEntry["kind"], string> = {
-  lore: "Lore",
-  answer: "Answers to open questions",
-  new_question: "New open questions",
-  hook: "Hooks (ideas for later, not canon)",
-  event_update: "Event progress",
-  sub_event: "Milestones",
-};
-
 interface Props {
   runState: RunState | null;
   registerEdits: (fn: () => Record<string, unknown>) => void;
@@ -62,6 +52,7 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
   const [tab, setTab] = useState<TabId | null>(null);
   const [proposals, setProposals] = useState<Proposal[] | null>(null);
   const [reviewAt, setReviewAt] = useState<number | null>(null);
+  const [ledgerGroup, setLedgerGroup] = useState<string | null>(null);
   const [flashSrc, setFlashSrc] = useState<number | null>(null);
 
   // Drop local edits once the run moves on (they were sent with Resume, or discarded by Regenerate).
@@ -72,6 +63,7 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
       setChars(null);
       setProposals(null);
       setReviewAt(null);
+      setLedgerGroup(null);
     }
   }, [runState?.running]);
 
@@ -140,8 +132,7 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
     );
   }
 
-  const setLedgerRow = (i: number, patch: Partial<LedgerEntry>) =>
-    setLedger(ledgerValue.map((e, j) => (j === i ? { ...e, ...patch } : e)));
+  const openGroup = LEDGER_GROUPS.find((g) => g.id === ledgerGroup);
 
   return (
     <>
@@ -207,6 +198,12 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
             {active === editable && drafts[active as TextField] !== undefined && drafts[active as TextField] !== v[active] && (
               <div className="hint">Edited. Your version is sent when you press Resume.</div>
             )}
+            {active === "lore_doc" && editable === "lore_doc" && (
+              <div className="hint">
+                Edit or delete bullets here if you like. After you press Resume, each bullet under Proposed open
+                questions and Hooks becomes a ticked row on the Ledger tab, where you untick the ones you don't want.
+              </div>
+            )}
             {active === "research_notes" && canDecide && undecided > 0 && (
               <div className="hint warn-text">
                 {undecided} proposal{undecided > 1 ? "s" : ""} still need{undecided > 1 ? "" : "s"} a decision before you can resume.
@@ -250,9 +247,9 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
         {active === "ledger" && (
           <div className="stack">
             <p className="hint">
-              Proposed changes to the present lore, open questions, hooks and events. Everything is ticked; untick what you don't want added,
-              edit anything, add your own rows.
-              Commit writes the ticked rows, linked to this run.
+              Proposed changes to the present lore, open questions, hooks and events. Everything starts kept: open a group,
+              step through its cards and drop what you don't want. Click ✎ on a card to edit it.
+              Commit writes the kept rows, linked to this run.
             </p>
             <label className="field">
               <span>Summary (feeds later chapters)</span>
@@ -263,45 +260,28 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
               <span>Characters present (timeline)</span>
               <input readOnly={editable !== "ledger"} value={charsValue} onChange={(e) => setChars(e.target.value)} />
             </label>
-            {ledgerValue.map((e, i) => (
-              <div key={i} className="stack tight">
-              {(i === 0 || ledgerValue[i - 1].kind !== e.kind) && <h4 className="ledger-group">{KIND_GROUPS[e.kind] ?? e.kind}</h4>}
-              <div className={`ledger-row${e.accepted === false ? " rejected" : ""}`}>
-                <div className="row">
-                  <input type="checkbox" checked={e.accepted !== false} disabled={editable !== "ledger"}
-                         onChange={(ev) => setLedgerRow(i, { accepted: ev.target.checked })} />
-                  <select value={e.kind} disabled={editable !== "ledger"}
-                          onChange={(ev) => setLedgerRow(i, { kind: ev.target.value as LedgerEntry["kind"] })}>
-                    {KINDS.map((k) => <option key={k} value={k}>{k}</option>)}
-                  </select>
-                  <input className="grow" placeholder="entity" value={e.entity} readOnly={editable !== "ledger"}
-                         onChange={(ev) => setLedgerRow(i, { entity: ev.target.value })} />
-                  <input placeholder="change" value={e.change} readOnly={editable !== "ledger"}
-                         onChange={(ev) => setLedgerRow(i, { change: ev.target.value })} />
-                  {(e.kind === "answer" || e.kind === "event_update") && (
-                    <input placeholder="ref id" value={e.ref_id} readOnly={editable !== "ledger"}
-                           onChange={(ev) => setLedgerRow(i, { ref_id: ev.target.value })} />
-                  )}
-                  <span className={`tag ${e.source ?? "ai"}`}>{e.source ?? "ai"}{e.confidence ? ` · ${e.confidence}` : ""}</span>
-                  {editable === "ledger" && (
-                    <button className="ghost small danger" onClick={() => setLedger(ledgerValue.filter((_, j) => j !== i))}>×</button>
-                  )}
-                </div>
-                <textarea value={e.detail} readOnly={editable !== "ledger"}
-                          onChange={(ev) => setLedgerRow(i, { detail: ev.target.value })} />
-                {e.kind === "sub_event" && (
-                  <CharactersInput value={e.characters ?? []} readOnly={editable !== "ledger"}
-                                   onChange={(characters) => setLedgerRow(i, { characters })} />
-                )}
-              </div>
-              </div>
-            ))}
-            {editable === "ledger" && (
-              <button onClick={() => setLedger([...ledgerValue, {
-                kind: "lore", entity: "", change: "", detail: "", ref_id: "", source: "user", accepted: true,
-              }])}>+ Add row</button>
-            )}
+            <div className="ledger-groups">
+              {LEDGER_GROUPS.map((g) => {
+                const rows = ledgerValue.filter((e) => g.kinds.includes(e.kind));
+                // Lore, questions and hooks are always offered at the gate so you can add your own.
+                const always = editable === "ledger" && ["lore", "questions", "hooks"].includes(g.id);
+                if (!rows.length && !always) return null;
+                const keptN = rows.filter((e) => e.accepted !== false).length;
+                const answeredN = rows.filter((e) => e.accepted !== false && e.answer?.trim()).length;
+                return (
+                  <button key={g.id} className="ledger-group-btn" onClick={() => setLedgerGroup(g.id)}>
+                    <span className="label">Review {g.label.toLowerCase()}</span>
+                    <span className="count">{rows.length ? `${keptN} of ${rows.length} kept${answeredN ? `, ${answeredN} answered` : ""}` : "none yet"}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
+        )}
+
+        {openGroup && (
+          <LedgerReview group={openGroup} entries={ledgerValue} editable={editable === "ledger"}
+                        onChange={setLedger} onClose={() => setLedgerGroup(null)} />
         )}
       </div>
     </>
@@ -343,19 +323,5 @@ function AdoptLore({ runId, adoptedTo, act }: { runId: string; adoptedTo: string
       <p className="hint">Appends the approved document (with your outline-gate edits) to the end of the file. Edit it there afterwards.</p>
       {err && <p className="hint">{err}</p>}
     </div>
-  );
-}
-
-/** Comma-separated names; keeps the raw text while typing so commas and spaces are not swallowed. */
-function CharactersInput({ value, readOnly, onChange }: {
-  value: string[]; readOnly: boolean; onChange: (v: string[]) => void;
-}) {
-  const [text, setText] = useState(value.join(", "));
-  return (
-    <input placeholder="characters on whose timelines this lands, comma separated" value={text} readOnly={readOnly}
-           onChange={(e) => {
-             setText(e.target.value);
-             onChange(e.target.value.split(",").map((x) => x.trim()).filter(Boolean));
-           }} />
   );
 }

@@ -15,7 +15,7 @@ What the body may say:
 - Give characters inner contradictions and competing obligations, not clean virtues or villainy, as far as the established material supports them.
 
 End with:
-- `## Proposed open questions`: things the author should decide, one short question per bullet.
-- `## Hooks`: ideas for how this material could pay off in the story, one per bullet. These are suggestions for the author, not canon, so they may go beyond what is established.
+- `## Proposed open questions`: things the author should decide, one short question per bullet. At most 8: the ones that matter most for the story. Skip small details the author can settle later.
+- `## Hooks`: ideas for how this material could pay off in the story, one per bullet. These are suggestions for the author, not canon, so they may go beyond what is established. At most 8: your strongest.
 
 Output only the document. No preamble.

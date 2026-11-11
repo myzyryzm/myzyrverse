@@ -25,6 +25,8 @@ export interface LedgerEntry {
   change: string;
   detail: string;
   ref_id: string;
+  /** new_question only: the author's answer, given at the ledger gate. The question is then committed as answered. */
+  answer?: string;
   characters?: string[];
   confidence?: "low" | "medium" | "high";
   source?: "ai" | "user";

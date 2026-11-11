@@ -138,11 +138,14 @@ def test_lore_flow_with_regenerate_and_adopt(client):
     assert [q["detail"] for q in questions if q["entity"] == "Tiye backstory"] == ["Who was her mother?"]
     assert all(e["accepted"] for e in hooks + questions)
     hooks[1]["accepted"] = False  # the author drops one hook at the ledger gate
+    next(q for q in questions if q["detail"] == "Who was her mother?")["answer"] = "A Nubian priestess."  # and answers one
     client.post("/api/runs/lore-tiye/resume", json={"edits": {"proposed_ledger": ledger}})
     s = _wait(client, "lore-tiye")
     assert s["values"]["review_status"] == "COMMITTED"
     assert [h["text"] for h in client.get("/api/lore/hooks").json()] == ["Placeholder hook one."]
-    assert "Who was her mother?" in [q["question"] for q in client.get("/api/lore/open-questions").json()]
+    mother = [q for q in client.get("/api/lore/open-questions").json() if q["question"] == "Who was her mother?"]
+    assert [(q["status"], q["answer"], q["answered_by_run"]) for q in mother] == [
+        ("answered", "A Nubian priestess.", "lore-tiye")]
     assert client.post("/api/runs/lore-tiye/adopt", json={"file": "characters"}).status_code == 200
     assert "Born in Thebes" in client.get("/api/lore/prehistory").json()["characters"]
 

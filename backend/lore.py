@@ -112,9 +112,12 @@ def _fold_ledgers(questions: "OrderedDict[str, dict]", events: "OrderedDict[str,
         for entry in runs.read_ledger(meta["id"]):
             kind = entry.get("kind")
             if kind == "new_question":
+                # The author may answer a question at the ledger gate; it is then committed already answered.
+                answer = (entry.get("answer") or "").strip()
                 questions[entry["id"]] = {
                     "id": entry["id"], "question": entry.get("detail", ""), "about": entry.get("entity", ""),
-                    "status": "open", "answer": "", "answered_by_run": None,
+                    "status": "answered" if answer else "open", "answer": answer,
+                    "answered_by_run": meta["id"] if answer else None,
                     "created_by": entry.get("source", "ai"), "source_run": meta["id"],
                 }
             elif kind == "answer" and entry.get("ref_id") in questions:
