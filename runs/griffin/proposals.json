@@ -1,0 +1,1250 @@
+[
+  {
+    "id": "antiquarian-1",
+    "researcher": "antiquarian",
+    "title": "The wingless ones: a griffin that has to grow its wings",
+    "pitch": "Jon's griffin is found as a young animal, couchant and apparently wingless like the Throne Room griffins. Its wings grow during the journey, so its first flight can mark a turning point in Jon's exodus.",
+    "affects": [
+      "Jon",
+      "the griffin",
+      "Knossos",
+      "Jon's exodus"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "The people of Knossos painted their griffins wingless and lying down, among papyrus [1, 2]. Winged griffins appear everywhere else in Aegean art [4]. In this world, both are accurate: young griffins and nesting adults keep their wings folded flat or have none yet, and the palace painters showed the animals as they knew them at rest. The Lefkandi vessel, painted at almost exactly the story's date, shows griffin parents feeding nestlings, which supports griffins as animals with a life cycle rather than emblems [13].",
+        "refs": [
+          1,
+          2,
+          4,
+          13
+        ],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "A grounded juvenile gives Jon something to protect and raise rather than a ready-made weapon. It also mirrors his own position: royal, not yet grown, and cut off from his family.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "At the start of the journey the griffin can't fly and has to be hidden, carried or walked. Its first flight is a natural set piece. A flying griffin also gives scouting from the air on the march through Greece and Anatolia.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "The wingless reading of the Throne Room griffins is real. The 'young griffins are wingless' explanation is invented for this world. In this era the war-mount was the chariot, and the Hagia Triada sarcophagus shows griffins **pulling a chariot**, not ridden [9]. A griffin harnessed to a chariot would feel more Bronze Age than one carrying a rider in a saddle.",
+        "refs": [
+          9
+        ],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "How big does the griffin grow: dog-sized, horse-sized, or big enough to pull a chariot?",
+        "answer": ""
+      },
+      {
+        "q": "Is it one griffin or a nest, and do any others survive somewhere else?",
+        "answer": ""
+      },
+      {
+        "q": "Will Jon ever ride it, or should it stay a companion and harness animal?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "antiquarian-2",
+    "researcher": "antiquarian",
+    "title": "Where the guardians went: the palace griffins gone feral on Ida",
+    "pitch": "The griffins were once real animals kept by the kings of Knossos as palace guardians. When the palace fell they escaped into the high country of Mount Ida, and people came to believe they had died out. Sherden recruits find one during training in the mountains, perhaps around the Minotaur trial.",
+    "affects": [
+      "Jon",
+      "the Sherden",
+      "Knossos",
+      "the Minotaur",
+      "the Drought",
+      "Cretan hill refuges"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "The Throne Room griffins flank a doorway into an inner room and belong to a program of royal power, the *wanax* ideology [1]. In this world they are portraits of the palace's real guardian animals. By 1160 the palace has been a ruin or storehouse for one to two centuries [14], and Cretans have moved to upland refuges such as Karphi [15, 16]. The Psiloritis massif, where Crete's last bearded vultures nest today [19], is a natural habitat for a vulture-beaked hunter.",
+        "refs": [
+          1,
+          14,
+          15,
+          16,
+          19
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "The Drought is already pushing the Cyclopes out of their caves (canon). It can push the last griffins down out of the high pastures in the same way, into contact with Sherden recruits. Upland villagers who leave offerings to 'the old guardians' could be the only people who knew the griffins survived.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "The friendship feels earned if Jon helps the griffin rather than tames it: for example, he refuses to kill or capture it when the Sherden curriculum calls for exactly that.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This fits the canon's run-down Knossos with the Minotaur still in it, and it reuses the Drought-displaces-creatures pattern already set up for the Cyclopes. It departs from real history on purpose: the griffins are made real, and the palace's guardian imagery is read as a record of real animals.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Is the griffin found inside the palace ruins (an inner room, a crypt), or in the mountain caves of Ida?",
+        "answer": ""
+      },
+      {
+        "q": "Do the Sherden instructors at Knossos already know griffins survive, and are they keeping it secret?",
+        "answer": ""
+      }
+    ],
+    "decision": "accepted",
+    "note": ""
+  },
+  {
+    "id": "antiquarian-3",
+    "researcher": "antiquarian",
+    "title": "A lion that never lived on Crete: the griffin as an old purple experiment",
+    "pitch": "The Minoans made griffins the way someone later made werewolves: imported lion blood, Cretan vulture blood and purple. That would make the griffin a living record of an older and more successful version of the Sherden's dark program.",
+    "affects": [
+      "the griffin",
+      "the purple",
+      "werewolves",
+      "Sherden super-soldier program",
+      "the purple guild"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Cretan seals are full of lions, but no lions are known to have lived on the island [17]. In this world the Minoans brought live lions in by sea for their breeding pens. The vulture half comes from the island's native bearded and griffon vultures [19]. Aegean griffin markings may come from Egyptian falcon art [4], which hints at an Egyptian contribution.",
+        "refs": [
+          4,
+          17,
+          19
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Jon learns that the creature he loves came from the same kind of work as the werewolves and, if the author makes the program real, the Sherden monsters. A Minoan program that bred stable creatures over generations, where the Sherden's single injections mostly kill or madden, is a strong reveal.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This mirrors the canon werewolf recipe (wolf's blood plus purple) and touches the **undecided** Sherden super-soldier secret. Accepting it would push toward making that program real. It would also date the discovery of purple's power to the Minoan palace age at the latest, which bears on the open question of when purple was discovered.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Should the griffin be a natural species, so that magic stays limited to purple and the werewolves, or a made one?",
+        "answer": ""
+      },
+      {
+        "q": "If it was made, does the purple guild have Minoan records of how?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "antiquarian-4",
+    "researcher": "antiquarian",
+    "title": "The srf comes to Pi-Ramesses: the griffin as a sign of rightful kingship",
+    "pitch": "In Egypt the griffin was a royal, solar creature tied to Horus and the king's *ka*. A prince who returns with a living griffin would be read as divinely chosen, which makes Jon a political threat to Pentawer's new regime whether he wants to be or not.",
+    "affects": [
+      "Jon",
+      "Pentawer",
+      "Tiye",
+      "Egyptian priesthood",
+      "Jon's exodus",
+      "Pi-Ramesses"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "The Egyptian word is *srf/sfr*, and the falcon-headed griffin has been read as a form of Horus and of the king's *ka* [7]. An Aegean-style griffin decorates the axe of **Ahmose, who drove out the Hyksos** [4, 7]. A Minoan griffin hunts in the old frescoes at Avaris, beside the canon capital [5]. Courtiers in Pi-Ramesses could therefore recognise a 'Keftiu griffin' from their own ancient walls.",
+        "refs": [
+          4,
+          5,
+          7
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Refugees who join Jon's march could treat the griffin as their standard and proof that the gods are with him, which gives the Moses-style exodus its own visible sign. Tiye's court then has to decide whether to call the griffin a demon (*akhekh* carries ideas of darkness [8]) or claim it for Pentawer.",
+        "refs": [
+          8
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "One scholarly argument derives the Hebrew *seraph* from Egyptian *srf* [7]. That gives a quiet echo with the Moses half of Jon's arc without borrowing biblical names. Present the griffin as an omen and a living sign, not as a heraldic emblem. In this register Egyptians would show such a sign through royal titles, seal devices and temple reliefs.",
+        "refs": [
+          7
+        ],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does Jon want the griffin seen as a claim to the throne, or does he resist that reading?",
+        "answer": ""
+      },
+      {
+        "q": "Which faction of priests, if any, declares the griffin a true sign?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "antiquarian-5",
+    "researcher": "antiquarian",
+    "title": "The Lefkandi turn: griffins as parents, not palace guards",
+    "pitch": "Make the griffin's loyalty work like a family bond rather than a king's guardian bond. It attaches to Jon because he protects its young or its nest, not because he is royal.",
+    "affects": [
+      "Jon",
+      "the griffin",
+      "Greece",
+      "refugees on the exodus"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Around 1150–1125 BCE, potters at Lefkandi painted griffin parents feeding their young, with the female's paw on the male's arm [13]. One scholar reads this as the palace griffin 'domesticated' after the palaces fell: it now guards its own young, not a throne [13].",
+        "refs": [
+          13
+        ],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "This gives the friendship a theme that suits Jon's arc: an animal once bred to guard kings now guards its own young and its chosen people, while Jon, a king's son, becomes the protector of refugees.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Painted pottery or a shrine showing griffin families in a Greek refuge village could tell Jon that griffins have survived on the mainland too. That gives the journey a reason to go through particular places, or a reason for the griffin to turn aside.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "The Lefkandi vessel is real and dates almost exactly to the story year. Treating it as evidence of living griffins in Greece is an invention. It fits the 'thought to have died out' brief, provided only a few people, such as hill villagers, know the truth.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Is Jon's griffin an orphan, or are there parents or siblings he has to leave behind on Crete?",
+        "answer": "orphan"
+      }
+    ],
+    "decision": "accepted",
+    "note": ""
+  },
+  {
+    "id": "antiquarian-6",
+    "researcher": "antiquarian",
+    "title": "Northern kin: a thread to the Steppe",
+    "pitch": "Seed the idea that griffins also survive in the far north-east, guarding gold. This would give the undecided Steppe/Amazon thread a reason to meet Jon's journey through Anatolia.",
+    "affects": [
+      "the griffin",
+      "the Steppe",
+      "Anatolia",
+      "Jon's exodus"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Classical Greek writers placed gold-guarding griffins near the north wind's lands, fighting one-eyed Arimaspians, with suggested locations from the Carpathians to Central Asia [21]. The fossil explanation for this lore is weak [22], which leaves the author free to treat it as memory of real animals.",
+        "refs": [
+          21,
+          22
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "**Anachronism:** this lore is first recorded about 700 years after 1160 BCE. Here it would appear as an older oral tradition among steppe traders. One-eyed Arimaspians would also link neatly to the canon Cyclopes.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Should the far north-east griffins and the Arimaspians link to the Cyclopes, or stay separate?",
+        "answer": ""
+      }
+    ],
+    "decision": "accepted",
+    "note": "let's add that in more ancient history humans with their griffins fought against cyclops in an ancient war. cyclops could have scattered all across northern greece to anatolia to the steppes"
+  },
+  {
+    "id": "psychologist-1",
+    "researcher": "psychologist",
+    "title": "The first thing he didn't buy",
+    "pitch": "Build Jon's whole psychology around the shame of a purchased Sherden place. The griffin bond becomes the one thing he plainly earned, so he clings to it past all reason.",
+    "affects": [
+      "Jon",
+      "The Sherden",
+      "Sherden-born recruits",
+      "The griffin"
+    ],
+    "parts": [
+      {
+        "label": "characterization",
+        "text": "Jon's motivation is less heroism than the need to answer the sneer \"purchased prince.\" The griffin chooses him, and nobody could have paid for that. Because the bond carries his self-worth, he will do terrible things to keep it: lie to his commanders, feed it stolen livestock, and later put refugees at risk for it.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Early scene: a Sherden-born rival, whose family has served for three generations, argues that the beast belongs to the corps or should be killed as a danger. Jon wins the argument by pulling rank, the one weapon he swore not to use. He gets the griffin, loses a friend, and proves the sneer right.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This fits the canon rule that Sherden training is open only to those who can pay, with royal recruits alongside Sherden-family sons. It sharpens Jon's Jon Snow quality: an outsider inside his own order, though here he is outside it because of privilege rather than bastardy.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does Jon ever admit, on the page, that his place was bought?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "psychologist-2",
+    "researcher": "psychologist",
+    "title": "The labyrinth kept it",
+    "pitch": "The griffin is not found by chance. The Sherden have kept the last griffin or its eggs in the Knossos labyrinth for generations, and the extinction story is their cover. Jon finds it during or near the Minotaur trial.",
+    "affects": [
+      "Jon",
+      "The Sherden",
+      "Knossos",
+      "The Minotaur",
+      "Sherden super-soldier program"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "The corps' Cretan establishment includes a sealed beast-house. The griffin might be a stud animal, a purple test subject, or a relic the Sherden guard because their founding legend says the Minoan throne-guardian went to them. Few officers know about it.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Jon breaks the rules of the Minotaur trial, perhaps by going deeper than he should, and finds a starving griffin chained in the dark. Its condition shows the corps is crueler than it pretends to be. That discovery is the first step toward canon's darker Sherden secrets.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This offers one possible answer to the open questions about the Knossos training and the Minotaur trial, and to whether the super-soldier program is real, without settling them. If the griffin carries purple scarring, it shows that the Sherden experiment on creatures as well as on captives.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Is the griffin a survivor of natural stock, or partly a product of purple?",
+        "answer": ""
+      },
+      {
+        "q": "Is it the very last griffin, or does a hidden flock remain somewhere, perhaps in the Drought-stricken interior?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "psychologist-3",
+    "researcher": "psychologist",
+    "title": "Theft as desertion: why Jon can't go home",
+    "pitch": "When news of the coup reaches Crete, Jon's drillmaster has orders to hold the prince. Jon frees the griffin and flees. In Sherden law that makes him a thief and a deserter, so the road home through the corps is closed.",
+    "affects": [
+      "Jon",
+      "Sherden drillmaster",
+      "Tiye",
+      "Pentawer",
+      "The griffin"
+    ],
+    "parts": [
+      {
+        "label": "characterization",
+        "text": "The drillmaster is no villain. He believes holding Jon on Crete keeps the boy alive, which matches Tiye's need for the princes away, not dead. His tragedy is that he is right, and Jon's escape puts Jon in more danger than captivity would have.",
+        "refs": [],
+        "note": "Tiye wants the princes as prisoners for bounty."
+      },
+      {
+        "label": "plot",
+        "text": "A night escape from Knossos. The griffin, half-starved, cannot fly far, so Jon lands on the Greek mainland rather than in Egypt. From there the exodus route through Greece and Anatolia follows.",
+        "refs": [],
+        "note": "the griffin cant fly"
+      },
+      {
+        "label": "integration",
+        "text": "This offers an answer to the open question of why Jon travels through Greece and Anatolia instead of returning. The Sherden become Pentawer's guard and treat Jon as an outlaw, which gives the corps a reason to hunt him. It is consistent with the planned exodus arc.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Did Tiye arrange Jon's posting to Crete in the first place, or was it simply luck for her?",
+        "answer": "no"
+      },
+      {
+        "q": "Does the drillmaster pursue Jon personally later?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "psychologist-4",
+    "researcher": "psychologist",
+    "title": "A loyalty measured in meat",
+    "pitch": "Write the griffin as a hungry predator bound by debt, not as a noble companion. Its cost to Jon's refugee column becomes the moral spine of the exodus.",
+    "affects": [
+      "Jon",
+      "The griffin",
+      "Jon's refugees",
+      "The Drought"
+    ],
+    "parts": [
+      {
+        "label": "characterization",
+        "text": "The griffin's loyalty depends on being fed. Under the Drought, prey shrinks, and the griffin starts taking the refugees' goats and then threatening their children. Jon has to choose again and again between the creature that made him special and the people who made him a leader.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "The turn comes when the griffin kills a refugee during a famine stretch. Jon covers it up or excuses it. That is his worst act, justified as \"we need it to survive what's coming.\" When the truth comes out, he loses the people's trust and has to earn it back without the beast.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This ties the brief to canon's Drought, which is already shrinking food and driving the Cyclopes from their caves. It keeps the grimdark tone and stops the griffin from becoming a simple power-up.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Can the griffin be ridden, or is it a companion that flies alongside him? (Aegean art shows guardians, not mounts.)",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "psychologist-5",
+    "researcher": "psychologist",
+    "title": "Two brothers, one debt",
+    "pitch": "Begin Jon's griffin story with someone dying for him, such as a Cretan keeper or a fellow recruit, to mirror Aegon's planned protector death. The world reads the two deaths in opposite ways.",
+    "affects": [
+      "Jon",
+      "Aegon",
+      "A Cretan keeper or recruit (new)"
+    ],
+    "parts": [
+      {
+        "label": "characterization",
+        "text": "Both princes owe a life. Aegon's debt is called disgrace; Jon's is called legend. Aegon resents the unfairness, and he is right that Jon also broke the rules. Jon carries his debt in secret because admitting it would spoil his story.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Late-story payoff: the brothers meet again and trade confessions. It is the first honest conversation they have ever had, and it could rebuild the relationship that Aegon's possible kingship depends on.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This mirrors the planned event in which someone dies protecting Aegon. It does not settle who that person is.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Who dies for Jon: a Minoan keeper of the old griffin rites, a Sherden-born rival, or the drillmaster?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "psychologist-6",
+    "researcher": "psychologist",
+    "title": "A living fresco of kingship",
+    "pitch": "Because griffins flank the throne at Knossos and are painted on the old ground beneath Pi-Ramesses, a prince with a griffin reads as a claim to kingship. Jon never wanted that, and everyone else will try to use it.",
+    "affects": [
+      "Jon",
+      "Pentawer",
+      "Tiye",
+      "Isis",
+      "Tyre",
+      "The purple guild"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Priests and courtiers know griffin iconography as the guardian of the true seat. Through the purple guild, rumor of a living griffin travels faster than Jon does. Canon's world has information that moves fast while people move slowly.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "Pentawer and Tiye fear Jon's story more than his claim. Isis wants to use the beast as a banner for Tyre against Assyria. Jon resents both, even though he shares his mother's assumption that the griffin belongs to him.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Pentawer's court spreads a counter-story, perhaps that the beast is a demon from the Drought, to turn the refugees and the Greek warlords against Jon.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This is consistent with the purple guild controlling information and with the planned fight between Tyre and Assyria. It supplies a political motive for the new regime to hunt Jon, without decided answers to the open questions about Tyre's leadership.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "historian-1",
+    "researcher": "historian",
+    "title": "The Throne-Room Griffin: a wingless, crested refuge breed",
+    "pitch": "Make the surviving griffins the wingless, crested kind painted in the Knossos Throne Room. They were the sacred animals of the old palace priestesses and have survived as a Lazarus remnant in some part of Crete nobody searches.",
+    "affects": [
+      "Jon",
+      "the griffin",
+      "Knossos",
+      "Crete",
+      "the Sherden"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "In Minoan times griffins were temple animals, not wild beasts. They sat beside the goddess's seat and drew her chariot, which mirrors the Throne Room and the Hagia Triada sarcophagus [2, 26, 40]. When the palaces fell the cult died, and the griffins were assumed to have died with it. A few survived the way Lazarus species do: in a narrow refuge where nobody looks, such as sea cliffs, gorges or the deep levels under the labyrinth [31, 32]. The Throne Room paintings are their only remaining record, and Jon's first sight of one is a match for the wall.",
+        "refs": [
+          2,
+          26,
+          31,
+          32,
+          40
+        ],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "Wingless or nearly wingless, this griffin is a runner and climber: lion-bodied, eagle-headed, crested. Its rarity and its sacred meaning drive the story, not flight. That keeps the register Bronze Age, with no dragon-riding, and suits an overland trek through Greece and Anatolia.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "Fits the canon picture of Knossos as a run-down palace that still holds the Minotaur. Real-history divergence: griffins are mythical, and the Knossos paintings date to the 15th century BCE, long before 1160 [26]. This leaves the open questions about the Minotaur trial and Jon's training untouched.",
+        "refs": [
+          26
+        ],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Is there one griffin or a small remnant population (a mated pair, eggs, a mother and chick)?",
+        "answer": "one for right now"
+      },
+      {
+        "q": "Are the griffins fully wingless, or do they have stunted wings good for gliding and leaping but not true flight?",
+        "answer": "wingless"
+      },
+      {
+        "q": "Are griffins purely natural, or does purple play a part, either as an old Minoan breeding practice or as the reason they are so long-lived?",
+        "answer": "natural"
+      }
+    ],
+    "decision": "accepted",
+    "note": ""
+  },
+  {
+    "id": "historian-2",
+    "researcher": "historian",
+    "title": "Earned through one voice: the eagle-hunter bond",
+    "pitch": "Jon and the griffin bond the way Kazakh eagle hunters bond with eaglets. It is slow, daily, one-handed work, so for much of the journey the griffin is a growing juvenile, a responsibility before it is any use.",
+    "affects": [
+      "Jon",
+      "the griffin",
+      "Jon's exodus"
+    ],
+    "parts": [
+      {
+        "label": "plot",
+        "text": "Jon finds an orphaned chick or an injured juvenile, perhaps after the Sherden or raiders kill the adults, and no one else can get near it. As the eagle hunters do, he hoods it, keeps it close and talks or sings to it until it knows only his voice [33]. The full bond takes years, about the length of an eagle's training [34], so it grows in step with his exodus: at first a mouth to feed and a danger to the refugees, by the end a real ally.",
+        "refs": [
+          33,
+          34
+        ],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "The taming can be a Bucephalus moment. Jon tames it not by strength but by noticing what frightens it, the way Alexander saw the horse shying at its own shadow [37]. Possible triggers include the smell of purple-worked bronze or the Sherden's horns. This sets Jon apart from the brute-force culture of Sherden training and shows early the kind of leader he will become.",
+        "refs": [
+          37
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "The eagle hunters' custom of setting the bird free after about a decade gives the arc a possible ending. At the close of the saga Jon has to let it go, hiding so it won't follow him home [33]. That suits a grimdark-but-not-nihilist tone.",
+        "refs": [
+          33
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "A juvenile companion keeps the griffin from overpowering Jon's early travel chapters and gives the Moses-style journey a measure of time passing. Real eagle hunters take females because they grow larger [33], which is one possible way to set the griffin's sex.",
+        "refs": [
+          33
+        ],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Is the griffin a chick or hatchling (taking a year or more to come of age) or a near-adult?",
+        "answer": "it's young. and it's not a bird it's much more like a big cat"
+      },
+      {
+        "q": "Does anyone else ever win the griffin's trust, for example a refugee child or the Medjay farm boy, or does it stay Jon's alone?",
+        "answer": "just jon's"
+      }
+    ],
+    "decision": "accepted",
+    "note": ""
+  },
+  {
+    "id": "historian-3",
+    "researcher": "historian",
+    "title": "The qilin problem: an omen-beast in a usurper's age",
+    "pitch": "Once word of a living griffin spreads, it becomes an argument over who should rule. Like Yongle's giraffe, it marks heaven's favor, and the person beside it is Ramesses III's exiled son, not Pentawer.",
+    "affects": [
+      "Jon",
+      "Pentawer",
+      "Tiye",
+      "the purple guild",
+      "Pi-Ramesses court",
+      "refugees"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Egypt's royal iconography already contains the Aegean griffin. It appears on the axe of Ahmose, founder of the New Kingdom and expeller of the Hyksos, and in the Minoan-style frescoes at Avaris beside Pi-Ramesses [5, 29]. Courtiers and priests can read a living griffin as the guardian of the true king's seat, as at Knossos [2, 26].",
+        "refs": [
+          2,
+          5,
+          26,
+          29
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "After the coup, Tiye's court faces Yongle's problem: a new regime with a weak claim [23, 24]. A griffin with the dead pharaoh's son is dangerous propaganda. The court either tries to get the beast for Pentawer, so priests can proclaim it his omen, or spreads word that it is a demon or a fake. Among Jon's refugees the griffin becomes their equivalent of Moses's signs, the reason desperate people follow a teenage exile.",
+        "refs": [
+          23,
+          24
+        ],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "Jon, like Yongle publicly, can refuse the omen and insist it is only an animal while others turn it into a banner [23]. That tension between his modesty and the myth growing around him gives his arc an inner conflict.",
+        "refs": [
+          23
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "News travelling fast while people travel slowly suits the purple guild's payphone network. The guild decides how quickly, and in what form, word of the griffin reaches Pi-Ramesses, Tyre and Assyria, which hands the guild a stake in Jon's story without settling what the guild is. Nothing here touches the open question of who ends on the throne.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Who first spreads word of the griffin: Sherden officers, a purple-guild relay, or the refugees?",
+        "answer": ""
+      },
+      {
+        "q": "Does Pentawer's court try to capture the griffin, discredit it, or both at once?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "historian-4",
+    "researcher": "historian",
+    "title": "The white-elephant demand",
+    "pitch": "The griffin turns into a demanded tribute, the way Burma's demand for Siam's white elephants made a sacred animal into a cause for war. A great power asks for it, and handing it over would mean submitting.",
+    "affects": [
+      "Jon",
+      "the griffin",
+      "Assyria",
+      "Tyre",
+      "Pentawer",
+      "Isis"
+    ],
+    "parts": [
+      {
+        "label": "plot",
+        "text": "Assyria, now bound to Egypt by marriage, could make the griffin part of what it asks of the new pharaoh: deliver this wonder as a sign of good faith. Bayinnaung demanded white elephants in the same spirit [30]. Pentawer's court then has to hunt for Jon to keep its new ally happy, which turns a private bond into a matter of state.",
+        "refs": [
+          30
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Alternatively, or as well, Isis and Tyre want the beast as a rallying sign against Assyria. That sets up a painful choice in which Jon's own mother asks him to hand over the creature that trusts only him.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "The Charlemagne's-elephant model supplies the logistics. Moving a large living wonder across the Mediterranean took years and killed most of the envoys sent for it [39]. Every faction that wants the griffin also has to work out how to move, feed and hide it.",
+        "refs": [
+          39
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This ties Jon's distant journey to the main political conflict of Egypt and Assyria against Tyre without bringing him home early. It also echoes the white-elephant war's hostage subplot: a royal youth taken as part of a settlement later becomes the liberator [30].",
+        "refs": [
+          30
+        ],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Which power makes the demand: Assyria, Tyre, Pentawer's court, or more than one in competition?",
+        "answer": ""
+      },
+      {
+        "q": "Is the demand public (a diplomatic insult) or secret (bounty hunters)?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "historian-5",
+    "researcher": "historian",
+    "title": "Who verifies a sacred beast: the griffin as a priestly prize",
+    "pitch": "Borrow the Apis bull system. In Egypt the priests decide which animal is the true sacred animal, so whoever controls the right to authenticate the griffin holds a political lever.",
+    "affects": [
+      "the griffin",
+      "the Egyptian priesthood",
+      "the purple guild",
+      "Pentawer",
+      "Jon"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Egypt already has priests who identify a sacred animal by set markings, mourn it like a pharaoh and install its successor at Memphis [38]. A living griffin would fall straight into that framework. Priests could declare it the living form of an old guardian god, or refuse to, depending on who pays them.",
+        "refs": [
+          38
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Pentawer's court might produce a false griffin, such as a painted lion or a purple-transformed animal, and have compliant priests declare it the true one. The real griffin with Jon becomes the counterfeit in official eyes. That is a usurper's propaganda war fought over an animal.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "Works whether the purple guild turns out to be religious or independent, because either way it can stand behind or against the priests' verdict. It does not settle the guild's open questions.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Would the Egyptian priesthood treat a Cretan griffin as sacred, or as a foreign beast with no claim to divinity?",
+        "answer": ""
+      },
+      {
+        "q": "Is a fake griffin something purple-transformation could plausibly produce in this world?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "historian-6",
+    "researcher": "historian",
+    "title": "The old enmity: griffins and Cyclopes, Cretan sign and Mycenaean memory",
+    "pitch": "Bring in the ancient tradition that griffins fought one-eyed men over gold. As Jon crosses a Greece where the Drought is driving Cyclopes out of their caves, the griffin and the Cyclopes recognize each other as old enemies, and the Mycenaean warlords recognize the griffin as an old badge of lordship.",
+    "affects": [
+      "the griffin",
+      "Jon",
+      "Cyclopes",
+      "Sea Peoples warlords",
+      "Jon's exodus"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Greek writers set the griffin against the one-eyed Arimaspians [28]. In this world it can be a memory from before the palaces: griffins guarded the Cyclopes' gold, or hunted Cyclopes, until men drove both out of the palaces. The griffin's reaction to a Cyclops becomes a warning, or a weapon, on the road.",
+        "refs": [
+          28
+        ],
+        "note": ""
+      },
+      {
+        "label": "world",
+        "text": "Mycenaean lords adopted the griffin as an emblem of rank, as the Griffin Warrior's grave goods show, and some scholars link the Throne Room to the ideology of the wanax [35, 36, 2]. A raider-king in a half-ruined palace might want the griffin to prove he is a true wanax. Or he might bow to the boy who has one, which gives Jon a way to win over warlords.",
+        "refs": [
+          2,
+          35,
+          36
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "Connects the griffin to existing canon (Cyclopes pushed out by the Drought, broken Cyclopean palaces, Sea Peoples warlords) instead of leaving it as a stand-alone wonder. It does not settle the open questions about when the Cyclopes were driven out, or by whom.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Is the griffin–Cyclops enmity instinctive, remembered in local legend, or both?",
+        "answer": "a combination"
+      },
+      {
+        "q": "Does the griffin react to the Drought's beasts too, sensing them before people can?",
+        "answer": "yes"
+      }
+    ],
+    "decision": "accepted",
+    "note": ""
+  },
+  {
+    "id": "mythographer-1",
+    "researcher": "mythographer",
+    "title": "The beast the trial was built for",
+    "pitch": "Make the Knossos recruit trial a hunt. Recruits enter the labyrinth to kill a beast and bring back proof. Jon's year finds not the Minotaur but a wounded young griffin, and he refuses the kill. This is the How to Train Your Dragon beat, given Bronze Age stakes: refusing the trial means failing the Sherden.",
+    "affects": [
+      "Jon",
+      "The Sherden",
+      "Knossos",
+      "The Minotaur",
+      "The griffin"
+    ],
+    "parts": [
+      {
+        "label": "plot",
+        "text": "In the old trial, recruits brought back a horn or a feather. When the griffin bloodlines failed, the Minotaur stood in, and the Sherden kept the throne-room griffins on the wall as memory. Jon's cohort goes into the labyrinth or the mountain caves and finds a juvenile griffin with a torn wing, maybe wounded by the Minotaur itself. Another recruit wants the trophy. Jon stops him. Borrow the injury device: the wing heals crooked, so the griffin cannot fly far for much of the journey. Its recovery and Jon's competence grow together [54, 55].",
+        "refs": [
+          54,
+          55
+        ],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "This is the first time Jon puts his own judgement above an institution he wanted to belong to. It foreshadows his split from Egypt after the coup. It also sets him against Aegon early: Aegon's failure is absence, while Jon's first defining act is a refusal made in the right place at the right time.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "world",
+        "text": "The trial is Bronze Age, not knightly. There are no vows to a lord. The recruit offers a trophy at the throne room, where the griffins on the wall are the guardians of the seat of power [42, 1]. That gives the Sherden a Cretan initiation rite that predates them, inherited when they took over the run-down palace.",
+        "refs": [
+          1,
+          42
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This answers the brief's \"thought extinct\" premise. It turns the Minotaur trial (still open in canon) into a frame for the discovery rather than replacing it. It gives one possible reason Jon cannot simply go home: he failed or fled the trial with a protected beast. That remains an option, not settled canon.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does Jon formally fail the Sherden trial, pass it by some other route, or leave before it ends?",
+        "answer": ""
+      },
+      {
+        "q": "Is the griffin alone, or are there others (a nest or a dying adult) that Jon cannot save?",
+        "answer": ""
+      },
+      {
+        "q": "Does the recruit who wanted the trophy become a recurring Sherden rival or pursuer?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "mythographer-2",
+    "researcher": "mythographer",
+    "title": "The griffin is not new to the Sherden",
+    "pitch": "Subvert the discovery. The griffins never died out. The Sherden have kept the last ones in the dark beneath Knossos and bled them, mixing griffin blood with purple, the same recipe that made the werewolves. Jon's 'discovery' is stumbling on the secret, and freeing the griffin is a theft, as when Buckbeak is condemned and spirited away.",
+    "affects": [
+      "Jon",
+      "The Sherden",
+      "The purple",
+      "Werewolves",
+      "The super-soldier program",
+      "The griffin"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Canon already has wolf's blood plus purple producing werewolves. Griffin blood plus purple could be the Sherden's attempt at something worse. Canon also hints at a super-soldier program. This proposal gives that program a source, and gives the 'extinct' griffin a reason: the Sherden hunted the species down for its blood.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Jon finds the captive griffin, perhaps by following its noise or because a dosed survivor is chained near it. Freeing it makes him a criminal in the eyes of the order he was training to join, so Sherden hunters have a reason to chase him across Greece. Take Buckbeak's structure, the creature condemned by a body of men with political motives, but drop the magical reset. Freedom costs Jon something real: a friend left behind, or his standing [56, 57].",
+        "refs": [
+          56,
+          57
+        ],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "The griffin is wary of men and may never fully trust humans who smell of purple. That gives the bond friction, not instant affection. If Jon has been dosed even lightly in training, the creature's distrust of him personally is a strong early beat.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This would settle part of the open super-soldier question, so it should be adopted only together with a decision on that. It darkens the Sherden considerably, and that matters because Tiye's lover may be a Sherden soldier. It also makes the Sherden a pursuing antagonist in Jon's exodus arc.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Who among the Sherden knows about the captive griffins: the whole order, only the Knossos masters, or a faction?",
+        "answer": ""
+      },
+      {
+        "q": "Does griffin blood plus purple produce anything yet (failed hybrids, monsters), and does Jon meet one?",
+        "answer": ""
+      },
+      {
+        "q": "Does this conflict with the plain-discovery version in 'The beast the trial was built for'? The author would choose one.",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "mythographer-3",
+    "researcher": "mythographer",
+    "title": "Fed, not mastered: limits that keep the griffin from being a cheat",
+    "pitch": "Build the griffin's limits into the story from the start, so it never turns into the offstage Ghost or a flying escape hatch. It is a large predator that must eat, that refugees fear, and that cannot carry Jon to safety. The Alexander and Bellerophon myths become the warning: control by hunger fails, and so does riding to the heavens.",
+    "affects": [
+      "Jon",
+      "The griffin",
+      "Refugees in Jon's exodus"
+    ],
+    "parts": [
+      {
+        "label": "characterization",
+        "text": "Give it Buckbeak's etiquette in an un-Hogwarts form. It accepts only those who lower themselves before it [56]. That is a quiet test of the royal entitlement canon attributes to Isis's line. Jon passes. A proud Sherden or a Tyrian cousin does not, and bleeds for it.",
+        "refs": [
+          56
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Hunger is the leash and the danger. In a drought it competes with refugees for goats and sheep. Some of the Moses-style tension inside Jon's band can come from people demanding the beast be killed or driven off. Use the Alexander image as a scene: someone, perhaps a warlord or a Sherden pursuer, tries to steer a griffin with meat on a spear. It works until it doesn't [60]. Jon's way, earned trust, is slower and costs him.",
+        "refs": [
+          60
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Use Bellerophon as the arc's warning. If the griffin ever lets Jon ride, it should come late and briefly. If Jon reaches for that power to make himself a savior or a king, the griffin throws him or leaves [58, 59].",
+        "refs": [
+          58,
+          59
+        ],
+        "note": ""
+      },
+      {
+        "label": "world",
+        "text": "Set physical limits early. It is lion-sized or a little smaller, it can fly only short distances or not at all while the wing heals, and it carries no adult rider for most of the story. It eats a great deal. In a land of drought, those limits are themselves storytelling.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "Fixes the Ghost problem from the screen adaptation [53]. Every chapter with Jon needs an answer to 'where is the griffin and what is it eating', and that answer is plot rather than budget. It also keeps the grimdark-but-not-nihilist tone: the creature is wonder, not wish-fulfilment.",
+        "refs": [
+          53
+        ],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Can the griffin ever carry Jon, and if so, when and for how long?",
+        "answer": ""
+      },
+      {
+        "q": "How big is it compared to a lion or a horse, and how much can it lift?",
+        "answer": ""
+      },
+      {
+        "q": "Does it speak or communicate in any way, or stay entirely animal (as Ghost does)?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "mythographer-4",
+    "researcher": "mythographer",
+    "title": "The Drought's other casualty",
+    "pitch": "Tie the griffins' disappearance to the Drought. Like the Cyclopes, they are being driven from their old haunts. That makes Jon's griffin a living warning: it senses the drought-beasts before anyone else, and it hates them.",
+    "affects": [
+      "The griffin",
+      "The Drought and its beasts",
+      "Cyclopes",
+      "Jon",
+      "The Steppe"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "In legend, griffins guard gold in the far north-east against one-eyed raiders [50]. One version: griffins once ranged from the steppe to Crete, and the Drought, rising in the north or east, killed off their prey and their nesting ranges. The last survivors fled to the high caves of Crete, as the Cyclopes fled to caves after losing the palaces. The one-eyed Arimaspians of legend could even be a garbled memory of griffins and Cyclopes fighting over the same shrinking territory.",
+        "refs": [
+          50
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "The griffin works as the hero's early-warning system, as Ghost does for Jon in ASOIAF [51]. It bristles, refuses a road or goes hunting before the drought-beasts appear. That lets Jon read danger the refugees cannot see, and it builds his reputation as a prophet-leader, the Moses side of his arc, partly on the creature's instincts.",
+        "refs": [
+          51
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "Avoid the dragons-versus-White-Walkers trap, where the beast is a weapon that wins the war. The griffin can kill a drought-runner but not stop the Drought. It is also a casualty of the Drought, and that keeps the climate theme honest. This fits canon's possible Anatolian epicenter and the steppe material (Scythians/Amazons) without settling either.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Is there a griffin legend among the steppe peoples, and does Jon meet anyone on the steppe or in Anatolia who recognises the creature?",
+        "answer": "griffins are exceedingly rare nowadays but not extinct/mythological status"
+      },
+      {
+        "q": "Does the griffin's sensitivity to the Drought come from purple, or is it natural to the species?",
+        "answer": "natural; griffin's are completely natural"
+      }
+    ],
+    "decision": "accepted",
+    "note": ""
+  },
+  {
+    "id": "mythographer-5",
+    "researcher": "mythographer",
+    "title": "The tomb of the last griffin-rider",
+    "pitch": "On the journey through ruined Greece, Jon reaches the broken palace near Pylos and finds an old shaft grave of a 'griffin warrior'. The man was buried with a griffin plaque between his legs, which hints that men and griffins once bonded and that this is how such bonds end.",
+    "affects": [
+      "Jon",
+      "The griffin",
+      "Greece (Pylos)",
+      "Minoan and Mycenaean lore"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "This borrows the real Griffin Warrior tomb: a man of 30–35 buried with a carved ivory griffin and Minoan-style treasures [43, 44]. In this setting it becomes evidence of a lost Cretan and Mycenaean tradition of griffin-keepers, three centuries before Jon. Canon does not say the real tomb was a rider's, so this is a fictional reinterpretation of a real find.",
+        "refs": [
+          43,
+          44
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "The tomb gives Jon, and the reader, lore without a wizard to explain it: grave goods, a painted wall, a seal-stone showing a griffin. It also sets up an Enkidu shadow. The bonded man died young, and either the griffin outlived him or he outlived it. The question of which one dies first can then hang over the friendship.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "Jon sees himself in the dead warrior: a foreign prince in a broken land with a beast no one else can approach. It is a quiet moment of identity that does not depend on his royal blood.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "Fits the canon itinerary of ruined palaces and raiders. Pylos also offers raiders or a surviving warlord who would covet a living griffin as a status symbol, a ready-made antagonist for the episode.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Did griffin-keeping die with the Minoans, or did the Mycenaeans keep it until their palaces fell?",
+        "answer": ""
+      },
+      {
+        "q": "Will the griffin die before the end of Jon's arc (the Enkidu path), or does it survive him?",
+        "answer": ""
+      }
+    ],
+    "decision": "accepted",
+    "note": ""
+  },
+  {
+    "id": "mythographer-6",
+    "researcher": "mythographer",
+    "title": "A living throne-guardian comes to Egypt",
+    "pitch": "When Jon finally brings his refugees to Egypt, the griffin is a political bomb. In Egypt it is old royal imagery: it is painted at Avaris beside Pi-Ramesses and inlaid on Ahmose's axe celebrating the expulsion of the Hyksos. A living one at the side of an exiled prince reads as a claim against Pentawer's throne.",
+    "affects": [
+      "Jon",
+      "Pentawer",
+      "Tiye",
+      "Aegon",
+      "Pi-Ramesses",
+      "The purple guild",
+      "The griffin"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Egyptians at the capital have seen Aegean griffins on the walls of the old Avaris quarter [45, 6]. Educated courtiers know the griffin from Ahmose's axe, a royal award celebrating victory over foreign usurpers [46, 47]. In Crete, the griffins guard the throne [42, 1]. So in both cultures the creature reads as a guardian of legitimate rule.",
+        "refs": [
+          1,
+          6,
+          42,
+          45,
+          46,
+          47
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Let factions read the creature differently, as everyone does with Daenerys's dragons in ASOIAF, but without the chosen-one glow. Partisans of Isis's line call it an omen that the true king's sons will drive out the usurper, echoing Ahmose and the Hyksos. Tiye's court calls it a foreign demon of the Sea Peoples. The purple guild wants its blood. Jon himself refuses to be made a claimant by an animal.",
+        "refs": [
+          46,
+          47
+        ],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "This gives Jon a reason to fear his own success: the griffin makes him a rival to Aegon, the canon's likely final king, whether he wants it or not. It is a ready source of tension between the brothers.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "Fits the planned ending of Jon's exodus without settling who ends on the throne. Divergence note: in real history these frescoes and the axe date to roughly three centuries earlier, the early 18th Dynasty. Here they are assumed still visible or remembered in 1160.",
+        "refs": [
+          45,
+          47
+        ],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Is the Avaris griffin fresco still visible in the 1160 capital, or remembered only by priests and scribes?",
+        "answer": ""
+      },
+      {
+        "q": "Does Pentawer's regime try to capture, kill or co-opt the griffin?",
+        "answer": "the regime never knows it exists"
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  }
+]

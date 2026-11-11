@@ -1,13 +1,23 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import type { Decision, Proposal, ResearchSource } from "../types";
 import Rich from "./Rich";
 
 export const DECISION_LABELS: Record<Decision, string> = {
   pending: "Not reviewed",
   accepted: "Accepted",
-  modified: "Modify",
+  maybe: "Maybe",
   rejected: "Rejected",
 };
+
+export const hasNotes = (x: Proposal) => !!x.note.trim() || x.parts.some((pt) => pt.note.trim());
+
+/** "Accepted with changes" is just an accepted proposal you left a note on. */
+export const decisionLabel = (x: Proposal) =>
+  x.decision === "accepted" && hasNotes(x) ? "Accepted with changes" : DECISION_LABELS[x.decision];
+
+/** Old runs stored accept-with-notes as "modified". */
+export const normalizeDecision = (x: Proposal): Proposal =>
+  (x.decision as string) === "modified" ? { ...x, decision: "accepted" } : x;
 
 export const RESEARCHER_SHORT: Record<string, string> = {
   antiquarian: "Antiquarian",
@@ -33,15 +43,13 @@ interface Props {
   onClose: () => void;
 }
 
-/** One card per proposal: cycle with the arrows, note each part, answer its questions, accept / modify / reject. */
+/** One card per proposal: cycle with the arrows, note each part, answer its questions, accept / maybe / reject. */
 export default function ProposalReview({ proposals, start, sources, editable, onChange, onClose }: Props) {
   const [idx, setIdx] = useState(Math.min(Math.max(start, 0), proposals.length - 1));
-  const [needNote, setNeedNote] = useState(false);
-  const noteRef = useRef<HTMLTextAreaElement>(null);
   const p = proposals[idx];
   const n = proposals.length;
 
-  const go = (d: number) => { setNeedNote(false); setIdx((i) => (i + d + n) % n); };
+  const go = (d: number) => setIdx((i) => (i + d + n) % n);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -50,6 +58,11 @@ export default function ProposalReview({ proposals, start, sources, editable, on
       if (typing) return;
       if (e.key === "ArrowLeft") go(-1);
       if (e.key === "ArrowRight") go(1);
+      if (!editable || e.metaKey || e.ctrlKey || e.altKey) return;
+      const key = e.key.toLowerCase();
+      if (key === "a") decide("accepted");
+      if (key === "m") decide("maybe");
+      if (key === "r") decide("rejected");
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -58,15 +71,8 @@ export default function ProposalReview({ proposals, start, sources, editable, on
   if (!p) return null;
 
   const patch = (change: Partial<Proposal>) => onChange(proposals.map((x, i) => (i === idx ? { ...x, ...change } : x)));
-  const hasNotes = (x: Proposal) => !!x.note.trim() || x.parts.some((pt) => pt.note.trim());
 
   const decide = (decision: Decision) => {
-    if (decision === "modified" && !hasNotes(p)) {
-      setNeedNote(true);
-      noteRef.current?.focus();
-      return;
-    }
-    setNeedNote(false);
     const next = proposals.map((x, i) => (i === idx ? { ...x, decision } : x));
     onChange(next);
     if (decision === "pending") return;
@@ -78,13 +84,21 @@ export default function ProposalReview({ proposals, start, sources, editable, on
   };
 
   const pending = proposals.filter((x) => x.decision === "pending").length;
+  const decideRest = (decision: Decision) =>
+    onChange(proposals.map((x) => (x.decision === "pending" ? { ...x, decision } : x)));
 
   return (
     <div className="modal-overlay" onMouseDown={(e) => { if (e.target === e.currentTarget) onClose(); }}>
       <div className="modal review" role="dialog" aria-modal="true" aria-label="Review proposals">
         <div className="modal-head">
           <h2>Proposals</h2>
-          <span className="hint">{editable ? `${pending} of ${n} not reviewed · ← → to move, Esc to close` : "read-only: decisions are made at the research gate"}</span>
+          <span className="hint">{editable ? `${pending} of ${n} not reviewed · A / M / R to decide, ← → to move, Esc to close` : "read-only: decisions are made at the research gate"}</span>
+          {editable && pending > 0 && (
+            <>
+              <button className="small" onClick={() => decideRest("maybe")}>Maybe the rest</button>
+              <button className="small" onClick={() => decideRest("rejected")}>Reject the rest</button>
+            </>
+          )}
           <button className="ghost" onClick={onClose} aria-label="Close">✕</button>
         </div>
 
@@ -93,7 +107,7 @@ export default function ProposalReview({ proposals, start, sources, editable, on
           <div className="review-dots">
             {proposals.map((x, i) => (
               <button key={x.id} className={`dot ${x.decision}${i === idx ? " current" : ""}`}
-                      title={`${i + 1}. ${x.title} (${DECISION_LABELS[x.decision]})`} onClick={() => { setNeedNote(false); setIdx(i); }} />
+                      title={`${i + 1}. ${x.title} (${decisionLabel(x)})`} onClick={() => setIdx(i)} />
             ))}
           </div>
           <span className="review-count">{idx + 1} / {n}</span>
@@ -103,7 +117,9 @@ export default function ProposalReview({ proposals, start, sources, editable, on
         <div className={`review-body${p.decision === "rejected" ? " rejected" : ""}`}>
           <div className="review-title">
             <span className="tag">{RESEARCHER_SHORT[p.researcher] ?? p.researcher}</span>
-            <span className={`decision-chip ${p.decision}`}>{DECISION_LABELS[p.decision]}</span>
+            {(p.also_from ?? []).map((r) => <span key={r} className="tag" title="A near-identical idea from this researcher was folded in">also {RESEARCHER_SHORT[r] ?? r}</span>)}
+            {p.kind && <span className={`part-tag ${p.kind}`}>{p.kind}</span>}
+            <span className={`decision-chip ${p.decision}`}>{decisionLabel(p)}</span>
             <h3>{p.title}</h3>
           </div>
           {p.decision === "rejected" && (
@@ -144,14 +160,15 @@ export default function ProposalReview({ proposals, start, sources, editable, on
         </div>
 
         <div className="review-foot">
-          <textarea ref={noteRef} className={needNote ? "need" : ""} rows={3} readOnly={!editable} value={p.note}
-                    placeholder={editable ? "What you want done with this proposal: changes, conditions, what to keep or drop…" : "(no notes)"}
-                    onChange={(e) => { patch({ note: e.target.value }); if (e.target.value.trim()) setNeedNote(false); }} />
-          {needNote && <p className="hint warn-text">Modify needs a note saying what to change (here or on a part).</p>}
+          <textarea rows={3} readOnly={!editable} value={p.note}
+                    placeholder={editable ? "Changes or conditions. Accepting with a note means accepted with these changes." : "(no notes)"}
+                    onChange={(e) => patch({ note: e.target.value })} />
           {editable && (
             <div className="row decisions">
-              <button className={`decide accepted${p.decision === "accepted" ? " on" : ""}`} onClick={() => decide("accepted")}>Accept</button>
-              <button className={`decide modified${p.decision === "modified" ? " on" : ""}`} onClick={() => decide("modified")}>Modify</button>
+              <button className={`decide accepted${p.decision === "accepted" ? " on" : ""}`} onClick={() => decide("accepted")}
+                      title="Settled (with your notes applied, if any)">Accept</button>
+              <button className={`decide maybe${p.decision === "maybe" ? " on" : ""}`} onClick={() => decide("maybe")}
+                      title="Keep it as an idea: later steps may use it, but it is never recorded as canon">Maybe</button>
               <button className={`decide rejected${p.decision === "rejected" ? " on" : ""}`} onClick={() => decide("rejected")}>Reject</button>
               {p.decision !== "pending" && <button className="ghost small" onClick={() => decide("pending")}>Clear decision</button>}
             </div>

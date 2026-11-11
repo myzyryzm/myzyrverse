@@ -23,7 +23,7 @@ from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
 from pydantic import BaseModel, Field
 
 from . import config, logbus, lore, runs
-from .graph import build_graph
+from .graph import build_graph, prune_stale_channels
 from .state import (
     FINAL_APPROVED, OUTLINE_APPROVED, RESEARCH_APPROVED, RESEARCHING,
 )
@@ -81,6 +81,10 @@ def _launch(run_id: str, payload: Any) -> None:
 
     async def go():
         try:
+            if payload is None:  # continuing a saved run, possibly one from an older state schema
+                stale = await prune_stale_channels(_graph(), _cfg(run_id))
+                if stale:
+                    logbus.log(run_id, f"dropped fields from an older state schema: {', '.join(stale)}", kind="warn")
             await _graph().ainvoke(payload, _cfg(run_id))
             st = await _graph().aget_state(_cfg(run_id))
             logbus.log(run_id, f"paused before {st.next[0]}" if st.next else "run finished", kind="pause")
@@ -217,6 +221,11 @@ async def resume_run(run_id: str, body: Resume):
     bad = set(body.edits) - EDITABLE
     if bad:
         raise HTTPException(400, f"fields not editable: {sorted(bad)}")
+    if st.next[0] == "human_gate_research":
+        proposals = body.edits.get("research_proposals", st.values.get("research_proposals")) or []
+        undecided = sum(p.get("decision", "pending") == "pending" for p in proposals)
+        if undecided:
+            raise HTTPException(400, f"{undecided} proposal(s) still need a decision: accept, maybe or reject")
     patch = {**body.edits, "canon": lore.build_canon(run_id)}
     if "brief" in body.edits:
         runs.write_artifact(run_id, "brief", body.edits["brief"])
@@ -263,7 +272,8 @@ async def regenerate(run_id: str, body: Regenerate):
     notes = body.notes.strip()
     if gate == "human_gate_research":
         patch = {"research_complete": False, "research_notes": "", "review_status": RESEARCHING,
-                 "research_background": [], "research_proposals": [], "research_sources": [],
+                 "research_background": [], "research_proposals": [], "research_proposals_cut": [],
+                 "research_sources": [],
                  **{f"{r}_research": {} for r in config.RESEARCHERS}}
     elif gate == "human_gate_outline":
         field = {"plan_arc": "arc_plan", "lore": "lore_doc"}.get(meta["type"], "chapter_outline")
@@ -355,6 +365,11 @@ class NewQuestion(BaseModel):
     about: str = ""
 
 
+class NewHook(BaseModel):
+    text: str
+    about: str = ""
+
+
 class NewEvent(BaseModel):
     title: str
     description: str = ""
@@ -419,6 +434,24 @@ def questions_update(item_id: str, patch: dict):
 @app.delete("/api/lore/open-questions/{item_id}")
 def questions_delete(item_id: str):
     lore.delete_question(item_id)
+    return {"ok": True}
+
+
+@app.get("/api/lore/hooks")
+def hooks_list():
+    return lore.hooks()
+
+
+@app.post("/api/lore/hooks")
+def hooks_create(body: NewHook):
+    if not body.text.strip():
+        raise HTTPException(400, "a hook needs text")
+    return lore.create_hook(body.text.strip(), body.about.strip())
+
+
+@app.delete("/api/lore/hooks/{item_id}")
+def hooks_delete(item_id: str):
+    lore.delete_hook(item_id)
     return {"ok": True}
 
 

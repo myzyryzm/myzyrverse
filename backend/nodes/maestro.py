@@ -11,7 +11,7 @@ from __future__ import annotations
 from .. import config, logbus
 from ..state import (
     COMMITTED, FINAL_APPROVED, LEDGER_APPROVED, OUTLINE_APPROVED, PENDING_FINAL_REVIEW,
-    PENDING_LEDGER_REVIEW, PENDING_OUTLINE_REVIEW, PENDING_RESEARCH_REVIEW, RESEARCH_APPROVED,
+    PENDING_LEDGER_REVIEW, PENDING_OUTLINE_REVIEW, PENDING_RESEARCH_EDIT, PENDING_RESEARCH_REVIEW, RESEARCH_APPROVED,
     RESEARCHING, RunState,
 )
 
@@ -32,6 +32,8 @@ def decide(state: RunState) -> dict:
                    "review_status": RESEARCH_APPROVED}
         return {**skipped, **decide({**state, **skipped})}
 
+    if status == PENDING_RESEARCH_EDIT:
+        return {"next_steps": "research_editor"}
     if status == PENDING_RESEARCH_REVIEW:
         return {"next_steps": "human_gate_research"}
     if status == PENDING_LEDGER_REVIEW:

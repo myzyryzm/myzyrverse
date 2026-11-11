@@ -20,7 +20,7 @@ export interface RunMeta {
 
 export interface LedgerEntry {
   id?: string;
-  kind: "lore" | "answer" | "new_question" | "event_update" | "sub_event";
+  kind: "lore" | "answer" | "new_question" | "event_update" | "sub_event" | "hook";
   entity: string;
   change: string;
   detail: string;
@@ -31,6 +31,15 @@ export interface LedgerEntry {
   accepted?: boolean;
   run_id?: string | null;
   run_title?: string;
+}
+
+/** A story idea to think about later. Not canon: agents never see hooks. */
+export interface Hook {
+  id: string;
+  text: string;
+  about: string;
+  created_by: "ai" | "user";
+  source_run: string | null;
 }
 
 export interface UsageRecord {
@@ -59,6 +68,7 @@ export interface RunValues {
   author_research_notes?: string;
   research_background?: BackgroundSection[];
   research_proposals?: Proposal[];
+  research_proposals_cut?: Proposal[];
   research_sources?: ResearchSource[];
   [key: string]: unknown;
 }
@@ -70,7 +80,8 @@ export interface BackgroundSection {
   refs: number[];
 }
 
-export type Decision = "pending" | "accepted" | "modified" | "rejected";
+/** Accepted with a note is "accepted with changes". Old runs may still hold "modified"; normalizeDecision reads it as accepted. */
+export type Decision = "pending" | "accepted" | "maybe" | "rejected";
 
 export interface ProposalPart {
   label: "characterization" | "plot" | "world" | "integration" | string;
@@ -83,6 +94,8 @@ export interface ProposalPart {
 export interface Proposal {
   id: string;
   researcher: string;
+  /** New proposals are one idea of one kind; older ones have no kind and several parts. */
+  kind?: "characterization" | "plot" | "world";
   title: string;
   pitch: string;
   affects: string[];
@@ -90,6 +103,8 @@ export interface Proposal {
   questions: { q: string; answer: string }[];
   decision: Decision;
   note: string;
+  /** Other researchers whose near-identical proposal the research editor folded into this one. */
+  also_from?: string[];
 }
 
 export interface ResearchSource {

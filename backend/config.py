@@ -24,6 +24,7 @@ PREHISTORY_DIR = LORE_DIR / "prehistory"
 SOURCES_DIR = LORE_DIR / "sources"
 OPEN_QUESTIONS_FILE = LORE_DIR / "open_questions.json"
 EVENTS_FILE = LORE_DIR / "events.json"
+HOOKS_FILE = LORE_DIR / "hooks.json"
 TIMELINES_FILE = LORE_DIR / "timelines.json"
 RUNS_DIR = WORKSPACE / "runs"
 MANUSCRIPT_FILE = WORKSPACE / "manuscript.md"
@@ -38,6 +39,11 @@ MAX_REVISIONS = int(os.environ.get("MAX_REVISIONS", "3"))
 
 RESEARCHERS = ("antiquarian", "historian", "mythographer", "psychologist")
 
+# Proposal volume: each researcher's list is cut to the first N, then the research editor
+# keeps at most MAX_PROPOSALS across all of them for the author to review.
+MAX_PROPOSALS_PER_RESEARCHER = int(os.environ.get("MAX_PROPOSALS_PER_RESEARCHER", "3"))
+MAX_PROPOSALS = int(os.environ.get("MAX_PROPOSALS", "8"))
+
 RESEARCH_TOOLS = ["WebSearch", "WebFetch", "Read", "Grep", "Glob"]
 
 OPUS = "claude-opus-5-5"
@@ -49,6 +55,7 @@ NODE_SETTINGS: dict[str, dict] = {
     "historian": {"model": OPUS, "effort": "high", "tools": RESEARCH_TOOLS},
     "mythographer": {"model": OPUS, "effort": "high", "tools": RESEARCH_TOOLS},
     "psychologist": {"model": OPUS, "effort": "high", "tools": ["Read", "Grep", "Glob"]},
+    "research_editor": {"model": OPUS, "effort": "high", "tools": []},
     "weaver": {"model": OPUS, "effort": "high", "tools": []},
     "loremaster": {"model": OPUS, "effort": "high", "tools": []},
     "writer": {"model": FABLE, "effort": "high", "tools": []},

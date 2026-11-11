@@ -14,6 +14,7 @@ RunType = Literal["chapter", "research", "plan_arc", "lore"]
 
 # review_status values, in pipeline order
 RESEARCHING = "RESEARCHING"
+PENDING_RESEARCH_EDIT = "PENDING_RESEARCH_EDIT"
 PENDING_RESEARCH_REVIEW = "PENDING_RESEARCH_REVIEW"
 RESEARCH_APPROVED = "RESEARCH_APPROVED"
 PENDING_OUTLINE_REVIEW = "PENDING_OUTLINE_REVIEW"
@@ -45,6 +46,8 @@ class RunState(TypedDict, total=False):
     # merged by join_research; proposals carry the author's decisions and notes from the research gate
     research_background: list[dict]
     research_proposals: list[dict]
+    # proposals the research editor left out (duplicates and weaker ideas); the author can bring one back
+    research_proposals_cut: list[dict]
     research_sources: list[dict]
     # rendered from background + proposals (no sources); what every later node reads
     research_notes: str

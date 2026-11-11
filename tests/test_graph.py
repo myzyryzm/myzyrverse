@@ -4,7 +4,7 @@ import pytest
 from langgraph.checkpoint.memory import MemorySaver
 
 from backend import config, lore, runs
-from backend.graph import build_graph
+from backend.graph import build_graph, prune_stale_channels
 from backend.nodes.maestro import decide
 
 
@@ -61,6 +61,29 @@ async def test_parallel_research_honors_subset():
     assert v["research_sources"] == [{"n": 1, "title": "Placeholder source", "url": "https://example.org/source",
                                       "researchers": ["antiquarian", "mythographer"]}]
     assert "example.org" not in v["research_notes"] and "[1]" not in v["research_notes"]
+    # four proposals is more than the editor threshold, so the editor ran (the fake keeps them all)
+    assert [u["node"] for u in v["usage"]].count("research_editor") == 1
+    assert v["research_proposals_cut"] == []
+
+
+def test_maestro_routes_to_the_editor_before_the_gate():
+    base = {"run_type": "lore", "research_complete": True}
+    assert decide({**base, "review_status": "PENDING_RESEARCH_EDIT"})["next_steps"] == "research_editor"
+    assert decide({**base, "review_status": "PENDING_RESEARCH_REVIEW"})["next_steps"] == "human_gate_research"
+
+
+@pytest.mark.asyncio
+async def test_editor_without_a_selection_keeps_everything(monkeypatch):
+    from backend.nodes import research_editor
+    from backend.runner import AgentResult
+
+    async def no_selection(*a, **kw):
+        return AgentResult(text="oops")
+    monkeypatch.setattr(research_editor, "call", no_selection)
+    props = [{"id": f"historian-{i}", "researcher": "historian", "title": "t", "parts": []} for i in range(5)]
+    out = await research_editor.research_editor({"run_id": "x", "research_proposals": props})
+    assert out["research_proposals"] == props and out["research_proposals_cut"] == []
+    assert out["review_status"] == "PENDING_RESEARCH_REVIEW"
 
 
 @pytest.mark.asyncio
@@ -136,3 +159,29 @@ def test_maestro_lore_routing():
     assert decide({**base, "review_status": "RESEARCH_APPROVED"})["next_steps"] == "loremaster"
     assert decide({**base, "lore_doc": "d", "review_status": "PENDING_OUTLINE_REVIEW"})["next_steps"] == "human_gate_outline"
     assert decide({**base, "lore_doc": "d", "review_status": "OUTLINE_APPROVED"})["next_steps"] == "archivist"
+
+
+@pytest.mark.asyncio
+async def test_resume_survives_a_field_removed_from_the_state_schema():
+    saver = MemorySaver()
+    g = build_graph(saver)
+    cfg = {"configurable": {"thread_id": "ch01"}}
+    await g.ainvoke(_start("ch01"), cfg)
+    assert (await g.aget_state(cfg)).next == ("human_gate_research",)
+
+    # Simulate a checkpoint written when RunState still had a field that has since been removed.
+    tup = await saver.aget_tuple(cfg)
+    version = max(tup.checkpoint["channel_versions"].values())
+    old = {**tup.checkpoint,
+           "channel_versions": {**tup.checkpoint["channel_versions"], "historian_notes": version},
+           "channel_values": {**tup.checkpoint["channel_values"], "historian_notes": "old"}}
+    await saver.aput(tup.parent_config, old, tup.metadata, {"historian_notes": version})
+
+    await g.ainvoke(None, cfg)
+    assert (await g.aget_state(cfg)).next == ("human_gate_research",)  # stuck: the gate never runs
+
+    assert await prune_stale_channels(g, cfg) == ["historian_notes"]
+    assert await prune_stale_channels(g, cfg) == []
+    await g.ainvoke(None, cfg)
+    st = await g.aget_state(cfg)
+    assert st.next == ("human_gate_outline",) and st.values["research_proposals"]

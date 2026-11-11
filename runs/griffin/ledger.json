@@ -1,0 +1,457 @@
+[
+  {
+    "kind": "lore",
+    "entity": "Griffin",
+    "change": "new fact",
+    "detail": "Griffins are real, wholly natural animals in this world: flesh and appetite like a lion or vulture, with no purple in their biology, lifespan or senses. They are not magical, not dragon-like. By 1160 they are exceedingly rare and almost everyone believes them extinct, known only from art, heirlooms and old stories; they are not truly extinct.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "high",
+    "source": "ai",
+    "id": "griffin-1",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Griffin",
+    "change": "anatomy",
+    "detail": "Wingless and flightless. Big-cat body, gait and behavior (lion-bodied, heavy-shouldered), with a carrion raptor's head, a vulture's hooked beak and an upright crest. Its light, bird-built head combined with big-cat power lets it leap farther than any lion: across ravines, ledge to ledge, onto walls. A grown griffin is the size of a cave lion, larger than any living lion.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "high",
+    "source": "ai",
+    "id": "griffin-2",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Griffin",
+    "change": "anatomy (specifics)",
+    "detail": "Proposed specifics from the approved document: an adult stands chest-high to a man at the shoulder and weighs as much as four men, and males are larger. From a standing start it clears 12–15 paces and can spring onto a ledge twice a man's height. It is an ambush hunter and poor at long chases. The beak can crack bones for marrow. The quill-like crest stays flat when calm and rises when it is alarmed or about to attack, which is the main visible tell. Adults grow a feathered shoulder ruff that they spread in display; Aegean painters drew this as wings, which is why most griffin art is winged. The coat is tawny-ochre. Juveniles carry dark spiral markings that fade with age. Young chirp and trill; adults rasp-shriek and chest-purr and do not roar. Strict meat-eater (agrimi, deer, sheep, carrion, bone), needing about one goat every three days. Pairs mate for life, young stay with their parents about 2 years, full size comes at about 4 years, and wild lifespan is about 25 years. Territorial, shy of people, fiercely protective of family; an orphan attaches to whatever takes the parent's place.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-3",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Griffin",
+    "change": "history",
+    "detail": "In the past men loosed griffins in battle and harnessed them to war and ceremonial chariots. They were never ridden like horses. The Minoans kept griffins at Knossos and the other palaces as sacred animals of the palace priestesses (beside the goddess's seat, drawing her chariot) and as guardians of the ruler's house, bred and handled by hereditary specialist keepers whose knowledge was never written down. The Knossos Throne Room paintings are portraits of the real animals lying on guard: couchant, wingless and crested, on the west wall flanking the doorway to an inner room.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "high",
+    "source": "ai",
+    "id": "griffin-4",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Cyclopes",
+    "change": "new fact",
+    "detail": "Long before the Minoan and Mycenaean palaces, men and their griffins fought an ancient war against the Cyclopes. The defeated Cyclopes scattered across northern Greece, into Anatolia and out to the steppe. Human legend and griffin instinct both remember the war.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "high",
+    "source": "ai",
+    "id": "griffin-5",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Griffin",
+    "change": "enmity with Cyclopes",
+    "detail": "Griffins are hostile to Cyclopes. The hostility is partly instinct and partly kept alive in human legend: at a Cyclops's scent a griffin bristles and either flees or attacks, and hill folk who still tell the old war-stories recognize what they are seeing.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "high",
+    "source": "ai",
+    "id": "griffin-6",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Griffin",
+    "change": "senses the Drought",
+    "detail": "Griffins naturally sense the Drought's beasts before people can and react to them: crest raised, refusing a road, slipping off to hunt. This is a natural trait of the species, not purple.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "high",
+    "source": "ai",
+    "id": "griffin-7",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "The Drought",
+    "change": "new fact",
+    "detail": "The Drought has thinned the wild goats and deer of the Cretan uplands and dried the high pastures. It is driving the last griffins downhill toward flocks, shepherds and upland refuge villages, as it drives the Cyclopes from their caves. The griffin is a casualty of the Drought, not a cure: one griffin can kill one Drought beast, but no number of griffins can stop the Drought.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "high",
+    "source": "ai",
+    "id": "griffin-8",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Crete (Mount Ida)",
+    "change": "new fact",
+    "detail": "When Knossos fell, one to two centuries before the story, its griffins escaped or were turned loose and went feral in the Psiloritis (Mount Ida) massif: gorges, cliffs and high caves that lowlanders do not search. With the cult and keepers gone, Cretans came to treat griffins as painted creatures of the old gods. A remnant survives, few enough to count on two hands. Only one griffin appears on the page for now.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "high",
+    "source": "ai",
+    "id": "griffin-9",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Jon",
+    "change": "location",
+    "detail": "Jon's Sherden training takes place on Crete, including exercises in the Cretan mountains (Ida), where he finds the griffin. The training curriculum and the Minotaur trial remain open.",
+    "ref_id": "",
+    "characters": [
+      "Jon"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "griffin-10",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Jon",
+    "change": "companion",
+    "detail": "During his Sherden training on Crete, Jon finds a single young, orphaned griffin with no living parents or siblings on Crete. He earns the bond by protecting it rather than taming it, refusing to kill or cage it when Sherden practice demands exactly that. He calms it in a Bucephalus-like moment, by noticing what frightens it when everyone else has missed it. It is a family bond, not a royal one: the griffin attaches to Jon as a substitute parent, not because he is a pharaoh's son. It accompanies him on his journey through Greece and Anatolia.",
+    "ref_id": "",
+    "characters": [
+      "Jon"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "griffin-11",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Jon's griffin",
+    "change": "bond and temperament",
+    "detail": "Jon's griffin trusts Jon alone. No refugee, family member or the Medjay farm boy ever wins its trust. The bond grows slowly through daily handling and Jon's voice, in the manner of eagle-hunters adapted to a cat-like animal. Early in the journey it is a mouth to feed and a danger to everyone near it, and it becomes a real ally only as it grows. It is never ridden and never dosed with purple. It will eat refugees' animals and, if starving, may take a person, and Jon will defend it ('I am the only one who can keep it alive').",
+    "ref_id": "",
+    "characters": [
+      "Jon"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "griffin-12",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Jon's griffin",
+    "change": "age and growth (proposed)",
+    "detail": "Proposed in the approved document: at finding it is about one year old and the size of a large hound, with bold spiral markings and a crest only beginning to stiffen, and it can already leap a man's height. It is leopard-sized at 6–18 months and starts making its own kills and giving warnings of the Drought's beasts. It is lion-sized at 18–36 months, with crest and ruff grown and spirals fading, can kill a drought-runner, and warlords notice it. It reaches full cave-lion size at about 4 years.",
+    "ref_id": "",
+    "characters": [
+      "Jon"
+    ],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-13",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Jon's griffin",
+    "change": "finding scenario (proposed)",
+    "detail": "Proposed scenario, not settled (the document lists its key points as open questions). Drought-starved Ida griffins take sheep from an upland refuge village, and the Sherden company is sent to kill the 'lion' as a training hunt. Recruits kill the adult pair in a gorge den, and one adult kills a Sherden-born recruit. A juvenile is found alive, and the instructor orders it killed or crated as a trophy for Pharaoh. Jon refuses. The juvenile panics at the Sherden horned helmets; Jon removes his, sits below its eye level and talks until it stops shrieking. He keeps it in a dark crate or storeroom, perhaps in the ruined palace, and talks to it daily. Someone matches it to the Throne Room painting.",
+    "ref_id": "",
+    "characters": [
+      "Jon"
+    ],
+    "confidence": "low",
+    "source": "ai",
+    "id": "griffin-14",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Griffin Warrior tomb (Pylos)",
+    "change": "new fact",
+    "detail": "The Griffin Warrior buried at Pylos around 1450 BCE (age 30–35, with an ivory griffin plaque between his legs and Minoan-made goods) was a griffin-keeper: a handler and charioteer of war-griffins, not a rider. This is evidence of a lost Cretan and Mycenaean griffin-keeping tradition. Jon reaches this tomb on his journey through ruined Greece and sees himself in the dead man.",
+    "ref_id": "",
+    "characters": [
+      "Jon"
+    ],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-15",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Mycenaean warlords",
+    "change": "new fact",
+    "detail": "Mycenaean lords adopted the griffin as an emblem of the wanax (king). Surviving raider-kings in half-ruined palaces would see a living griffin as proof of true kingship: a prize to seize, or a reason to bow to the boy who keeps it.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-16",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Griffin",
+    "change": "mainland and steppe survivals",
+    "detail": "A few griffins may survive in remote pockets of mainland Greece. In this world the Lefkandi alabastron (Euboea, c. 1150–1125 BCE), showing a griffin pair feeding chirping young, was painted by someone who saw a living griffin family. Steppe traders keep an old oral tradition of griffins guarding gold in the mountains beyond the north wind, still at war with one-eyed thieves.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-17",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Egypt",
+    "change": "griffin symbolism",
+    "detail": "Egypt knows the griffin as the srf, a royal and solar sign close to the sphinx and the king's ka. Through the griffin on Ahmose's ceremonial axe it is also a sign of expelling foreign rulers. Pi-Ramesses stands beside Avaris, whose Minoan-painted palace walls showed a crested griffin hunting. Egyptian priests would claim the sole right to verify a living griffin, as they verify the Apis bull.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-18",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Jon's griffin",
+    "change": "",
+    "detail": "Is Jon's griffin male or female?",
+    "ref_id": "",
+    "characters": [
+      "Jon"
+    ],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-19",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Jon's griffin",
+    "change": "",
+    "detail": "What does Jon call the griffin, and in what language: Egyptian, Minoan or Greek?",
+    "ref_id": "",
+    "characters": [
+      "Jon"
+    ],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-20",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Jon's griffin",
+    "change": "",
+    "detail": "Where exactly is the griffin found: a gorge den on Ida, a high cave, or the deep levels or inner rooms of the Knossos ruins?",
+    "ref_id": "",
+    "characters": [
+      "Jon"
+    ],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-21",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Sherden",
+    "change": "",
+    "detail": "Do the Sherden instructors on Crete already know that griffins survive on Ida, and have they kept it secret?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-22",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Jon's griffin",
+    "change": "",
+    "detail": "Does Jon find the griffin during the Minotaur trial, or on a separate exercise?",
+    "ref_id": "",
+    "characters": [
+      "Jon"
+    ],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-23",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Jon's griffin",
+    "change": "",
+    "detail": "What frightens the griffin in Jon's Bucephalus moment: the Sherden horned helmets, the smell of purple-worked bronze, or something else?",
+    "ref_id": "",
+    "characters": [
+      "Jon"
+    ],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-24",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Jon's griffin",
+    "change": "",
+    "detail": "Who killed the griffin's parents: Sherden recruits, villagers, raiders or the Drought's beasts?",
+    "ref_id": "",
+    "characters": [
+      "Jon"
+    ],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-25",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Jon",
+    "change": "",
+    "detail": "Does a Sherden-born recruit die in the griffin den, giving Jon's story a death that parallels the one in Aegon's and a grievance for the corps?",
+    "ref_id": "",
+    "characters": [
+      "Jon",
+      "Aegon"
+    ],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-26",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Cyclopes",
+    "change": "",
+    "detail": "Was the ancient war of men and griffins against the Cyclopes the event that drove the Cyclopes out of the palaces?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-27",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Steppe",
+    "change": "",
+    "detail": "Are the one-eyed gold-thieves of steppe griffin legend (the Arimaspians) scattered Cyclopes?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-28",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Griffin",
+    "change": "",
+    "detail": "Did griffin-keeping survive among the Mycenaeans until their palaces fell, or did it end with Knossos?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-29",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Griffin",
+    "change": "",
+    "detail": "Did a living griffin ever reach the Egyptian court, for example with a Minoan embassy at Avaris?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-30",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Crete (Mount Ida)",
+    "change": "",
+    "detail": "How many griffins survive on Ida, and does Jon ever learn of others there?",
+    "ref_id": "",
+    "characters": [
+      "Jon"
+    ],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-31",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Griffin",
+    "change": "",
+    "detail": "Does a griffin family survive on Euboea or elsewhere on the mainland, as the Lefkandi vessel implies? Does Jon meet them or their painters?",
+    "ref_id": "",
+    "characters": [
+      "Jon"
+    ],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-32",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Jon's griffin",
+    "change": "",
+    "detail": "Does the griffin die before the end of Jon's arc (the Enkidu path), outlive him, or is it set free eagle-hunter fashion?",
+    "ref_id": "",
+    "characters": [
+      "Jon"
+    ],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-33",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Griffin",
+    "change": "",
+    "detail": "How does the griffin physically sense the Drought's beasts: by smell, by sound, or by something else?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-34",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Jon's griffin",
+    "change": "",
+    "detail": "Is Jon's griffin ever harnessed to a chariot in the story?",
+    "ref_id": "",
+    "characters": [
+      "Jon"
+    ],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "griffin-35",
+    "created_at": "2026-11-10T04:13:12+00:00"
+  }
+]

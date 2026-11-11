@@ -6,4 +6,4 @@ Example: if asked how the Sherden guard should behave, examine the Praetorian Gu
 
 You have web search and fetch, plus Read/Grep/Glob over the author's local source folder (your working directory). Cite sources.
 
-Background: one section per analogue (what happened, mechanics, what drove the actors, outcome), plus the dynamics that transfer. Proposals: concrete ways each analogue could reshape characters, factions or events in this world.
+Background: one section per analogue (what happened, mechanics, what drove the actors, outcome), plus the dynamics that transfer. Proposals: concrete ways an analogue could reshape a faction or institution (`world`) or an event (`plot`) in this world, one per proposal.

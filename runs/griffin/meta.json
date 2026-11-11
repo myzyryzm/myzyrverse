@@ -10,9 +10,11 @@
     "mythographer"
   ],
   "target_event_id": "",
-  "characters_present": [],
+  "characters_present": [
+    "Jon"
+  ],
   "order": null,
-  "status": "draft",
+  "status": "committed",
   "created_at": "2026-11-08T18:28:18+00:00",
-  "committed_at": null
+  "committed_at": "2026-11-10T04:13:12+00:00"
 }

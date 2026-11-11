@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { api } from "../api";
 import type { LedgerEntry, Proposal, RunState, RunType } from "../types";
 import { GATE_LABELS, errMsg } from "../util";
-import ProposalReview, { RESEARCHER_SHORT } from "./ProposalReview";
+import ProposalReview, { RESEARCHER_SHORT, normalizeDecision } from "./ProposalReview";
 import ResearchReader from "./ResearchReader";
 
 type TextField = "research_notes" | "chapter_outline" | "arc_plan" | "lore_doc" | "draft_prose" | "critique_notes" | "summary"
@@ -30,7 +30,16 @@ const TAB_LABELS: Record<string, string> = {
 // What the outline gate edits, per run type.
 const OUTLINE_FIELD: Partial<Record<RunType, TextField>> = { plan_arc: "arc_plan", lore: "lore_doc" };
 
-const KINDS: LedgerEntry["kind"][] = ["lore", "answer", "new_question", "event_update", "sub_event"];
+const KINDS: LedgerEntry["kind"][] = ["lore", "answer", "new_question", "hook", "event_update", "sub_event"];
+
+const KIND_GROUPS: Record<LedgerEntry["kind"], string> = {
+  lore: "Lore",
+  answer: "Answers to open questions",
+  new_question: "New open questions",
+  hook: "Hooks (ideas for later, not canon)",
+  event_update: "Event progress",
+  sub_event: "Milestones",
+};
 
 interface Props {
   runState: RunState | null;
@@ -73,7 +82,8 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
   const textValue = (f: TextField) => drafts[f] ?? (v[f] as string | undefined) ?? "";
   const ledgerValue = ledger ?? v.proposed_ledger ?? [];
   const charsValue = chars ?? (v.characters_present ?? []).join(", ");
-  const proposalsValue = proposals ?? v.research_proposals ?? [];
+  const proposalsValue = useMemo(() => (proposals ?? v.research_proposals ?? []).map(normalizeDecision), [proposals, v.research_proposals]);
+  const undecided = proposalsValue.filter((p) => p.decision === "pending").length;
   const sources = v.research_sources ?? [];
   const structured = !!(v.research_background?.length || v.research_proposals?.length);
   const canDecide = gate === "human_gate_research";
@@ -183,7 +193,8 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
             )}
             {active === "research_notes" && structured ? (
               <ResearchReader background={v.research_background ?? []} proposals={proposalsValue} sources={sources}
-                              editable={canDecide} onOpen={setReviewAt} onRef={showSource} />
+                              cut={v.research_proposals_cut ?? []} editable={canDecide} onOpen={setReviewAt} onRef={showSource}
+                              onChange={setProposals} />
             ) : (
               <textarea
                 className={`editor prose${active === editable ? "" : " readonly"}${active === "research_notes" ? " research" : ""}`}
@@ -196,7 +207,12 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
             {active === editable && drafts[active as TextField] !== undefined && drafts[active as TextField] !== v[active] && (
               <div className="hint">Edited. Your version is sent when you press Resume.</div>
             )}
-            {active === "research_notes" && proposals && canDecide && (
+            {active === "research_notes" && canDecide && undecided > 0 && (
+              <div className="hint warn-text">
+                {undecided} proposal{undecided > 1 ? "s" : ""} still need{undecided > 1 ? "" : "s"} a decision before you can resume.
+              </div>
+            )}
+            {active === "research_notes" && proposals && canDecide && !undecided && (
               <div className="hint">Proposal decisions edited. They are sent when you press Resume.</div>
             )}
             {active === "research_notes" && (
@@ -234,7 +250,8 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
         {active === "ledger" && (
           <div className="stack">
             <p className="hint">
-              Proposed changes to the present lore, open questions and events. Untick what you reject, edit anything, add your own rows.
+              Proposed changes to the present lore, open questions, hooks and events. Everything is ticked; untick what you don't want added,
+              edit anything, add your own rows.
               Commit writes the ticked rows, linked to this run.
             </p>
             <label className="field">
@@ -247,7 +264,9 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
               <input readOnly={editable !== "ledger"} value={charsValue} onChange={(e) => setChars(e.target.value)} />
             </label>
             {ledgerValue.map((e, i) => (
-              <div key={i} className={`ledger-row${e.accepted === false ? " rejected" : ""}`}>
+              <div key={i} className="stack tight">
+              {(i === 0 || ledgerValue[i - 1].kind !== e.kind) && <h4 className="ledger-group">{KIND_GROUPS[e.kind] ?? e.kind}</h4>}
+              <div className={`ledger-row${e.accepted === false ? " rejected" : ""}`}>
                 <div className="row">
                   <input type="checkbox" checked={e.accepted !== false} disabled={editable !== "ledger"}
                          onChange={(ev) => setLedgerRow(i, { accepted: ev.target.checked })} />
@@ -274,6 +293,7 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
                   <CharactersInput value={e.characters ?? []} readOnly={editable !== "ledger"}
                                    onChange={(characters) => setLedgerRow(i, { characters })} />
                 )}
+              </div>
               </div>
             ))}
             {editable === "ledger" && (

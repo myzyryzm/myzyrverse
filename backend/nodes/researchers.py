@@ -5,18 +5,19 @@ them in one superstep, and each has a static edge to join_research, which
 therefore runs once after all of them finish.
 
 Each researcher returns structured output (RESEARCH_SCHEMA): background
-(context only), proposals (concrete ideas for this story, reviewed one by one
-at the research gate) and sources. join_research merges them, numbers the
-sources across the whole run, and renders `research_notes`, the markdown every
-later node reads. The research gate re-renders it with the author's decisions.
+(context only), proposals (each one idea of one kind for this story, reviewed
+one by one at the research gate) and sources. join_research merges them, numbers
+the sources across the whole run, and renders `research_notes`, the markdown
+every later node reads. The research editor then cuts the proposals down, and
+the research gate re-renders the notes with the author's decisions.
 """
 
 from __future__ import annotations
 
 import re
 
-from .. import logbus
-from ..state import PENDING_RESEARCH_REVIEW, RunState
+from .. import config, logbus
+from ..state import PENDING_RESEARCH_EDIT, PENDING_RESEARCH_REVIEW, RunState
 from .common import build_prompt, call, system_prompt, usage
 
 TASKS = {
@@ -33,7 +34,12 @@ LABELS = {
     "psychologist": "Psychologist: character friction",
 }
 
-PART_LABELS = ["characterization", "plot", "world", "integration"]
+# A proposal is one idea of one kind. Stored proposals also carry `parts` (the idea itself, then
+# how it fits canon) so the review card and render_research read old multi-part proposals too.
+KINDS = ["characterization", "plot", "world"]
+MAX_QUESTIONS = 2
+# join_research sends the proposals to the research editor only when there are more than this.
+EDIT_ABOVE = 3
 
 _REFS = {"type": "array", "items": {"type": "integer"}}
 
@@ -56,24 +62,14 @@ RESEARCH_SCHEMA = {
             "items": {
                 "type": "object",
                 "additionalProperties": False,
-                "required": ["title", "pitch", "affects", "parts", "questions"],
+                "required": ["title", "kind", "text", "canon_fit", "affects", "refs", "questions"],
                 "properties": {
                     "title": {"type": "string"},
-                    "pitch": {"type": "string"},
+                    "kind": {"type": "string", "enum": KINDS},
+                    "text": {"type": "string"},
+                    "canon_fit": {"type": "string"},
                     "affects": {"type": "array", "items": {"type": "string"}},
-                    "parts": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "additionalProperties": False,
-                            "required": ["label", "text", "refs"],
-                            "properties": {
-                                "label": {"type": "string", "enum": PART_LABELS},
-                                "text": {"type": "string"},
-                                "refs": _REFS,
-                            },
-                        },
-                    },
+                    "refs": _REFS,
                     "questions": {"type": "array", "items": {"type": "string"}},
                 },
             },
@@ -151,23 +147,36 @@ def merge_research(researchers: list[str], outputs: dict[str, dict]) -> tuple[li
         for b in out.get("background") or []:
             background.append({"researcher": name, "heading": b.get("heading") or "",
                                "body": _renumber(b.get("body"), mapping), "refs": refs(b.get("refs"))})
-        for i, p in enumerate(out.get("proposals") or [], 1):
+        for i, p in enumerate((out.get("proposals") or [])[:config.MAX_PROPOSALS_PER_RESEARCHER], 1):
+            kind = p.get("kind") if p.get("kind") in KINDS else "plot"
+            parts = [{"label": kind, "text": _renumber(p.get("text"), mapping), "refs": refs(p.get("refs")), "note": ""}]
+            if (p.get("canon_fit") or "").strip():
+                parts.append({"label": "integration", "text": _renumber(p.get("canon_fit"), mapping), "refs": [], "note": ""})
+            questions = [q for q in p.get("questions") or [] if q.strip()][:MAX_QUESTIONS]
             proposals.append({
-                "id": f"{name}-{i}", "researcher": name, "title": p.get("title") or f"Proposal {i}",
-                "pitch": _renumber(p.get("pitch"), mapping), "affects": p.get("affects") or [],
-                "parts": [{"label": pt.get("label") or "", "text": _renumber(pt.get("text"), mapping),
-                           "refs": refs(pt.get("refs")), "note": ""} for pt in p.get("parts") or []],
-                "questions": [{"q": q, "answer": ""} for q in p.get("questions") or [] if q.strip()],
+                "id": f"{name}-{i}", "researcher": name, "kind": kind, "title": p.get("title") or f"Proposal {i}",
+                "pitch": "", "affects": p.get("affects") or [], "parts": parts,
+                "questions": [{"q": q, "answer": ""} for q in questions],
                 "decision": "pending", "note": "",
             })
     return background, proposals, sources
 
 
-STATUS = {
-    "accepted": "ACCEPTED by the author (treat as settled)",
-    "modified": "ACCEPTED WITH CHANGES by the author (settled once the author's changes below are applied)",
-    "pending": "proposed, not reviewed by the author",
-}
+ACCEPTED = "ACCEPTED by the author (treat as settled)"
+ACCEPTED_WITH_CHANGES = "ACCEPTED WITH CHANGES by the author (settled once the author's changes below are applied)"
+MAYBE = ("MAYBE: an idea the author is keeping open. Not settled. Use it only where it serves the brief; "
+         "never record it as canon.")
+
+
+def has_notes(p: dict) -> bool:
+    return bool((p.get("note") or "").strip()) or any((pt.get("note") or "").strip() for pt in p.get("parts") or [])
+
+
+def status_line(p: dict) -> str:
+    """Accepted with a note means accepted with changes. `modified` is the old name for that."""
+    if p.get("decision") in ("accepted", "modified"):
+        return ACCEPTED_WITH_CHANGES if has_notes(p) or p.get("decision") == "modified" else ACCEPTED
+    return MAYBE
 
 
 def render_research(background: list[dict], proposals: list[dict]) -> str:
@@ -186,7 +195,7 @@ def render_research(background: list[dict], proposals: list[dict]) -> str:
         out += ["", "## Proposals"]
         for p in kept:
             out += ["", f"### {p['title']} ({LABELS.get(p['researcher'], p['researcher']).split(':')[0]})",
-                    f"Status: {STATUS.get(p.get('decision') or 'pending', STATUS['pending'])}"]
+                    f"Status: {status_line(p)}"]
             if p.get("pitch"):
                 out.append(strip_refs(p["pitch"]))
             if p.get("affects"):
@@ -223,9 +232,10 @@ async def join_research(state: RunState) -> dict:
     return {
         "research_background": background,
         "research_proposals": proposals,
+        "research_proposals_cut": [],
         "research_sources": sources,
         "research_notes": render_research(background, proposals),
         "research_complete": True,
-        "review_status": PENDING_RESEARCH_REVIEW,
+        "review_status": PENDING_RESEARCH_EDIT if len(proposals) > EDIT_ABOVE else PENDING_RESEARCH_REVIEW,
         "author_notes": "",
     }

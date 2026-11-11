@@ -7,6 +7,7 @@ UI that edits made at a gate are what the next node actually saw.
 from __future__ import annotations
 
 import os
+import re
 
 from .runner import AgentResult
 
@@ -30,19 +31,25 @@ def fake_result(node: str, prompt: str, schema: dict | None) -> AgentResult:
             "background": [{"heading": f"{node} context", "refs": [1],
                             "body": f"- ({node}) placeholder finding one [1]\n- ({node}) placeholder finding two" + _echo(prompt)}],
             "proposals": [
-                {"title": f"{node} proposal A", "pitch": f"({node}) placeholder pitch A [1]", "affects": ["Tiye"],
-                 "parts": [{"label": "characterization", "text": "Placeholder characterization [1]", "refs": [1]},
-                           {"label": "integration", "text": "Placeholder integration", "refs": []}],
-                 "questions": [f"({node}) who pays for this?"]},
-                {"title": f"{node} proposal B", "pitch": f"({node}) placeholder pitch B", "affects": [],
-                 "parts": [{"label": "plot", "text": "Placeholder plot turn", "refs": []}], "questions": []},
+                {"title": f"{node} proposal A", "kind": "characterization", "affects": ["Tiye"],
+                 "text": f"({node}) placeholder characterization [1]", "canon_fit": "Placeholder integration",
+                 "refs": [1], "questions": [f"({node}) who pays for this?"]},
+                {"title": f"{node} proposal B", "kind": "plot", "affects": [], "text": "Placeholder plot turn",
+                 "canon_fit": "", "refs": [], "questions": []},
             ],
             "sources": [{"n": 1, "title": "Placeholder source", "url": "https://example.org/source"}],
         })
+    if node == "research_editor":
+        # Keep everything, so fake runs show every fake proposal at the gate.
+        ids = re.findall(r"^### \[id: ([\w-]+)\]", prompt, flags=re.M)
+        return AgentResult(text="", structured_output={
+            "selected": [{"id": i, "duplicates": [], "reason": "placeholder reason"} for i in ids]})
     if node == "weaver":
         return AgentResult(text="### Scene 1\n- Beat: placeholder\n\n### Scene 2\n- Beat: placeholder" + _echo(prompt))
     if node == "loremaster":
-        return AgentResult(text="# Placeholder lore document\n\n## Origins\nPlaceholder background." + _echo(prompt))
+        return AgentResult(text="# Placeholder lore document\n\n## Origins\nPlaceholder background.\n\n"
+                                "## Proposed open questions\n- Placeholder question one?\n- Placeholder **question** two?\n\n"
+                                "## Hooks\n- Placeholder hook one.\n- Placeholder hook two,\n  wrapped." + _echo(prompt))
     if node == "writer":
         return AgentResult(text="The lamps guttered in the harem corridor. (fake prose)" + _echo(prompt))
     if node == "grand_critic":

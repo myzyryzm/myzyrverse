@@ -1,0 +1,1 @@
+backstory behind the purple guild. i want ideas about how it was formed, when it was discovered. how the tyrian purple substance is harvested.

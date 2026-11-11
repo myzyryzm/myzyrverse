@@ -29,7 +29,7 @@ async def human_gate_research(state: RunState) -> dict:
         update["research_notes"] = render_research(background, proposals)
         runs.write_artifact(state["run_id"], "sources", render_sources(state.get("research_sources") or []))
         runs.write_artifact(state["run_id"], "proposals", json.dumps(proposals, indent=2, ensure_ascii=False) + "\n")
-        counts = {d: sum(p.get("decision") == d for p in proposals) for d in ("accepted", "modified", "rejected", "pending")}
+        counts = {d: sum(p.get("decision") == d for p in proposals) for d in ("accepted", "maybe", "rejected", "pending", "modified")}
         logbus.log(state["run_id"], "gate: proposals " + ", ".join(f"{n} {d}" for d, n in counts.items() if n))
     runs.write_artifact(state["run_id"], "research", update.get("research_notes", state.get("research_notes", "")))
     logbus.log(state["run_id"], "gate: research approved")

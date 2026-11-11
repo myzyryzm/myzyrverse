@@ -12,6 +12,11 @@ you created by hand (base items) plus your manual edits (overrides). Runs add
 to them through ledger entries. The effective view is base -> ledgers -> overrides,
 so your manual edits always win.
 
+HOOKS: story ideas worth thinking about, not canon. lore/hooks.json holds the ones
+you add by hand; lore runs add theirs through `hook` ledger entries (you untick
+the ones you don't want at the ledger gate). Same base -> ledgers -> overrides
+view as open questions. Agents never see hooks: they are notes for you.
+
 TIMELINES: lore/timelines.json orders events per character ("lanes"). Who takes
 part in an event is still event.characters; a lane only says in what order that
 character lives through their events. The global story order is derived from
@@ -211,6 +216,37 @@ def delete_question(item_id: str) -> None:
 
 def delete_event(item_id: str) -> None:
     _patch(config.EVENTS_FILE, item_id, {"deleted": True})
+
+
+# ---------- hooks ----------
+
+def hooks(exclude_run: str | None = None) -> list[dict]:
+    store = _load_store(config.HOOKS_FILE)
+    items = OrderedDict((h["id"], {**h}) for h in store["items"])
+    for meta in runs.committed_runs():
+        if meta["id"] == exclude_run:
+            continue
+        for entry in runs.read_ledger(meta["id"]):
+            if entry.get("kind") == "hook":
+                items[entry["id"]] = {
+                    "id": entry["id"], "text": entry.get("detail", ""), "about": entry.get("entity", ""),
+                    "created_by": entry.get("source", "ai"), "source_run": meta["id"],
+                    "created_at": entry.get("created_at"),
+                }
+    return _apply_overrides(items, store["overrides"])
+
+
+def create_hook(text: str, about: str = "") -> dict:
+    store = _load_store(config.HOOKS_FILE)
+    item = {"id": _new_id("h"), "text": text, "about": about, "created_by": "user", "source_run": None,
+            "created_at": runs.now_iso()}
+    store["items"].append(item)
+    _save_store(config.HOOKS_FILE, store)
+    return item
+
+
+def delete_hook(item_id: str) -> None:
+    _patch(config.HOOKS_FILE, item_id, {"deleted": True})
 
 
 # ---------- character timelines (lanes) and derived story order ----------

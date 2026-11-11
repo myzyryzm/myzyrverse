@@ -1,5 +1,5 @@
 import type {
-  AppConfig, LedgerEntry, OpenQuestion, RunMeta, RunState, StoryEvent, TimelineItem, TimelinesView,
+  AppConfig, Hook, LedgerEntry, OpenQuestion, RunMeta, RunState, StoryEvent, TimelineItem, TimelinesView,
 } from "./types";
 
 async function req<T>(method: string, path: string, body?: unknown): Promise<T> {
@@ -54,6 +54,10 @@ export const api = {
   addQuestion: (question: string, about: string) => req("POST", "/lore/open-questions", { question, about }),
   updateQuestion: (id: string, patch: Partial<OpenQuestion>) => req("PATCH", `/lore/open-questions/${enc(id)}`, patch),
   deleteQuestion: (id: string) => req("DELETE", `/lore/open-questions/${enc(id)}`),
+
+  hooks: () => req<Hook[]>("GET", "/lore/hooks"),
+  addHook: (text: string, about: string) => req<Hook>("POST", "/lore/hooks", { text, about }),
+  deleteHook: (id: string) => req("DELETE", `/lore/hooks/${enc(id)}`),
 
   events: () => req<StoryEvent[]>("GET", "/lore/events"),
   addEvent: (body: Partial<StoryEvent>) => req<StoryEvent>("POST", "/lore/events", body),

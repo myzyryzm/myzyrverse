@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { api } from "../api";
-import type { LedgerEntry, OpenQuestion, RunMeta, StoryEvent } from "../types";
+import type { Hook, LedgerEntry, OpenQuestion, RunMeta, StoryEvent } from "../types";
 import { errMsg } from "../util";
 
-type Tab = "prehistory" | "present" | "questions" | "events";
+type Tab = "prehistory" | "present" | "questions" | "hooks" | "events";
 
 interface Props {
   version: number;
@@ -20,9 +20,9 @@ export default function Canon(props: Props) {
     <>
       <div className="col-title">The Canon</div>
       <nav className="tabs">
-        {(["prehistory", "present", "questions", "events"] as Tab[]).map((t) => (
+        {(["prehistory", "present", "questions", "hooks", "events"] as Tab[]).map((t) => (
           <button key={t} className={tab === t ? "active" : ""} onClick={() => setTab(t)}>
-            {{ prehistory: "Prehistory", present: "Present", questions: "Open questions", events: "Events" }[t]}
+            {{ prehistory: "Prehistory", present: "Present", questions: "Open questions", hooks: "Hooks", events: "Events" }[t]}
           </button>
         ))}
       </nav>
@@ -30,6 +30,7 @@ export default function Canon(props: Props) {
         {tab === "prehistory" && <Prehistory {...props} />}
         {tab === "present" && <Present {...props} />}
         {tab === "questions" && <Questions {...props} />}
+        {tab === "hooks" && <Hooks {...props} />}
         {tab === "events" && <Events {...props} />}
       </div>
     </>
@@ -233,6 +234,47 @@ function Questions({ version, bump, notify }: Props) {
         <button className="primary" disabled={!q.question.trim()}
                 onClick={() => run(async () => { await api.addQuestion(q.question, q.about); setQ({ question: "", about: "" }); })}>
           Add question
+        </button>
+      </fieldset>
+    </div>
+  );
+}
+
+function Hooks({ version, bump, notify }: Props) {
+  const [items, setItems] = useState<Hook[]>([]);
+  const [form, setForm] = useState({ text: "", about: "" });
+
+  useEffect(() => {
+    api.hooks().then(setItems).catch((e) => notify(errMsg(e)));
+  }, [version, notify]);
+
+  const run = (fn: () => Promise<unknown>) => fn().then(bump).catch((e) => notify(errMsg(e)));
+
+  return (
+    <div className="stack">
+      <p className="hint">
+        Ideas worth thinking about, not canon. Lore runs add the hooks you keep at the ledger gate. Agents never see this list;
+        when you want one in the story, write it into prehistory or a brief.
+      </p>
+      {!items.length && <p className="muted">No hooks yet.</p>}
+      {items.map((h) => (
+        <div key={h.id} className="card hook">
+          <div className="card-head">
+            {h.about && <span className="tag">{h.about}</span>}
+            <span className={`tag ${h.created_by}`}>{h.source_run ? `from ${h.source_run}` : "yours"}</span>
+            <button className="ghost small danger" title="Delete hook" onClick={() => run(() => api.deleteHook(h.id))}>×</button>
+          </div>
+          <div className="q-text">{h.text}</div>
+        </div>
+      ))}
+      <fieldset>
+        <legend>New hook</legend>
+        <textarea placeholder="e.g. Jon finds the abandoned snail tanks on Chrysi" value={form.text}
+                  onChange={(e) => setForm({ ...form, text: e.target.value })} />
+        <input placeholder="about (optional)" value={form.about} onChange={(e) => setForm({ ...form, about: e.target.value })} />
+        <button className="primary" disabled={!form.text.trim()}
+                onClick={() => run(async () => { await api.addHook(form.text, form.about); setForm({ text: "", about: "" }); })}>
+          Add hook
         </button>
       </fieldset>
     </div>

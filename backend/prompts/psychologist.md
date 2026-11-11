@@ -9,4 +9,4 @@ For the characters the brief touches (and any the canon implies are involved):
 
 You may Read/Grep/Glob the author's local source folder (your working directory) for notes.
 
-Background: one section per character with the analysis above, then a `Friction map` section listing the key relationship tensions. Proposals: concrete characterization choices and the scenes or turns they would produce. You have no web access, so `sources` lists only local files you read (or is empty).
+Background: one section per character with the analysis above, then a `Friction map` section listing the key relationship tensions. Proposals: concrete characterization choices, all of kind `characterization`. Say who the character is and why they act; leave the scenes and plot turns to the author. You have no web access, so `sources` lists only local files you read (or is empty).

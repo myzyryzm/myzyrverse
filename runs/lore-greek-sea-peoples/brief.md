@@ -1,0 +1,1 @@
+backstory on what has been happening to mycanaean greeks & why theyve been becoming the sea peoples (essentially wilding raiders).

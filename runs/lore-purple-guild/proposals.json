@@ -1,0 +1,1161 @@
+[
+  {
+    "id": "antiquarian-1",
+    "researcher": "antiquarian",
+    "title": "Keftiu discovered it; Tyre only sells it",
+    "pitch": "Purple's power was first noticed in Minoan Crete, where purple was a temple sacrament long before it was a trade good. Tyre's beach-dog legend is a later story that claims the discovery for Tyre and hides the older truth.",
+    "affects": [
+      "Purple guild",
+      "Tyre",
+      "Isis",
+      "Crete",
+      "Knossos",
+      "Jon"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Proposed timeline:\n- **~1800 BCE:** Minoan palace-priestesses begin dyeing with murex [1, 3]. Low doses of the unripened gland liquor are drunk in sanctuary rites as a visionary sacrament.\n- **Over the next centuries:** the oldest priestesses, who have drunk it all their lives, begin to share thoughts across distance. This is the first sign of the higher power.\n- **The palace takes control:** the wanax claims the material. KN X 976's 'royal purple' [3] is, in this world, the drinking grade rather than the cloth.",
+        "refs": [
+          1,
+          3
+        ],
+        "note": ""
+      },
+      {
+        "label": "world",
+        "text": "The dye trade spreads east through Ugarit and Cyprus to the Canaanite coast [4, 6], but the sacrament and the training do not travel with it. Tyre gets rich on cloth. Tyre's public story, Melqart's dog and the nymph Tyros [10], is real Tyrian civic myth. Here the guild treats it as a merchant city's polite fiction.",
+        "refs": [
+          4,
+          6,
+          10
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This settles the 'when was it discovered' part of canon question q-883fda59 and leaves 'does Tyre control the supply' open. It gives Isis's house a reason to resent the guild: Tyre makes the dye but cannot make nodes. The Minoan origin matches real scholarship [1, 3]. The magical reading of KN X 976 is invented.",
+        "refs": [
+          1,
+          3
+        ],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Did the Minoan priestesses keep the sacrament from the Mycenaean conquerors at Knossos, or did the wanax's men take it over?",
+        "answer": ""
+      },
+      {
+        "q": "Does anyone in Tyre's royal house know the guild's version of the origin?",
+        "answer": ""
+      }
+    ],
+    "decision": "accepted",
+    "note": ""
+  },
+  {
+    "id": "antiquarian-2",
+    "researcher": "antiquarian",
+    "title": "Light-sealed purple: why dyers are not mages",
+    "pitch": "The real chemistry gives a magic rule: the gland liquor turns purple only when light and air reach it [4, 5]. Once it has 'ripened' in daylight it is only dye. The potent material is liquor that has never seen the sun.",
+    "affects": [
+      "Purple guild",
+      "Tyre",
+      "Cyprus",
+      "Aegon"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "The dye trade deliberately ripens everything in sunlight, so a Tyrian dyer handles purple all day without effect. The guild works the other way:\n- it processes in lamplit, windowless vault-workshops;\n- it seals the liquor in closed jars, the vessel type found at Kolonna [2];\n- it stores it dried to powder in the dark [4].\nThe three species give different 'shades' of potency [1, 16]. As a proposal, banded-murex liquor, which in reality ripens without light [5], is unstable and hard to keep potent, while spiny-murex liquor keeps best in the dark. That would make the spiny murex the guild's prize.",
+        "refs": [
+          1,
+          2,
+          4,
+          5,
+          16
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Aegon's recreational purple is a black-market product. Someone scrapes unripened liquor at a dye works before it reaches the sun. The cheap stuff is weak, the strong stuff rare, and one bad batch is dangerous. This gives the death that happens while Aegon is off getting high a traceable supply chain.",
+        "refs": [],
+        "note": "the death is not necessarily an overdose"
+      },
+      {
+        "label": "integration",
+        "text": "This explains how canon's 'low doses are a psychedelic' and 'high doses over time give powers' can live alongside an ordinary luxury-dye industry. It is a fantasy rule built on real photochemistry [4, 5], and the author should know the chemistry has no such property.",
+        "refs": [
+          4,
+          5
+        ],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does weapon-working (canon's purple-strengthened bronze) need the unripened liquor too, or can ordinary ripened dye do it?",
+        "answer": ""
+      },
+      {
+        "q": "Which species is the guild's prize: the spiny murex, as proposed, or another?",
+        "answer": ""
+      }
+    ],
+    "decision": "modified",
+    "note": ""
+  },
+  {
+    "id": "antiquarian-3",
+    "researcher": "antiquarian",
+    "title": "The guild's harvest: beds, closed seasons and offerings",
+    "pitch": "The guild does not gather snails itself. It holds the rights to selected snail beds, sets the harvest season, and receives the gland matter under sacred rules modelled on what was found at Kolonna and in later sources.",
+    "affects": [
+      "Purple guild",
+      "Tyre",
+      "Cyprus",
+      "Crete",
+      "Sea Peoples"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Harvest practice:\n- Licensed suppliers take snails with baited wicker traps and by diving [2, 8].\n- Whole snails are pounded with stone pounders on a grindstone, about two thousand to a pit [2].\n- Each pit is opened with the burnt offering of a suckling piglet or a kid, following the hypothesis about the Kolonna remains [2].\n- The guild keeps a 'closed month' in high summer, when the snails go to ground (Pliny's thirty days around the Dog Star [8]), and keeps spring as a spawning rest [8].\n- Scale makes it precious: about ten thousand snails for a gram of pigment [6, 17]. A node's lifetime of doses means whole bays of shell.",
+        "refs": [
+          2,
+          6,
+          8,
+          17
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Beds are strategic ground. Sea Peoples raiders who seize a coast seize a guild bed. Over-harvesting beds for cloth profit threatens the guild's supply, on the model of the 1980s collapse of the Mexican purple snails [9]. This is a source of friction with Tyre's dye houses.",
+        "refs": [
+          9
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "The Dog Star season comes from a 1st-century CE Roman author and is moved back about 1,200 years. The offering rite enlarges a hypothesis from the excavation. Neither is attested for 1160 BCE.",
+        "refs": [
+          2,
+          8
+        ],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does the guild own beds outright, or license them from Tyre, Cyprus and Egypt in exchange for its service?",
+        "answer": ""
+      },
+      {
+        "q": "Has the Drought touched the sea: warmer, saltier shallows thinning the beds?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "antiquarian-4",
+    "researcher": "antiquarian",
+    "title": "The Alashiya House: an exalted, neutral college",
+    "pitch": "After Knossos fell, the purple college moved to Cyprus. Cyprus already had its own murex works [2, 6] and copper wealth, and stood between the great powers. Today the guild is a priestly college as honoured as the House of Life, and its nodes are treated as more inviolable than any king's envoy.",
+    "affects": [
+      "Purple guild",
+      "Cyprus",
+      "Ramesses III",
+      "Assyria",
+      "Babylon and Elam",
+      "Tyre"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "The guild is elite and highly respected. Its members carry the standing that Egypt gives the 'messenger of the king in every foreign land' [14], and its schools are run like the House of Life, temple-attached and training scribes, diplomats and priests [15]. Kings pay heavily to keep a node at court.\n\nIts great achievement is that real envoys could be detained for years or abused [13], while guild nodes are never touched. Every court needs them and none can afford to be cut off.",
+        "refs": [
+          13,
+          14,
+          15
+        ],
+        "note": ""
+      },
+      {
+        "label": "world",
+        "text": "The guild is a religious college with its own cult, rooted in the Minoan goddess, but bound to no single kingdom's priesthood. Nodes wear purple-striped robes like the Aegean cult figures [3]. In a world where purple means royalty, they are among the few non-royals entitled to it.",
+        "refs": [
+          3
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "The coup depends on the guild. When Ramesses III dies, the Pi-Ramesses node relays the news. Tiye and the nobles must either time the killing around the node's duties or count on the guild's neutrality to report events without taking sides. Isis in Tyre learns of her husband's death through the guild, and so does the Assyrian court.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This answers canon question q-6bc4a38e (religious or independent; Cyprus or Egypt) with 'a religious college independent of Egypt, based in Cyprus', and gives Cyprus its role (q-92a0a058). It is a proposal only. Cypriot purple workshops are historical [6]. The guild's inviolability reverses the real Late Bronze Age pattern, in which messengers had no secure immunity [13].",
+        "refs": [
+          6,
+          13
+        ],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "What is the guild called? A Minoan-derived title, or an Egyptian or Akkadian rendering of 'House of Purple'?",
+        "answer": "minoan derived title"
+      },
+      {
+        "q": "Is guild neutrality real, or does it quietly favour whoever protects Cyprus?",
+        "answer": ""
+      }
+    ],
+    "decision": "modified",
+    "note": "whatever "
+  },
+  {
+    "id": "antiquarian-5",
+    "researcher": "antiquarian",
+    "title": "The long road to node",
+    "pitch": "Nobody becomes a node quickly. Candidates spend many years on graduated doses alongside scribal and diplomatic training, and reach node rank only as grown adults.",
+    "affects": [
+      "Purple guild",
+      "Nodes",
+      "Pi-Ramesses",
+      "Tyre"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Proposed stages:\n- **Entry:** candidates are selected and enter in youth, often sons and daughters of good families who bring prestige to their houses.\n- **Novice years:** small, controlled doses alongside a House-of-Life curriculum [15]: hieratic, Akkadian (the diplomatic language), the guild's own script and formulae, and the protocols of great-king correspondence.\n- **Middle grade:** doses rise in step with the training, and only those whose minds hold steady go on.\n- **Node rank:** after roughly a decade or more, in their mid-twenties or later, they become nodes and are posted to courts.",
+        "refs": [
+          15
+        ],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "Nodes are seasoned professionals, not prodigies. They are trained to relay a king's words exactly, as royal messengers delivered oral messages alongside tablets [13]. Their pride lies in fidelity. A node who alters a message disgraces the whole college.",
+        "refs": [
+          13
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "Canon's magic notes say the guild 'takes children young and feeds them purple until they gain powers'. This proposal follows the author's note instead: entry can start young, but node rank takes years of ingestion and training and is held only by adults. The magic notes should be updated to match.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "How many candidates wash out, and what happens to those who fail: honourable posts as guild scribes, or something darker?",
+        "answer": ""
+      },
+      {
+        "q": "Can a node be recalled or replaced if a king distrusts them?",
+        "answer": ""
+      }
+    ],
+    "decision": "accepted",
+    "note": ""
+  },
+  {
+    "id": "psychologist-1",
+    "researcher": "psychologist",
+    "title": "The Great Kings' Scribes: the guild's origin",
+    "pitch": "The guild grew out of the elite scribal college that carried letters between the Great Kings, centred at Ugarit. There, master scribes who also oversaw the temple purple workshops found that long, disciplined ingestion let two adepts reach each other across distance. The Great Kings swore the guild's neutrality by joint oath, and that oath is why it is respected everywhere.",
+    "affects": [
+      "Purple guild",
+      "Guild Master",
+      "Ramesses III",
+      "Babylon–Elam embassy",
+      "Cyprus",
+      "Ugarit"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "**Discovery, around 1400–1350 BCE in-world.** Ugarit's scribal school sat beside its purple workshops, and senior scribes there also ran the temple dye works. Over years, scribes who took small ritual doses as part of temple observance began to share dreams and then exact words with colleagues in other cities.\n\n**Charter.** The Great Kings bound the scribes by a joint oath: carry every king's words, alter none, take no side. Membership is an honour that families compete for, like a high priesthood.\n\n**Relocation.** When Ugarit fell around 1185, the college moved to Cyprus, which matches Ugarit's last real letters asking Cyprus for help.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "The guild's pride rests on being older than every reigning dynasty. The Guild Master has watched dynasties rise and end. That gives them patience and quiet condescension toward a new king like Ramesses III, whose royal blood is distant.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "At the Babylon–Elam embassy, Babylon's node is a senior adept and Elam's is a junior, newly confirmed. The big-brother, little-brother tension shows up inside the guild's own seating, and Ramesses III notices that the guild ranks him by protocol, not by glory.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "- **Settles some open questions:** the guild is independent but temple-born; its base is Cyprus; and Cyprus gets a role.\n- **Divergence from history:** no such guild existed. The diplomatic scribes and Ugarit's dye industry are real; their merger is invented.\n- **Change to magic.md:** that file says the guild \"takes children young.\" Per your note, candidates enter as adult scribes. That line in magic.md should be revised.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Is the guild's charter oath sworn by all the Great Kings, or only Egypt and Hatti?",
+        "answer": ""
+      },
+      {
+        "q": "Does the guild still recruit only from scribal and noble families, or from any family whose child passes the scribal school?",
+        "answer": ""
+      },
+      {
+        "q": "Was the guild at Ugarit when it fell, and did it lose nodes in the sack?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "psychologist-2",
+    "researcher": "psychologist",
+    "title": "The Unsunned Draw: how purple is harvested",
+    "pitch": "The potency lies in the gland secretion before light touches it. Secretion that develops in the sun becomes the dye Tyre sells. Secretion drawn and sealed in darkness, still nearly colourless, is what the guild ingests. So the guild's purple is not purple at all.",
+    "affects": [
+      "Purple guild",
+      "King of Tyre",
+      "Isis",
+      "Tyre",
+      "Assyria",
+      "Aegon"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "**Harvest.** Divers and trap-setters work the beds off Tyre's coast, and the snails are kept alive in seawater pools. In the dye yards, glands are opened in daylight and the secretion is left to turn colour.\n\n**The guild's share.** A separate royal workshop on Tyre's island opens glands at night or under heavy awnings. It seals the clear secretion in stoppered alabaster or faience vessels and ships it to the guild under seal.\n\n**Grades.** Ingestion strength is graded by how little light the draw has seen. Weapon-working uses the sunned purple. The sunned dregs, nearly spent, are the recreational low dose.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "The King of Tyre knows the dark workshop is his strongest lever: it is how he holds the guild's lifeline. Isis grew up knowing it too, which explains part of her entitlement.\n\nAegon's party purple is the dregs. Guild nodes see a prince playing with scraps of their sacrament.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Assyria's raids on northern Canaan are partly aimed at the dye coast. After the coup, the guild's supply runs through a Tyre at war with Egypt's new ally. The guild faces a choice: lean toward Tyre, or try to grow beds elsewhere, on Cyprus or in Crete's old Minoan dye coves.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "- **Settles some open questions:** Tyre controls the supply, and the discovery was made with the dye.\n- **Real basis:** the colour change in sunlight is real; the different potency of the unsunned secretion is invented.\n- **Possible link:** if bronze or iron takes purple, purple-worked weapons could use the sunned grade, which ties into the Sherden question.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Is the dark workshop staffed by guild members or by Tyrian royal servants?",
+        "answer": ""
+      },
+      {
+        "q": "Do the Sherden super-soldier injections draw on the unsunned grade, and does the guild know where that supply goes?",
+        "answer": ""
+      },
+      {
+        "q": "Can the dark draw keep for long, which would decide how long the guild can survive a cutoff?",
+        "answer": ""
+      }
+    ],
+    "decision": "accepted",
+    "note": "tyre rose to power because it has access to this. and all the processing occurs with guild. NOTHING ON THE MAINLAND. the guild gets it through trading"
+  },
+  {
+    "id": "psychologist-3",
+    "researcher": "psychologist",
+    "title": "The Long Ingestion: what it costs to become a node",
+    "pitch": "Nodes are adults who spend ten years or more on graded doses and discipline: memorisation, voice exercises, fasting. Most never link. Those who do pay with a thinning sense of self. Show this through the Senior Node as a POV.",
+    "affects": [
+      "Senior Node",
+      "Purple guild",
+      "Littlefinger figure",
+      "Tiye"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "**Stages.**\n- Novice: an adult scribe, taking small doses.\n- Listener: hears faintly, and only in sleep.\n- Node: links at will.\n\nEach step takes years, with formal examinations. Failed candidates keep their rank and become guild archivists and envoys, so even failure is prestigious.\n\n**Prestige.** Senior nodes sit at court beside high priests.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "The Senior Node's discipline is her identity. The danger is not madness but erasure. She has to keep a private object, such as a seal or a song, to remind herself which thoughts are hers. When the Littlefinger figure asks what she thinks, it unsettles her more than any threat could.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "She relays coded conspiracy traffic without decoding it. Later she half-recognises a phrase from Tiye's household and tests her own oath by saying nothing.\n\nAfter the coup she has to look at what she carried. That makes her a possible witness whom Tiye later needs silenced, or brought onto her side.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "Your note overrides magic.md: nodes are not children and reach node level only after years. The power stays subtle and never looks like a spell, as world.md requires.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Can nodes reach any other node, or only partners they trained with?",
+        "answer": "all other nodes"
+      },
+      {
+        "q": "Is the guild celibate, or can nodes keep families?",
+        "answer": "celibate"
+      },
+      {
+        "q": "Do former nodes retire, and what remains of them when they do?",
+        "answer": ""
+      }
+    ],
+    "decision": "accepted",
+    "note": ""
+  },
+  {
+    "id": "psychologist-4",
+    "researcher": "psychologist",
+    "title": "Neutrality's Price: the guild's silence makes the coup possible",
+    "pitch": "The Guild Master realises the conspirators are using the network and chooses not to warn Ramesses III. The guild survives the coup and keeps its neutrality, but it loses Isis's house for good.",
+    "affects": [
+      "Guild Master",
+      "Ramesses III",
+      "Tiye",
+      "Isis",
+      "King of Tyre",
+      "Pentawer",
+      "The harem conspiracy"
+    ],
+    "parts": [
+      {
+        "label": "characterization",
+        "text": "**The Master** believes warning the king would turn the guild into a faction. It would also reward a king who tried to buy the guild.\n\n**Tiye** chooses the guild because its fidelity is the one thing she can trust not to betray her.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "**Before the coup:** Ramesses III presses the guild to put a royal overseer inside it. The Master refuses.\n\n**During the conspiracy:** traffic increases ahead of the Deir el-Medina strike. The Master reads the pattern and stays silent.\n\n**After the coup:** Pentawer's regime courts the guild. Isis hears the guild knew and pushes her brother to choke its supply. The guild is caught between Egypt-plus-Assyria and Tyre.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This makes the guild a reason the conspiracy succeeds, without making it a conspirator. It fits the planned coup and the Tyre–Assyria war, and gives the guild a stake in the post-coup struggle.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does anyone outside the guild ever prove the Master knew?",
+        "answer": ""
+      },
+      {
+        "q": "Does the guild carry Ramesses III's final call for help and deliver it too late on purpose, or not at all?",
+        "answer": ""
+      },
+      {
+        "q": "Did the guild carry messages for Gendry and Arya in 1185, and does it know about the hidden heir?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "psychologist-5",
+    "researcher": "psychologist",
+    "title": "Aegon's Scraps: purple as shame and later as a turning point",
+    "pitch": "Aegon is high on dregs purple the night his protector dies. Later in his arc, a node who has given years to the substance he toyed with becomes a key figure in his growth.",
+    "affects": [
+      "Aegon",
+      "Senior Node",
+      "Isis",
+      "Ramesses III",
+      "Someone dies protecting Aegon"
+    ],
+    "parts": [
+      {
+        "label": "characterization",
+        "text": "Aegon's shame is not only that he was absent but what he was absent for: a toy made from his mother's house's treasure. Getting sober becomes his first deliberate act. Meeting a node shows him the same substance turned into discipline instead of escape.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Early on, the death happens while he is lost in a purple haze somewhere he should not be. Isis's fury focuses on the purple. After the coup, Aegon asks the guild for help. He is refused at first, because the guild keeps account of who has profaned it, and he has to earn a hearing.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This ties the planned early death to the magic system without settling who dies (that question stays open). It suits Aegon's planned arc from screw-up to someone who succeeds.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does Aegon ever begin real ingestion himself, or does he stay sober for good?",
+        "answer": ""
+      },
+      {
+        "q": "Does the guild formally ban recreational use, or only scorn it?",
+        "answer": ""
+      }
+    ],
+    "decision": "modified",
+    "note": "his years of abuse of the drug scars him. that's all i can say about it so far"
+  },
+  {
+    "id": "historian-1",
+    "researcher": "historian",
+    "title": "Two products from one harvest: dye made in daylight, the draught made in the dark",
+    "pitch": "The magic is in the gland's raw precursor before light ever touches it. Daylight turns it into dye and destroys the potency. Tyre's sunlit dye works and the guild's sealed, lightless draught-houses are two branches of the same catch.",
+    "affects": [
+      "The purple",
+      "The purple guild",
+      "Tyre",
+      "magic.md"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Harvest cycle: fishers set baited wicker traps on floats over the deep murex beds [20]. On shore the catch is split. The commercial share goes to open-air works, where glands are salted, boiled down in tin vessels and turned to color in sunlight, which is real Bronze Age practice [20, 21]. The guild's share, the best glands, is cut out by lamplight or before dawn, sealed in lidded jars and never exposed to the sun, because in this world light 'kills' the potency just as it fixes the dye [21, 22]. Ten thousand animals for a gram of dye [20] means the draught is just as scarce, which helps explain why there are so few nodes.",
+        "refs": [
+          20,
+          21,
+          22
+        ],
+        "note": ""
+      },
+      {
+        "label": "world",
+        "text": "The canon's 'few shades' can follow the real chemistry. *Bolinus* gives red-purple, and *Hexaplex* gives blue-violet once sunlight acts on it, as with tekhelet [20, 23]. Tribute lists already treat red-purple and blue-purple as separate goods [26]. Different species, or different processing, could give draughts of different strength or character, which leaves room for the powers that are not yet defined.",
+        "refs": [
+          20,
+          23,
+          26
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This fits the existing low-dose, high-dose and weapon-working tiers in magic.md without settling them. It also makes the guild depend on Tyre's beds while Tyre depends on the guild's method, which bears on the open question of whether Tyre controls the supply.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does daylight completely destroy the draught's potency, or only weaken it, so that the cheap 'sun-touched' purple sold for recreation is the weak version?",
+        "answer": "changes it"
+      },
+      {
+        "q": "Do the shades correspond to different powers, or only to different strengths?",
+        "answer": ""
+      },
+      {
+        "q": "Is purple worked into weapons made from the raw precursor or from the finished dye?",
+        "answer": "precursor"
+      }
+    ],
+    "decision": "modified",
+    "note": "modify"
+  },
+  {
+    "id": "historian-2",
+    "researcher": "historian",
+    "title": "Born in the Knossos palace priesthood, scattered when Knossos fell",
+    "pitch": "Purple was discovered on Minoan Crete around 1800 BCE, as the archaeology suggests. Palace priestesses taking the raw precursor in rites found the visions first and the shared 'voice' later. That priesthood is the guild's root.",
+    "affects": [
+      "The purple guild",
+      "Crete (Mount Ida)",
+      "Knossos",
+      "Griffin",
+      "Jon",
+      "Cyprus"
+    ],
+    "parts": [
+      {
+        "label": "plot",
+        "text": "Proposed stages. (1) Middle Minoan period, c. 1800 BCE: dye workshops like Pefka and the snail tanks on Chrysi [3, 19] serve the palaces, and priestesses take the dark precursor at festivals for visions. (2) Generations later, two senior priestesses, each dosed for decades, find they can hear each other between Knossos and the Chrysi beds. The communication power is a discovery of old age and long practice, not of youth. (3) The rite becomes a secret discipline of the palace cult, kept alongside the griffin-keepers already in canon. (4) When Knossos falls, the purple priesthood survives because, unlike the griffin-keepers, its people can leave by sea and carry the method in their heads. It moves east, to Alashiya (Cyprus) or Ugarit.",
+        "refs": [
+          3,
+          19
+        ],
+        "note": ""
+      },
+      {
+        "label": "world",
+        "text": "Tyre's dog-and-murex myth [24, 10] becomes Tyre's own claim to have discovered purple. The guild tells it differently and quietly knows it is false, which gives the two a lasting quarrel over prestige.",
+        "refs": [
+          10,
+          24
+        ],
+        "note": "no idea what the fuck that is. "
+      },
+      {
+        "label": "integration",
+        "text": "This builds on the existing Crete canon (griffin-keepers at Knossos, the fall of Knossos one to two centuries before the story) and gives Jon's Crete chapters a second buried secret. A sealed inner room in the Knossos ruins could hold the guild's oldest shrine. The guild's current base (Cyprus or Egypt) stays open.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Was the guild once all women, and is it still mostly women?",
+        "answer": "no"
+      },
+      {
+        "q": "Does the guild still revere Knossos, perhaps keeping pilgrimage rights or caretakers in the ruins Jon trains in?",
+        "answer": "no"
+      },
+      {
+        "q": "Did the guild know about the griffin-keepers, or even work with them, before both lost Knossos?",
+        "answer": ""
+      }
+    ],
+    "decision": "modified",
+    "note": "no idea what the fuck the dog and murex myth is"
+  },
+  {
+    "id": "historian-3",
+    "researcher": "historian",
+    "title": "The Heralds' Compact: formalized by the Great Kings in the Amarna age",
+    "pitch": "Around 1360 BCE, frustrated by messengers held for years as hostages, the Great Kings' 'brotherhood' recognized the guild as a sacred, neutral herald-order whose members could not be harmed. That compact is the source of the guild's very high standing today.",
+    "affects": [
+      "The purple guild",
+      "Ramesses III",
+      "Assyria",
+      "Babylon",
+      "Elam",
+      "Tyre",
+      "Cyprus"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Modeled on the real Amarna grievances: the six-year detention of Babylon's messenger and the rule that messengers stop only between enemies [13, 31]. The Compact turns the herald (*keryx*, a Bronze Age office [27]) into a sacred status. Under it, nodes cannot be harmed, cannot be held, and must carry any king's words unaltered. Every Great King keeps a resident node at court, much as states kept treasuries at Delphi [29]. Being consulted made the guild well informed and influential the way Delphi was [29, 30].",
+        "refs": [
+          13,
+          27,
+          29,
+          30,
+          31
+        ],
+        "note": ""
+      },
+      {
+        "label": "world",
+        "text": "Prestige markers taken from Eleusis and Murano: guild families form hereditary houses like the Eumolpidae and Kerykes [27, 28]. Members wear true purple, may carry arms, marry into noble and royal houses, and answer only to their own council [38, 39]. Being a node is a high honor, comparable to a high priesthood.",
+        "refs": [
+          27,
+          28,
+          38,
+          39
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "The collapse explains why the guild matters so much now. Hatti and Ugarit have fallen, so whole stretches of the network went dark. The surviving nodes are fewer, and each is worth more. The Babylon–Elam embassy can use nodes openly, and a node's presence at that table signals that the Compact still binds the brother-kings. **Divergence note:** historical Amarna messengers were ordinary men without real immunity [13].",
+        "refs": [
+          13
+        ],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Which kingdoms signed the Compact, and does Assyria, a newer power, honor it?",
+        "answer": ""
+      },
+      {
+        "q": "Has anyone ever broken the Compact by killing or holding a node, and what happened to them?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "historian-4",
+    "researcher": "historian",
+    "title": "The node ladder: years of drinking and training, finished as adults",
+    "pitch": "Entrants come of age from respected families. They spend about a decade climbing graded stages of dose and discipline, modeled on Jesuit formation, and become nodes only in their late twenties or thirties.",
+    "affects": [
+      "The purple guild",
+      "The purple"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "A suggested ladder (names are placeholders), modeled on Jesuit formation [37]. **Novice** (~2 years): scribal and language training, oaths, and low ceremonial doses. **Listener** (~3–4 years): steadily rising doses, learning to tell signal from vision, and paired practice with a senior over short distances. **Regency** (~2 years): posted to a provincial temple or port as a junior relay under supervision. **Voice** (~3 years): long-distance work, protocol, and memorizing the Compact's forms. **Node**: full rank, taken on with final oaths and given a court posting. Total time is 10–14 years, so a novice entering at 16–18 becomes a node at about 28–32.",
+        "refs": [
+          37
+        ],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "Nodes are mature, highly educated adults. They are diplomats and archivists as much as relays, and they are confident in their standing. Some fail to reach node rank and finish as temple scribes or provincial voices. That is a respectable career, but in guild houses it is felt as a quiet disappointment.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This replaces the prehistory line saying the guild 'takes children young and feeds them purple.' Under the author's note, no node is a child and the power is never instant. Keep the 'payphone' function from magic.md as the role of the finished node.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Is entry by family (hereditary houses), by sponsorship from nobles and royals (like the Sherden), by testing for aptitude, or a mix?",
+        "answer": ""
+      },
+      {
+        "q": "Do royal younger children ever enter the guild, the way they do the Sherden?",
+        "answer": ""
+      },
+      {
+        "q": "Can a node leave the guild, or does the high dose bind them for life?",
+        "answer": "binds them"
+      }
+    ],
+    "decision": "accepted",
+    "note": ""
+  },
+  {
+    "id": "historian-5",
+    "researcher": "historian",
+    "title": "The Blanc temptation: a sacred network a human can still bend",
+    "pitch": "The guild's whole value is that it carries words faithfully. Following the barid and the Blanc brothers, one node (or a node's household) can add tiny agreed 'errors' to legitimate messages, quietly serving a faction while the institution stays respected and unaware.",
+    "affects": [
+      "The purple guild",
+      "The harem conspiracy",
+      "The Littlefinger figure",
+      "Ramesses III",
+      "Tiye",
+      "The nobility"
+    ],
+    "parts": [
+      {
+        "label": "plot",
+        "text": "Mechanism from the Blanc case: the courier does not lie. It changes something invisible inside a true message, such as a greeting formula, a title, or the order of the gods invoked, and only a confederate reads it [36]. A second layer comes from the barid: Ramesses III, like a caliph, may use his resident node to report on governors behind their backs [32, 33]. The guild tolerates this as 'royal service', and it makes some nobles hate and fear the network.",
+        "refs": [
+          32,
+          33,
+          36
+        ],
+        "note": "WHOE THE FUCK IS BLANC"
+      },
+      {
+        "label": "plot",
+        "text": "Consequence pattern: the Blanc fraud was exposed because the corrupt operator fell ill and tried to hand the job to a friend [36]. Any compromised node in this story should have a similarly fragile, very human point of failure.",
+        "refs": [
+          36
+        ],
+        "note": "WHOE THE FUCK IS BLANC"
+      },
+      {
+        "label": "integration",
+        "text": "This is offered as a tool, not a settled answer to who plotted the coup or arranged the Assyrian marriage (both open). The guild itself stays highly respected and is not a conspirator. The corruption is personal. Who the bent node serves is for the author to choose.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "If a bent node is exposed, does the guild punish its own in secret to protect its name, or in public under the Compact?",
+        "answer": ""
+      },
+      {
+        "q": "Does the guild learn of the coup ahead of time through the traffic it carries, and if so, does neutrality require it to stay silent?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": "WHO THE FUCK IS BLANC"
+  },
+  {
+    "id": "historian-6",
+    "researcher": "historian",
+    "title": "The beds and the method: Tyre's leverage and the risk of theft",
+    "pitch": "Tyre owns the best murex beds and the guild owns the method. After the coup, Assyria, now Egypt's ally, wants its own nodes, and a silkworm-style theft of the method becomes a live threat that splits loyalties.",
+    "affects": [
+      "Tyre",
+      "Isis",
+      "Assyria",
+      "The purple guild",
+      "Tyre against Assyria",
+      "Cyprus"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "A Byzantine-style split of powers [22, 41]. Tyre's kings control where the snails are caught and enforce their own laws on who may buy raw gland. The guild alone knows how to keep and prepare the dark draught and how to train a node. Neither can fully replace the other. Both remember that Ugarit's purple once went to the Hittites as tribute [25].",
+        "refs": [
+          22,
+          25,
+          41
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "After the coup, Assyria has to rely on nodes that may lean toward Tyre. Following the silkworm model, it sponsors agents to smuggle live snails in sealed jars, along with a defecting voice [40]. Following Murano, the guild's answer has to be harsh but quiet. Defectors are hunted, yet some escape [38, 39]. If Assyria succeeds, it gets a crude rival network, much as Thurn und Taxis faced rival state posts after 1648 [34].",
+        "refs": [
+          34,
+          38,
+          39,
+          40
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This ties into the planned Tyre–Assyria war and gives Isis a reason, rooted in her homeland, to pressure the guild. It also makes the guild's neutrality the main political question in the second act.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Can the precursor survive a long overland trip to Assyria, or does that make the theft nearly impossible?",
+        "answer": ""
+      },
+      {
+        "q": "Does the guild side with Tyre to keep its source of supply, or with whoever holds the throne at Pi-Ramesses?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "mythographer-1",
+    "researcher": "mythographer",
+    "title": "Born at Knossos, scattered when it fell",
+    "pitch": "The power of high-dose purple was discovered by the palace priesthood of Minoan Knossos, which held the dye as a monopoly of the wanax. The guild formed from the adepts who survived the palace's fall, in the same way the canon's griffins went feral when the keepers vanished.",
+    "affects": [
+      "Purple guild",
+      "Knossos",
+      "Crete",
+      "Cyprus",
+      "Tyre",
+      "Jon",
+      "Griffin"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Layered discovery timeline (proposed):\n- c. 1900–1700 BCE: Cretan dyers learn to make purple, with live-snail tanks like Chrysi's [42, 19].\n- Palace era: Knossos's wanax and its priestesses control the industry [3]. They find that the unfinished secretion, taken in small amounts, brings visions. That is the low-dose drug, known in the palace long before anyone sold it.\n- Late palace era: a line of priestesses who dose for decades find they can hear one another across the sea. This is the first node pair, kept as a palace secret like the griffin keepers' unwritten craft.\n- Knossos falls, one to two centuries before the story: the adepts scatter.\n- The guild is refounded, by these adepts or their successors, as a sworn body that sells its service to every crown, not one.",
+        "refs": [
+          3,
+          19,
+          42
+        ],
+        "note": ""
+      },
+      {
+        "label": "world",
+        "text": "Analogue transformed: the Citadel's chain of links meets the Spacing Guild's monopoly [43, 45]. The difference is that the guild remembers being a palace's servant and chose never to be one again. Its founding principle is that it belongs to no king, because its first king's fall nearly ended it.",
+        "refs": [
+          43,
+          45
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This gives the guild a shared origin with the canon's Knossos griffins and Throne Room. Jon could find a fresco, sealing or tablet in the ruined palace that shows the original node-priestesses. It also makes Crete holy ground to the guild, which could put a guild presence alongside the Sherden training ground. Divergence: real Linear B links purple to the wanax but records no powers, and the stress on Minoan priority is a scholarly view [3].",
+        "refs": [
+          3
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "Buried-founder device, adapted from the Spacing Guild's credited founder [43]: Tyre's official story credits Melqart. The guild's inner teaching credits a nameless Cretan priestess. Neither side says this aloud.",
+        "refs": [
+          24,
+          43
+        ],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Is the guild's base Cyprus, which is neutral and between Crete, Tyre and Egypt, or does it keep a mother-house on Crete itself?",
+        "answer": ""
+      },
+      {
+        "q": "Did the first nodes realize what they had, or did the palace use them without understanding it?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "mythographer-2",
+    "researcher": "mythographer",
+    "title": "Two origin myths: Melqart's dog against the Goddess's shore",
+    "pitch": "Tyre and the guild tell different stories about who discovered purple. Tyre's claim is to the dye; the guild's claim is to the power.",
+    "affects": [
+      "Tyre",
+      "Isis",
+      "Purple guild",
+      "Melqart cult"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "The Tyrian myth, kept from the source [24, 10]: Melqart's dog bites the shell, and the god gives the color to the king of Tyre. It establishes that purple is a royal gift and that Tyre is its rightful seller. The guild does not dispute it in public. In private it holds that the dog story is about the dye only, and that the gift of the deeper purple came from Crete.",
+        "refs": [
+          10,
+          24
+        ],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "Isis, a princess of Tyre, would have grown up on the Melqart story as proof that her house is chosen. That fits her entitlement. Meeting a guild node who politely treats Tyre as a supplier, not a source, would sting her pride exactly where she is weakest.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "After the coup, Tyre is squeezed by Assyria. A dispute over whose purple it 'really' is would become a live political lever: Tyre could threaten the guild's supply, and the guild could quietly make Tyre's messages slower or dearer.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does Tyre know the guild's version, or is it inner teaching only?",
+        "answer": ""
+      },
+      {
+        "q": "Is the Melqart cult itself a rival claimant to the power, for example with its own few nodes outside the guild?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "mythographer-3",
+    "researcher": "mythographer",
+    "title": "The harvest: lit purple and unlit purple",
+    "pitch": "Build on the real chemistry, where the secretion is colorless until air and light turn it purple. Purple fixed by sunlight becomes the dye, which Tyre sells. The secretion taken before light touches it becomes the drug, which the guild controls.",
+    "affects": [
+      "Purple guild",
+      "Tyre",
+      "Cyprus",
+      "Crete",
+      "Purple (magic)"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Harvest, grounded in real practice:\n- Snails are taken in season and held live in rock-cut shore tanks like Chrysi's, so they can be 'milked' repeatedly rather than crushed [42, 19, 17].\n- Large shells are opened and the gland cut out by hand; small ones are crushed for the dye trade [17].\n- Dye: the secretion is salted and kept warm for about ten days, then set in sunlight. It becomes the fade-proof cloth that rulers wear [17, 22].\n- Drug: the guild's preparation does the opposite. The secretion is drawn and worked in shaded or lamp-lit rooms, so that light never 'finishes' it [5].",
+        "refs": [
+          5,
+          17,
+          19,
+          22,
+          42
+        ],
+        "note": ""
+      },
+      {
+        "label": "world",
+        "text": "The shades map to the canon's 'few shades':\n- Red-purple: brandaris, which needs light [5].\n- Blue-violet: trunculus, which goes indigo in sunlight [22, 5].\nEach could yield a different preparation of the substance, and potentially different powers later. That gives the author a ready slot for new abilities without systematizing them.",
+        "refs": [
+          5,
+          22
+        ],
+        "note": ""
+      },
+      {
+        "label": "world",
+        "text": "Scale is the brake on the 'payphone' problem. Thousands of snails yield a pinch of dye [42], so a node's lifetime of ingestion is worth a fortune. That explains why there are few nodes, why their service is costly, and why sending a message is a decision, not a reflex. This is the scarcity rule the McCaffrey and Babylon 5 analogues needed to stay suspenseful [47, 49].",
+        "refs": [
+          42,
+          47,
+          49
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This fits the open question of whether Tyre controls the supply. Tyre controls the shore and the dye, while the guild controls the knowledge of the unlit preparation and the trained nodes. Each needs the other. It also suggests an image for the canon's high-dose powers: what makes a node is purple that has never seen the sun.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does the unlit preparation mark the body over the years (for example, darkening nails, lips or the whites of the eyes when exposed to light), giving nodes a visible sign like a maester's chain?",
+        "answer": ""
+      },
+      {
+        "q": "Does the guild run its own shore tanks, on Cyprus or Crete, so that it is not wholly dependent on Tyre?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "mythographer-4",
+    "researcher": "mythographer",
+    "title": "The long ingestion: a ladder of years to node",
+    "pitch": "Becoming a node is a career of a decade or more: years of controlled doses and training, ranked like the Arcanum or the maester's chain. Only adults ever reach node rank, and the ladder ends in a final, dangerous dose.",
+    "affects": [
+      "Purple guild",
+      "Nobility",
+      "Pi-Ramesses",
+      "Tyre"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Proposed ladder, adapted from the Arcanum's three ranks and the maester's earned links [52, 45]:\n1. Candidates: well-born entrants who begin measured doses and study scripts, languages and the protocols of relaying.\n2. Adepts: years in, they can sense other dosed minds at close range and train in pairs.\n3. Nodes: after the final dose, they can link across distance to other nodes.\nEach rank takes years, so nodes are mature men and women, never children.",
+        "refs": [
+          45,
+          52
+        ],
+        "note": ""
+      },
+      {
+        "label": "world",
+        "text": "Prestige: entry is a privilege that great families compete for, like a place in Egypt's House of Life, which trained the elite's children as scribes, physicians and diplomats [15]. A family with a node among its children gains standing at every court. Nodes are addressed with honor, housed in temples or palaces, and treated as untouchable envoys.",
+        "refs": [
+          15
+        ],
+        "note": ""
+      },
+      {
+        "label": "plot",
+        "text": "The final dose, adapted from the spice agony [50]: some adepts do not survive it, or come out unable to link. That gives the guild a quiet death toll inside its prestige, and gives any guild character a defining ordeal. The transformation: unlike the Reverend Mothers, the survivor gains no ancestral memory, only a lifelong tether to the other nodes, which they can never fully switch off.",
+        "refs": [
+          50
+        ],
+        "note": ""
+      },
+      {
+        "label": "characterization",
+        "text": "A node character, perhaps the one posted at Pi-Ramesses, is a highborn adult who spent their youth in the ladder. They are respected and wealthy, and permanently a little elsewhere. They are always 'hearing the line', like an FT&T Prime who is isolated by their own rank [47].",
+        "refs": [
+          47
+        ],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "At what age do candidates enter: as youths from great families, or as already-educated adults such as scribes or priests?",
+        "answer": "youth"
+      },
+      {
+        "q": "Does a node keep their family name, or give it up at the final dose as maesters do?",
+        "answer": "give it up"
+      },
+      {
+        "q": "Can nodes link only to nodes, or also to adepts, and how far does the link reach?",
+        "answer": "only nodes"
+      }
+    ],
+    "decision": "accepted",
+    "note": ""
+  },
+  {
+    "id": "mythographer-5",
+    "researcher": "mythographer",
+    "title": "The sworn line: neutrality tested by the coup",
+    "pitch": "The guild's sacred oath is to carry every message for every paying crown and never reveal one, enforced the way Eleusis punished disclosure. The harem conspiracy puts that oath under strain.",
+    "affects": [
+      "Purple guild",
+      "Tiye",
+      "Ramesses III",
+      "Littlefinger figure",
+      "Pentawer",
+      "Isis",
+      "Jon"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "The oath, adapted from the Eleusinian secrecy law [53] and the maesters' service to any lord [45]: a node who reveals a message is put to death by the guild itself. Courts accept this, and that acceptance is the basis of the guild's prestige. Kings trust it because it has no king.",
+        "refs": [
+          45,
+          53
+        ],
+        "note": ""
+      },
+      {
+        "label": "world",
+        "text": "The relay is not word for word. As with Delphi, where priests rendered the Pythia's words into verse [54], a node passes on meaning and a trained guild scribe writes it down. This lets the author make messages ambiguous, delayed or subtly shaded, and it creates an honored scribal role between node and client.",
+        "refs": [
+          54
+        ],
+        "note": "relay is word for word"
+      },
+      {
+        "label": "plot",
+        "text": "If the conspirators used the guild, then the guild carried Tiye's or the nobles' messages and Ramesses III's in the same season, and it said nothing. After the coup, Isis in Tyre or Jon abroad may learn the guild knew. The guild's answer, 'we carried; we do not judge', is both honorable and damning.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This touches the open questions about who negotiated the Assyrian marriage and who started the strike. The guild is the obvious channel for any pre-coup contact with Assyria. It also ties into how Jon learns of the coup, since news reaches Crete fast through a node while people travel slowly, which fits the canon's 'telephone before the car' premise.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Is the oath truly kept, or does the guild sell knowledge of who sent messages to whom, while never revealing what was said?",
+        "answer": "oath truly kept"
+      },
+      {
+        "q": "Does the guild rule on whether to serve the new pharaoh Pentawer, and does that ruling legitimize him?",
+        "answer": "they serve the pharaoh"
+      }
+    ],
+    "decision": "accepted",
+    "note": ""
+  }
+]

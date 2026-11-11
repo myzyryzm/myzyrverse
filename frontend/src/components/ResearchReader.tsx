@@ -1,23 +1,28 @@
 import { useState } from "react";
 import type { BackgroundSection, Proposal, ResearchSource } from "../types";
-import { DECISION_LABELS, RESEARCHER_SHORT } from "./ProposalReview";
+import { RESEARCHER_SHORT, decisionLabel } from "./ProposalReview";
 import Rich from "./Rich";
 
 interface Props {
   background: BackgroundSection[];
   proposals: Proposal[];
   sources: ResearchSource[];
+  /** Proposals the research editor left out. */
+  cut: Proposal[];
   editable: boolean;
   onOpen: (index: number) => void;
   onRef: (n: number) => void;
+  onChange: (next: Proposal[]) => void;
 }
 
 /** The research split into background (context) and proposals (the story ideas you decide on). */
-export default function ResearchReader({ background, proposals, sources, editable, onOpen, onRef }: Props) {
+export default function ResearchReader({ background, proposals, sources, cut, editable, onOpen, onRef, onChange }: Props) {
   const [view, setView] = useState<"background" | "proposals">(proposals.length ? "proposals" : "background");
   const pending = proposals.filter((p) => p.decision === "pending").length;
   const researchers = [...new Set(background.map((b) => b.researcher))];
   const firstPending = Math.max(0, proposals.findIndex((p) => p.decision === "pending"));
+  const shown = new Set(proposals.map((p) => p.id));
+  const leftOut = cut.filter((p) => !shown.has(p.id));
 
   return (
     <div className="reader">
@@ -72,11 +77,12 @@ export default function ResearchReader({ background, proposals, sources, editabl
               <div className="card-head">
                 <span className="tag">{RESEARCHER_SHORT[p.researcher] ?? p.researcher}</span>
                 <strong className="grow">{p.title}</strong>
-                <span className={`decision-chip ${p.decision}`}>{DECISION_LABELS[p.decision]}</span>
+                <span className={`decision-chip ${p.decision}`}>{decisionLabel(p)}</span>
               </div>
               {p.pitch && <Rich text={p.pitch} sources={sources} />}
               <div className="chips">
                 {p.parts.map((pt, j) => <span key={j} className={`part-tag ${pt.label}`}>{pt.label}</span>)}
+                {(p.also_from ?? []).map((r) => <span key={r} className="part-tag">also {RESEARCHER_SHORT[r] ?? r}</span>)}
                 {p.questions.length > 0 && <span className="part-tag">{p.questions.length} question{p.questions.length > 1 ? "s" : ""}</span>}
                 {p.affects.map((a) => <span key={a} className="tag">{a}</span>)}
               </div>
@@ -86,6 +92,22 @@ export default function ResearchReader({ background, proposals, sources, editabl
             </button>
           ))}
           {!proposals.length && <p className="muted">The researchers made no proposals this time.</p>}
+          {leftOut.length > 0 && (
+            <details className="cut-list">
+              <summary>Cut by the editor ({leftOut.length})</summary>
+              <p className="hint">Duplicates and weaker ideas, left out so you have less to review.</p>
+              {leftOut.map((p) => (
+                <div key={p.id} className="cut-row">
+                  <span className="tag">{RESEARCHER_SHORT[p.researcher] ?? p.researcher}</span>
+                  {p.kind && <span className={`part-tag ${p.kind}`}>{p.kind}</span>}
+                  <span className="grow">{p.title}</span>
+                  {editable && (
+                    <button className="small" onClick={() => onChange([...proposals, { ...p, decision: "pending" }])}>Bring back</button>
+                  )}
+                </div>
+              ))}
+            </details>
+          )}
         </div>
       )}
     </div>

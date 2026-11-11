@@ -5,6 +5,7 @@ from __future__ import annotations
 from .. import logbus
 from ..state import PENDING_LEDGER_REVIEW, RunState
 from .common import build_prompt, call, system_prompt, usage
+from .loremaster import doc_list
 
 ENTRY_KINDS = ["lore", "answer", "new_question", "event_update", "sub_event"]
 
@@ -36,6 +37,20 @@ ARCHIVIST_SCHEMA = {
 }
 
 
+def doc_entries(doc: str, about: str, known_questions: set[str]) -> list[dict]:
+    """Every proposed open question and hook in a lore document, as ledger rows ticked by default.
+
+    Read straight from the document rather than by the model, so none is dropped or reworded.
+    The author unticks the ones they don't want at the ledger gate.
+    """
+    def row(kind: str, text: str) -> dict:
+        return {"kind": kind, "entity": about, "change": "", "detail": text, "ref_id": "", "characters": [],
+                "confidence": "medium", "source": "ai", "accepted": True}
+    rows = [row("new_question", q) for q in doc_list(doc, "Proposed open questions")
+            if q.strip().lower() not in known_questions]
+    return rows + [row("hook", h) for h in doc_list(doc, "Hooks")]
+
+
 async def archivist(state: RunState) -> dict:
     run_type = state.get("run_type")
     if run_type == "chapter":
@@ -53,8 +68,9 @@ async def archivist(state: RunState) -> dict:
         task = ("This was a lore run: the author approved the lore document above and may adopt it into prehistory "
                 "themselves, so do not restate its background as lore entries. Propose lore entries only for things it "
                 "makes true in the present of the story that canon does not already say, answer entries for open "
-                "questions it settles, and new_question entries for its proposed open questions. Do not propose "
-                "event_update or sub_event entries. characters_present = the characters the document is about.")
+                "questions it settles. Do not propose entries for the document's Proposed open questions or its Hooks: those "
+                "are added automatically. Do not propose event_update or sub_event entries. characters_present = the "
+                "characters the document is about.")
     else:
         sections = [("Approved research", state.get("research_notes", ""))]
         task = ("This was a research run, not a chapter. Propose lore entries only for things the author's brief and the "
@@ -63,7 +79,8 @@ async def archivist(state: RunState) -> dict:
     if run_type != "plan_arc" and "## Proposals" in (state.get("research_notes") or ""):
         task += (" The approved research lists proposals with the author's decisions. Proposals marked ACCEPTED are "
                  "settled: propose lore entries for what they establish. Proposals ACCEPTED WITH CHANGES are settled "
-                 "only as amended by the author's notes and answers. Proposals not reviewed are ideas, not canon. "
+                 "only as amended by the author's notes and answers. Proposals marked MAYBE are ideas the author is "
+                 "keeping open, not canon: propose no lore or answer entries from them. "
                  "Questions a settled proposal raises that the author left unanswered become new_question entries; "
                  "answered ones are settled facts.")
     if (state.get("author_research_notes") or "").strip():
@@ -79,6 +96,10 @@ async def archivist(state: RunState) -> dict:
         if e.get("kind") == "new_question" and (e.get("detail") or "").strip().lower() in known:
             continue  # already an open question
         entries.append({**e, "source": "ai", "accepted": True})
+    if run_type == "lore":
+        entries += doc_entries(state.get("lore_doc") or "", state.get("title") or "",
+                               known | {(e.get("detail") or "").strip().lower() for e in entries
+                                        if e.get("kind") == "new_question"})
     if not out:
         logbus.log(state.get("run_id"), "archivist: no structured output; ledger left empty for manual entry", kind="warn")
     chars = out.get("characters_present") or []
