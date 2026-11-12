@@ -199,3 +199,83 @@ export interface TimelinesView {
   unplaced: Record<string, string[]>;
   story_order: StoryOrder;
 }
+
+// ---------------- metrics ----------------
+
+export interface CallRollup {
+  calls: number;
+  cost_usd: number | null;
+  duration_ms: number | null;
+  num_turns: number | null;
+  web_searches: number | null;
+  input: number | null;
+  output: number | null;
+  cache_read: number | null;
+  cache_write: number | null;
+}
+
+export type DecisionCounts = { accepted?: number; maybe?: number; rejected?: number };
+export type KeepCounts = { kept: number; dropped: number };
+
+export interface ResearchReview extends Required<DecisionCounts> {
+  accepted_with_notes: number;
+  total: number;
+  cut_by_editor: number | null;
+  by_researcher: Record<string, DecisionCounts>;
+  by_kind: Record<string, DecisionCounts>;
+}
+
+export interface LedgerReview extends KeepCounts {
+  added_by_user: number;
+  answered: number;
+  by_kind: Record<string, KeepCounts>;
+}
+
+export interface EditStats {
+  edited: boolean | null;
+  similarity: number | null;
+  chars_before: number | null;
+  chars_after: number | null;
+}
+
+export interface CriticRound { verdict: "PASSED" | "FAILED"; score: number | null; tone_drift: string | null; draft: number | null }
+
+export interface RunMetrics {
+  id: string;
+  title: string;
+  type: RunType;
+  status: string;
+  created_at: string | null;
+  committed_at: string | null;
+  backfilled: boolean;
+  running: boolean;
+  usage: CallRollup;
+  nodes: (CallRollup & { node: string; model: string })[];
+  time: { active_ms: number | null; waiting_ms: number | null; elapsed_ms: number | null };
+  research: ResearchReview | null;
+  research_regenerations: number;
+  doc: (EditStats & { doc: string; regenerations: number; approved: boolean }) | null;
+  prose: (EditStats & { critic: CriticRound[]; passed: number; failed: number; avg_score: number | null;
+                        force_rewrites: number; approved: boolean }) | null;
+  ledger: LedgerReview | null;
+  ledger_regenerations: number;
+}
+
+export interface MetricsTotals {
+  runs: number;
+  partial_runs: number;
+  usage: CallRollup;
+  time: { active_ms: number | null; waiting_ms: number | null };
+  nodes: (CallRollup & { node: string })[];
+  models: (CallRollup & { model: string })[];
+  research: Omit<ResearchReview, "cut_by_editor"> & { runs: number; cut_by_editor: number; regenerations: number };
+  docs: { doc: string; runs: number; approved: number; edited: number; regenerations: number }[];
+  prose: { runs: number; critic_rounds: number; passed: number; failed: number; avg_score: number | null;
+           force_rewrites: number; approved: number; edited: number };
+  ledger: LedgerReview & { runs: number; regenerations: number };
+}
+
+export interface MetricsView {
+  totals: MetricsTotals;
+  runs: RunMetrics[];
+}

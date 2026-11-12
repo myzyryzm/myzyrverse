@@ -158,6 +158,18 @@ A lore run's document is a proposal. From the ledger gate or after commit, **Ado
 
 Your manual edits to questions and events are stored as overrides and always win over what runs proposed. Manual present-lore notes can be attached to a run (reverted with it) or kept general.
 
+## Metrics
+
+**Metrics** in the top bar shows what runs cost and how your reviews went, totalled across all runs, with a row per run that expands to its detail:
+
+- **Usage**: cost, agent calls, turns, input tokens (uncached, cache read, cache write), output tokens and web searches, by node or by model. Cost is the API-equivalent figure the CLI reports; on a subscription it measures usage, not a bill.
+- **Time**: *active* is time agents spent working; *waiting on review* is time a run sat paused at a gate.
+- **Research review**: accepted / maybe / rejected counts and the accept rate, overall, per researcher and per proposal kind, plus proposals the editor cut.
+- **Loremaster review**: how often the lore doc (or outline / arc plan) was regenerated and whether you approved it as written or edited it; ledger rows kept vs dropped, per kind, with rows you added and questions you answered.
+- **Prose review**: the Grand Critic's verdict and score for each draft, automatic revisions, your force rewrites, and whether you edited the approved prose.
+
+Each run logs events to `runs/<id>/metrics.json` (`backend/metrics.py`); the view is computed from those files. Runs from before metrics existed are backfilled once from the checkpoint, `proposals.json` and the final ledger, and are tagged *partial*: their cost and decisions are there, but tokens, active time, regenerations and edits were never recorded. A dash means no data, not zero.
+
 ## Layout
 
 ```
@@ -167,10 +179,11 @@ backend/
   nodes/*.py       one file per node: researchers, weaver, loremaster, writer, grand_critic, archivist, gates, commit
   prompts/*.md     every system prompt. Edit these to tune voice and tone.
   runner.py        Claude Agent SDK wrapper (one function: run_agent)
+  metrics.py       per-run event log (runs/<id>/metrics.json) and the Metrics summaries
   lore.py runs.py  files on disk, ledger replay, revert
   app.py           FastAPI endpoints, background graph runs
 frontend/          Vite + React + TypeScript control deck
-tests/             graph routing, lore ledger, HTTP end-to-end (fake LLM)
+tests/             graph routing, lore ledger, metrics, HTTP end-to-end (fake LLM)
 ```
 
 ## Configuration
@@ -181,4 +194,4 @@ Per-node model and effort live in `backend/config.py`. The writer uses `claude-f
 MODEL_WRITER=claude-opus-5-5 EFFORT_HISTORIAN=medium MAX_REVISIONS=2 .venv/bin/uvicorn backend.app:app
 ```
 
-Checkpoints are in `data/checkpoints.sqlite`, one thread per run, so a paused run survives a server restart. The usage panel shows the API-equivalent cost the CLI reports for each node; on a subscription that is a measure of usage, not a bill.
+Checkpoints are in `data/checkpoints.sqlite`, one thread per run, so a paused run survives a server restart. The usage panel shows the API-equivalent cost the CLI reports for each node; on a subscription that is a measure of usage, not a bill. See [Metrics](#metrics) for totals across runs.

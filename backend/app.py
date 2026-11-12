@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import asyncio
 import shutil
+import time
 import traceback
 from contextlib import asynccontextmanager
 from typing import Any, Literal
@@ -22,7 +23,7 @@ from fastapi.staticfiles import StaticFiles
 from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
 from pydantic import BaseModel, Field
 
-from . import config, logbus, lore, runs
+from . import config, logbus, lore, metrics, runs
 from .graph import build_graph, prune_stale_channels
 from .state import (
     FINAL_APPROVED, OUTLINE_APPROVED, RESEARCH_APPROVED, RESEARCHING,
@@ -80,23 +81,37 @@ def _launch(run_id: str, payload: Any) -> None:
     ERRORS.pop(run_id, None)
 
     async def go():
+        started, t0, outcome = runs.now_iso(), time.monotonic(), "error"
         try:
             if payload is None:  # continuing a saved run, possibly one from an older state schema
                 stale = await prune_stale_channels(_graph(), _cfg(run_id))
                 if stale:
                     logbus.log(run_id, f"dropped fields from an older state schema: {', '.join(stale)}", kind="warn")
+                await _backfill_metrics(run_id)  # before new events, so older usage isn't lost
             await _graph().ainvoke(payload, _cfg(run_id))
             st = await _graph().aget_state(_cfg(run_id))
+            outcome = f"paused:{st.next[0]}" if st.next else "finished"
             logbus.log(run_id, f"paused before {st.next[0]}" if st.next else "run finished", kind="pause")
         except asyncio.CancelledError:
+            outcome = "cancelled"
             logbus.log(run_id, "run cancelled", kind="warn")
             raise
         except Exception as e:  # surface to UI; checkpoint keeps completed nodes, so Retry resumes
             ERRORS[run_id] = f"{type(e).__name__}: {e}"
             logbus.log(run_id, f"ERROR {type(e).__name__}: {e}", kind="error")
             traceback.print_exc()
+        finally:
+            metrics.record(run_id, "segment", started=started, ended=runs.now_iso(), outcome=outcome,
+                           duration_ms=int((time.monotonic() - t0) * 1000))
 
     TASKS[run_id] = asyncio.create_task(go())
+
+
+async def _backfill_metrics(run_id: str) -> None:
+    if not metrics.needs_backfill(run_id):
+        return
+    st = await _graph().aget_state(_cfg(run_id))
+    metrics.backfill(run_id, runs.read_meta(run_id), dict(st.values or {}))
 
 
 # ---------------- runs ----------------
@@ -139,10 +154,12 @@ def create_run(body: NewRun):
     if body.type == "plan_arc" and not body.target_event_id:
         raise HTTPException(400, "plan_arc runs need a target_event_id")
     try:
-        return runs.create_run(run_id=body.id, run_type=body.type, title=body.title, brief=body.brief,
+        meta = runs.create_run(run_id=body.id, run_type=body.type, title=body.title, brief=body.brief,
                                pov=body.pov, researchers=body.researchers, target_event_id=body.target_event_id)
     except (ValueError, FileExistsError) as e:
         raise HTTPException(400, str(e))
+    metrics.init(body.id)
+    return meta
 
 
 @app.get("/api/runs/{run_id}")
@@ -187,6 +204,18 @@ async def run_state(run_id: str):
     }
 
 
+@app.get("/api/metrics")
+async def get_metrics():
+    """Cost, time, tokens and review stats per run and across all runs."""
+    summaries = []
+    for meta in runs.list_runs():
+        if not _running(meta["id"]):  # a running run backfills itself on launch
+            await _backfill_metrics(meta["id"])
+        summaries.append({**metrics.summarize(meta["id"], meta), "running": _running(meta["id"])})
+    summaries.sort(key=lambda s: s.get("created_at") or "", reverse=True)
+    return {"totals": metrics.summarize_all(summaries), "runs": summaries}
+
+
 @app.post("/api/runs/{run_id}/start")
 async def start_run(run_id: str):
     meta = _require_run(run_id)
@@ -226,6 +255,7 @@ async def resume_run(run_id: str, body: Resume):
         undecided = sum(p.get("decision", "pending") == "pending" for p in proposals)
         if undecided:
             raise HTTPException(400, f"{undecided} proposal(s) still need a decision: accept, maybe or reject")
+    metrics.record_gate_review(run_id, st.next[0], st.values.get("run_type", ""), dict(st.values), body.edits)
     patch = {**body.edits, "canon": lore.build_canon(run_id)}
     if "brief" in body.edits:
         runs.write_artifact(run_id, "brief", body.edits["brief"])
@@ -288,6 +318,7 @@ async def regenerate(run_id: str, body: Regenerate):
     else:
         raise HTTPException(400, f"cannot regenerate at {gate}")
     patch.update(author_notes=notes, canon=lore.build_canon(run_id))
+    metrics.record(run_id, "regenerate", gate=gate, has_notes=bool(notes))
     await _graph().aupdate_state(_cfg(run_id), patch, as_node=gate)
     logbus.log(run_id, f"regenerate at {gate}" + (f" with notes: {notes[:80]}" if notes else ""))
     _launch(run_id, None)

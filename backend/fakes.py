@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import os
 import re
+import uuid
 
 from .runner import AgentResult
 
@@ -25,7 +26,23 @@ def _echo(prompt: str) -> str:
     return "\n\n<details><summary>inputs this node saw (fake mode)</summary>\n\n" + "\n".join(lines) + "\n</details>"
 
 
+# Fixed usage on every fake call, so metrics have something to add up.
+FAKE_COST_USD = 0.01
+FAKE_TOKENS = {"input": 100, "output": 50, "cache_read": 1000, "cache_write": 200, "web_searches": 0}
+FAKE_RESEARCH_WEB_SEARCHES = 2
+
+
 def fake_result(node: str, prompt: str, schema: dict | None) -> AgentResult:
+    r = _fake(node, prompt, schema)
+    r.cost_usd, r.duration_ms, r.duration_api_ms, r.num_turns = FAKE_COST_USD, 300, 250, 1
+    r.tokens = dict(FAKE_TOKENS)
+    r.session_id = f"fake-{uuid.uuid4().hex[:12]}"
+    if node in ("antiquarian", "historian", "mythographer"):
+        r.tokens["web_searches"] = FAKE_RESEARCH_WEB_SEARCHES
+    return r
+
+
+def _fake(node: str, prompt: str, schema: dict | None) -> AgentResult:
     if node in ("antiquarian", "historian", "mythographer", "psychologist"):
         return AgentResult(text="", structured_output={
             "background": [{"heading": f"{node} context", "refs": [1],

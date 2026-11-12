@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .. import metrics
 from ..state import RunState
 from .common import build_prompt, call, system_prompt, usage
 
@@ -53,6 +54,8 @@ async def grand_critic(state: RunState) -> dict:
         # The CLI could not produce schema-valid JSON; don't loop on garbage, escalate to the human.
         c = {"verdict": "PASSED", "score": 0, "tone_drift": "none", "notes": [],
              "summary": "Critic returned no structured verdict; sending to human review.\n\n" + (result.text or "")}
+    metrics.record(state.get("run_id"), "critic", verdict=c["verdict"], score=c.get("score") or None,
+                   tone_drift=c.get("tone_drift"), draft=state.get("revision_count", 0) + 1)
     return {
         "critique_verdict": c["verdict"],
         "critique_notes": render_critique(c, state.get("revision_count", 0) + 1),

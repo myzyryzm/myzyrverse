@@ -31,6 +31,8 @@ class AgentResult:
     num_turns: int | None = None
     session_id: str | None = None
     usage: dict = field(default_factory=dict)
+    duration_api_ms: int | None = None
+    tokens: dict = field(default_factory=dict)  # input, output, cache_read, cache_write, web_searches
 
     def usage_record(self, node: str, model: str) -> dict:
         return {
@@ -41,6 +43,33 @@ class AgentResult:
             "num_turns": self.num_turns,
             "session_id": self.session_id,
         }
+
+
+def token_counts(usage: dict | None, model_usage: dict | None) -> dict:
+    """Token and web-search totals for one call.
+
+    model_usage (per model, camelCase) covers every model the CLI used, so it is
+    preferred; the flat usage dict is the fallback for older CLIs.
+    """
+    if model_usage:
+        def total(key: str) -> int:
+            return sum(int(m.get(key) or 0) for m in model_usage.values())
+        return {
+            "input": total("inputTokens"),
+            "output": total("outputTokens"),
+            "cache_read": total("cacheReadInputTokens"),
+            "cache_write": total("cacheCreationInputTokens"),
+            "web_searches": total("webSearchRequests"),
+        }
+    if usage:
+        return {
+            "input": usage.get("input_tokens"),
+            "output": usage.get("output_tokens"),
+            "cache_read": usage.get("cache_read_input_tokens"),
+            "cache_write": usage.get("cache_creation_input_tokens"),
+            "web_searches": (usage.get("server_tool_use") or {}).get("web_search_requests"),
+        }
+    return {}
 
 
 class AgentError(RuntimeError):
@@ -125,4 +154,6 @@ async def run_agent(
         num_turns=result.num_turns,
         session_id=result.session_id,
         usage=result.usage or {},
+        duration_api_ms=result.duration_api_ms,
+        tokens=token_counts(result.usage, result.model_usage),
     )

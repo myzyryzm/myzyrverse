@@ -1,5 +1,5 @@
 import type {
-  AppConfig, Hook, LedgerEntry, OpenQuestion, RunMeta, RunState, StoryEvent, TimelineItem, TimelinesView,
+  AppConfig, Hook, LedgerEntry, MetricsView, OpenQuestion, RunMeta, RunState, StoryEvent, TimelineItem, TimelinesView,
 } from "./types";
 
 async function req<T>(method: string, path: string, body?: unknown): Promise<T> {
@@ -69,4 +69,5 @@ export const api = {
 
   timeline: () => req<TimelineItem[]>("GET", "/timeline"),
   manuscript: () => req<{ text: string }>("GET", "/manuscript"),
+  metrics: () => req<MetricsView>("GET", "/metrics"),
 };

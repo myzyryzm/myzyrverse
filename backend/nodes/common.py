@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from functools import lru_cache
 
-from .. import config
+from .. import config, metrics
 from ..runner import AgentResult, run_agent
 from ..state import RunState
 
@@ -145,8 +145,10 @@ async def call(node: str, state: RunState, prompt: str, *, sys_prompt: str,
     if research:
         config.SOURCES_DIR.mkdir(parents=True, exist_ok=True)
         kwargs["cwd"] = config.SOURCES_DIR
-    return await run_agent(prompt, node=node, system_prompt=sys_prompt, run_id=state.get("run_id"),
-                           output_schema=output_schema, **kwargs)
+    result = await run_agent(prompt, node=node, system_prompt=sys_prompt, run_id=state.get("run_id"),
+                             output_schema=output_schema, **kwargs)
+    metrics.record_call(state.get("run_id"), node, config.NODE_SETTINGS[node]["model"], result)
+    return result
 
 
 def usage(node: str, result: AgentResult) -> list[dict]:

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { api } from "./api";
 import ArcPlanner from "./components/ArcPlanner";
 import Canon from "./components/Canon";
+import Metrics from "./components/Metrics";
 import ControlDeck from "./components/ControlDeck";
 import Sandbox from "./components/Sandbox";
 import Timeline from "./components/Timeline";
@@ -17,6 +18,7 @@ export default function App() {
   const [prefill, setPrefill] = useState<NewRunPrefill | null>(null);
   const [toast, setToast] = useState<string | null>(null);
   const [planner, setPlanner] = useState(false);
+  const [metrics, setMetrics] = useState(false);
   const wasRunning = useRef(false);
   const gateEdits = useRef<() => Record<string, unknown>>(() => ({}));
   const registerEdits = useCallback((fn: () => Record<string, unknown>) => { gateEdits.current = fn; }, []);
@@ -82,6 +84,7 @@ export default function App() {
         <span className="subtitle">Bronze Age Collapse · writing room</span>
         {config?.fake_llm && <span className="badge warn">FAKE_LLM: no Claude usage</span>}
         <button className="planner-link small" onClick={() => setPlanner(true)}>Arc planner</button>
+        <button className="small" onClick={() => setMetrics(true)}>Metrics</button>
         <a className="manuscript-link" href="#" onClick={async (e) => {
           e.preventDefault();
           const m = await api.manuscript();
@@ -115,6 +118,7 @@ export default function App() {
       </main>
 
       {planner && <ArcPlanner onClose={() => setPlanner(false)} bump={bump} notify={notify} />}
+      {metrics && <Metrics onClose={() => setMetrics(false)} notify={notify} />}
       {toast && <div className="toast" onClick={() => setToast(null)}>{toast}</div>}
     </div>
   );
