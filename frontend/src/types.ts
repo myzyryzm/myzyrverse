@@ -33,6 +33,8 @@ export interface LedgerEntry {
   accepted?: boolean;
   run_id?: string | null;
   run_title?: string;
+  /** Present tab only: the author edited this fact after it was committed. */
+  edited?: boolean;
 }
 
 /** A story idea to think about later. Not canon: agents never see hooks. */

@@ -133,6 +133,25 @@ function Present({ version, runs, bump, notify }: Props) {
 
   const committed = runs.filter((r) => r.status === "committed");
 
+  const [editing, setEditing] = useState<{ id: string; entity: string; change: string; detail: string } | null>(null);
+  const run = (fn: () => Promise<unknown>) => fn().then(bump).catch((e) => notify(errMsg(e)));
+
+  const save = () => {
+    if (!editing || !editing.detail.trim()) return;
+    const { id, entity, change, detail } = editing;
+    run(async () => {
+      await api.updatePresent(id, { entity, change, detail });
+      setEditing(null);
+    });
+  };
+
+  const remove = (e: LedgerEntry) => {
+    if (!e.id) return;
+    const preview = e.detail.length > 120 ? `${e.detail.slice(0, 120)}…` : e.detail;
+    if (!window.confirm(`Delete this fact from canon?\n\n${preview}`)) return;
+    run(() => api.deletePresent(e.id!));
+  };
+
   const add = async () => {
     if (!form.detail.trim()) return;
     try {
@@ -152,10 +171,33 @@ function Present({ version, runs, bump, notify }: Props) {
         <div key={entity} className="entity">
           <h4>{entity}</h4>
           <ul>
-            {list.map((e) => (
-              <li key={e.id}>
-                <span className={`tag ${e.source}`}>{e.run_id ?? "manual"} · {e.source}</span>
-                {e.change && <b>{e.change}: </b>}{e.detail}
+            {list.map((e) => editing && editing.id === e.id ? (
+              <li key={e.id} className="fact-edit">
+                <input placeholder="entity" value={editing.entity}
+                       onChange={(ev) => setEditing({ ...editing, entity: ev.target.value })} />
+                <input placeholder="change" value={editing.change}
+                       onChange={(ev) => setEditing({ ...editing, change: ev.target.value })} />
+                <textarea value={editing.detail} rows={4}
+                          onChange={(ev) => setEditing({ ...editing, detail: ev.target.value })} />
+                <div className="row">
+                  <button className="primary small" disabled={!editing.detail.trim()} onClick={save}>Save</button>
+                  <button className="ghost small" onClick={() => setEditing(null)}>Cancel</button>
+                </div>
+              </li>
+            ) : (
+              <li key={e.id} className="fact">
+                <span className="fact-text">
+                  <span className={`tag ${e.source}`}>{e.run_id ?? "manual"} · {e.source}</span>
+                  {e.edited && <span className="tag user">edited</span>}
+                  {e.change && <b>{e.change}: </b>}{e.detail}
+                </span>
+                {e.id && (
+                  <span className="fact-actions">
+                    <button className="ghost small pencil" title="Edit fact"
+                            onClick={() => setEditing({ id: e.id!, entity: e.entity, change: e.change, detail: e.detail })}>✎</button>
+                    <button className="ghost small danger" title="Delete fact" onClick={() => remove(e)}>×</button>
+                  </span>
+                )}
               </li>
             ))}
           </ul>

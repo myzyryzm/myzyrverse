@@ -139,6 +139,11 @@ legend { font-family: var(--serif); font-weight: 700; font-size: 15px; padding: 
 .entity ul { margin: 0; padding-left: 16px; }
 .entity li { margin: 3px 0; }
 .entity li .tag { margin-right: 6px; }
+.entity li.fact { display: flex; gap: 6px; align-items: flex-start; }
+.entity li.fact .fact-text { flex: 1; }
+.entity li.fact .fact-actions { display: flex; gap: 2px; opacity: 0.35; transition: opacity 0.15s; }
+.entity li.fact:hover .fact-actions, .entity li.fact .fact-actions:focus-within { opacity: 1; }
+.entity li.fact-edit { display: flex; flex-direction: column; gap: 4px; margin: 6px 0; }
 
 .card { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; background: var(--bg); display: flex; flex-direction: column; gap: 5px; }
 .card-head { display: flex; gap: 4px; align-items: center; }

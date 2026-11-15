@@ -76,6 +76,54 @@ def test_manual_present_entry_on_run_and_general():
     assert "lost an eye" not in md and "Nile flood failed" in md
 
 
+def test_delete_and_edit_run_fact_via_overrides():
+    _commit("r1", [{"kind": "lore", "entity": "Griffin", "change": "symbol", "detail": "emblem of royalty"},
+                   {"kind": "lore", "entity": "Griffin", "change": "habitat", "detail": "nests in cliffs, hunts goats"},
+                   {"kind": "new_question", "entity": "Griffin", "detail": "Where do they winter?"},
+                   {"kind": "hook", "entity": "Griffin", "detail": "a griffin egg is stolen"}], run_type="research")
+    ledger_before = runs.read_ledger("r1")
+
+    lore.delete_present_entry("r1-1")
+    lore.update_present_entry("r1-2", {"detail": "nests in cliffs"})
+
+    md = lore.materialize_present()
+    assert "emblem of royalty" not in md
+    assert "nests in cliffs" in md and "hunts goats" not in md
+    edited = {e["id"]: e for e in lore.present_entries()}
+    assert set(edited) == {"r1-2"} and edited["r1-2"]["edited"] is True
+    # The ledger itself is untouched and other kinds still fold in.
+    assert runs.read_ledger("r1") == ledger_before
+    assert any(q["question"] == "Where do they winter?" for q in lore.open_questions())
+    assert any(h["text"] == "a griffin egg is stolen" for h in lore.hooks())
+
+    # Overrides survive revert + restore.
+    lore.revert_run("r1")
+    lore.restore_run("r1")
+    md = lore.materialize_present()
+    assert "emblem of royalty" not in md and "hunts goats" not in md and "nests in cliffs" in md
+
+
+def test_edit_and_delete_manual_present_note():
+    note = lore.add_manual_entry({"entity": "World", "detail": "Nile flood failed"})
+    lore.update_present_entry(note["id"], {"detail": "Nile flood was low", "entity": "Egypt"})
+    [e] = lore.present_entries()
+    assert e["detail"] == "Nile flood was low" and e["entity"] == "Egypt"
+    lore.delete_present_entry(note["id"])
+    assert lore.present_entries() == []
+
+
+def test_present_edit_rejects_bad_input():
+    _commit("r1", [{"kind": "lore", "entity": "X", "detail": "y"}], run_type="research")
+    with pytest.raises(ValueError):
+        lore.update_present_entry("r1-1", {"detail": "   "})
+    with pytest.raises(ValueError):
+        lore.update_present_entry("r1-1", {"kind": "hook"})
+    with pytest.raises(ValueError):
+        lore.update_present_entry("nope", {"detail": "z"})
+    with pytest.raises(ValueError):
+        lore.delete_present_entry("nope")
+
+
 def test_timeline():
     _commit("ch01", [], pov="Tiye", chars=["Tiye", "Pentawere"])
     _commit("ch02", [], pov="Ramesses", chars=["Ramesses"])

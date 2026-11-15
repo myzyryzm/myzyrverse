@@ -1,0 +1,354 @@
+[
+  {
+    "id": "antiquarian-1",
+    "researcher": "antiquarian",
+    "kind": "world",
+    "title": "The raiders are the palaces' own war-fleet, cut loose",
+    "pitch": "",
+    "affects": [
+      "Sea Peoples",
+      "Mycenaean warlords",
+      "The Drought",
+      "Sherden",
+      "Jon's exodus"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "The Sea Peoples are not outsiders who wrecked Greece. They are what was left of the palaces' own sea-power once the Drought broke the ration system that paid for it. In the last years each wanax called up rowers and posted coastguards [3, 6]. When the grain and bronze stopped coming [1, 9, 16], the crews kept the ships and went on doing what palaces had always done on the side, raiding Anatolian and Cypriot coasts for goods and captive women [6, 7], only now for themselves. Leadership passed to the small men: local headmen (qa-si-re-u) and ship-captains whose rank is counted in hulls and oars, each holding a bit of ruined palace and calling himself king [13, 17]. A galley of fifty oars is a warband of fifty [6].",
+        "refs": [
+          1,
+          3,
+          6,
+          7,
+          9,
+          13,
+          16,
+          17
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This fits 'warlords fighting each other' and 'pirate wildlings', and gives the canon Drought a concrete way of causing the collapse. Divergence: historically the Sea Peoples were mixed, and no Aegean destruction can be pinned on them. Making them Mycenaean palace remnants is a deliberate choice.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does any warlord still claim the old title wanax, or has 'king' been cheapened to the headman's word?",
+        "answer": ""
+      },
+      {
+        "q": "Do the Egyptian Sherden, settled under Ramesses II before the collapse, still count these crews as kin?",
+        "answer": "no, the original Sherden are from Sardinia while these ones are from greece. they are viewed as different groups. and the modern iteration of the sherden do not keep any connection to overseas"
+      }
+    ],
+    "decision": "accepted",
+    "note": "",
+    "also_from": [
+      "historian"
+    ]
+  },
+  {
+    "id": "mythographer-1",
+    "researcher": "mythographer",
+    "kind": "world",
+    "title": "Egypt was their Troy",
+    "pitch": "",
+    "affects": [
+      "Sea Peoples",
+      "Ramesses III",
+      "Jon",
+      "Sherden",
+      "Mycenaean warlords"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Greek oral tradition treats the failed southern invasions as its great war and the bad homecomings that followed as its Nostoi. Those invasions were Hatti mercenary service and Ramesses III's Year 8 victory over the Sea Peoples [35, 37, 45]. Survivors sailed home to burned or usurped palaces and empty granaries. Turned away, they became ship-lords with no land, and their sons raid because their fathers could not go home. Raider bards sing of the Delta the way Odysseus lies about it: plunder, then the pharaoh's terrible counterstroke [33, 34]. Ramesses III is the villain of their poems, just as they are the bound captives on his temple walls.",
+        "refs": [
+          33,
+          34,
+          35,
+          37,
+          45,
+          47
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This builds on the canon fact that Ramesses III repelled Sea Peoples invasions; his Year 8 lands around 1177, about 17 years before the story. Labeled divergence: there is no historical evidence for such a Greek epic. Canon has no Troy, so this would replace or absorb it.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does a Troy exist in this world at all, or is the Delta war the only great war the Greeks remember?",
+        "answer": "yes troy exists"
+      },
+      {
+        "q": "Do Sherden families, who are Sea Peoples who took Egyptian service, know these songs and sing them in secret?",
+        "answer": "sherden are sardinian and have no connection to the sea peoples of greece. "
+      }
+    ],
+    "decision": "accepted",
+    "note": "",
+    "also_from": []
+  },
+  {
+    "id": "mythographer-3",
+    "researcher": "mythographer",
+    "kind": "world",
+    "title": "The cistern kings",
+    "pitch": "",
+    "affects": [
+      "Mycenaean warlords",
+      "Sea Peoples",
+      "The Drought",
+      "Cyclopes",
+      "Greece"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "The few Mycenaean palaces still standing survive because their lords walled in their water. Mycenae, Tiryns and Athens all brought their springs or cisterns inside the walls during the Drought [44]. These cistern kings rule like Immortan Joe [43]. They let water out to client villages, keep young warbands loyal with drink and plunder, and drive out anyone they cannot feed. Everyone outside the walls becomes a raider: cast-out retainers, starving herders, villages fleeing the Cyclopes coming down from their caves. The Sea Peoples are therefore two groups that need and hate each other. One is a thin layer of water-lords in Cyclopean citadels. The other is a sea of landless bands who serve them, raid them and dream of taking their walls.",
+        "refs": [
+          43,
+          44
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This explains canon's 'a few palaces still stand; most are destroyed'. It ties the Drought and the Cyclopes' displacement directly to Greek politics, and it matches the griffin canon that warlords prize a living griffin as proof of kingship.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Which named citadels still stand in 1160, and is one of them Mycenae itself?",
+        "answer": ""
+      },
+      {
+        "q": "Did the cistern kings build their water-works in Cyclopean masonry they could not have laid themselves, implying knowledge or labour taken from the Cyclopes?",
+        "answer": "definitely knowledge from the cyclops. there could be other connections to cyclops too im not sure yet"
+      }
+    ],
+    "decision": "accepted",
+    "note": "",
+    "also_from": []
+  },
+  {
+    "id": "historian-2",
+    "researcher": "historian",
+    "kind": "world",
+    "title": "The Sherden bargain: every raid is an audition for Egyptian land",
+    "pitch": "",
+    "affects": [
+      "Sherden",
+      "Sea Peoples",
+      "Ramesses III",
+      "Pentawer",
+      "Medjay"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "In Greece everyone knows the founding story of the Sherden: raiders taken in Ramesses II's day were given good land and made pharaoh's own guard. Ever since, the most ambitious Sea Peoples chiefs have raided Egypt's coasts and Tyre's to be bought, not to conquer. They want a Rollo-style grant: land in return for guarding the coast against the next wave. Ramesses III's victories closed that door, and refusing to deal has made the raiders more desperate, much as the Ming sea ban created pirates. The Sherden themselves feel a quiet shame and a sense of blood-debt toward the men they once sailed with, and that may be part of why they look down on the Medjay so hard.",
+        "refs": [
+          22,
+          23,
+          24,
+          25,
+          26,
+          30
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "Builds directly on canon (Ramesses II founded the Sherden from Sea Peoples and gave them land) and on the historical Tanis stele. It turns the post-coup question of whether Pentawer will sell land to raiders into a live policy lever.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does any Sea Peoples chief now hold a standing offer from the conspirators, or from Assyria?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": "",
+    "also_from": [
+      "psychologist"
+    ]
+  },
+  {
+    "id": "mythographer-2",
+    "researcher": "mythographer",
+    "kind": "world",
+    "title": "The spear, not the tablet",
+    "pitch": "",
+    "affects": [
+      "Sea Peoples",
+      "Mycenaean warlords",
+      "Sherden",
+      "Egypt"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "The raiders' Old Way is defined against the palace system that failed them, not against farming. Under the wanax, scribes counted every flock, ration and man on clay. When the Drought emptied the granaries, the rations stopped and the counting lost its point [46]. Raiders hold that what the spear takes is honourable and what the tablet allots is servile. Captives taken in a raid may be kept but never sold [39, 40]. The first thing raiders burn in a captured town is the record room. This gives the Ironborn pattern a real grievance and grounds it in the Bronze Age. It also sets the Sea Peoples against Egypt, the greatest scribe-and-granary state of all.",
+        "refs": [
+          39,
+          40,
+          46
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This fits the canon that the Sea Peoples are warring Mycenaean warlords and that most palaces are destroyed. It sharpens the irony that the Sherden are Sea Peoples absorbed into exactly the counted, rationed system their cousins reject.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Is any writing still kept among the Greeks: a remnant scribe caste, or none at all?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": "",
+    "also_from": []
+  },
+  {
+    "id": "antiquarian-2",
+    "researcher": "antiquarian",
+    "kind": "world",
+    "title": "A people-raiding economy and the peak refuges",
+    "pitch": "",
+    "affects": [
+      "Crete (Mount Ida)",
+      "Jon's exodus",
+      "Sea Peoples",
+      "Cyprus",
+      "Tyre"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "In 1160 the most valuable plunder is people. Raiders take women and children for labour or ransom, as the Pylos palace once did through its 'war-captives' [6, 7], and sell them on to Cyprus or the Levant. Coastal villagers answer by moving uphill into fortified peak villages like Karphi and Kastri on Crete [2]. Greek and island landscapes therefore read as empty shores and crowded hilltops. Anyone travelling overland meets refuge communities that distrust any armed band arriving from the sea.",
+        "refs": [
+          2,
+          6,
+          7
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This extends the 'upland refuge villages' already in the griffin canon on Ida, and gives the people Jon leads a material reason to be on the move. It changes nothing already set.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Who buys captives in 1160: Cyprus, Tyre, Egypt, or all three?",
+        "answer": ""
+      }
+    ],
+    "decision": "accepted",
+    "note": "",
+    "also_from": []
+  },
+  {
+    "id": "psychologist-1",
+    "researcher": "psychologist",
+    "kind": "characterization",
+    "title": "The raider-kings are foremen who outlived the king",
+    "pitch": "",
+    "affects": [
+      "Sea Peoples",
+      "Mycenaean warlords",
+      "Jon",
+      "Jon's griffin"
+    ],
+    "parts": [
+      {
+        "label": "characterization",
+        "text": "Most Mycenaean warlords are not old royalty. They are former headmen, rowing-masters and herd-overseers of the dead palaces, the men who survived the wanax. Their core panic is legitimacy and hunger together. A warlord is really a hostage of his crew: he holds his band only as long as raids come home full, so he is the most frightened man on the ship. Each one tells himself he is 'restoring the palace', and he justifies his cruelty with 'the gods chose who would live through the dry years, and they chose us.'",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This fits canon's Sea Peoples as feuding warlords with brief truces, and the canon that Mycenaean lords treat a living griffin as proof of true kingship: an illegitimate lord craves that proof most. It also echoes Ramesses III's distant blood and Tiye's common birth, so the whole cast becomes a world of usurpers.",
+        "refs": [],
+        "note": "this griffin as symbol of royalty needs to go. i dont know why that fact got written to canon."
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does any surviving warlord claim real wanax blood, as a contrast to the foremen?",
+        "answer": ""
+      },
+      {
+        "q": "Do the raider bands carry their households (women, children, herds) or only fighting crews?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": "",
+    "also_from": []
+  },
+  {
+    "id": "antiquarian-3",
+    "researcher": "antiquarian",
+    "kind": "world",
+    "title": "1160 as the raiders' high summer, and the second burning",
+    "pitch": "",
+    "affects": [
+      "Mycenaean warlords",
+      "The Drought",
+      "Jon's exodus",
+      "Griffin"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "When the story opens, Greece is about forty years past the palace fires and in a rally. New lords have rebuilt the Tiryns lower town and put up a hall outside its walls [2, 4], potters paint warships and marching warriors [2, 5], and Naue II swords mark a warrior caste [8]. As the Drought deepens, that rally fails in step with the real second wave of destructions: Mycenae burns again c. 1150/1125, the Tiryns hall falls, and the island shrines go down c. 1120 [2]. Jon's road runs through a world visibly sliding from a brief recovery into a true dark age.",
+        "refs": [
+          2,
+          4,
+          5,
+          8
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This is consistent with 'a few palaces still stand' and with the already-canon Lefkandi griffin pottery, which belongs to this same pictorial peak. Historical dates may need the same few-year shift used elsewhere.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Is the second burning of Mycenae caused by rival ship-lords, Cyclopes driven from their caves, or the Drought's beasts?",
+        "answer": "this will be decided by the story."
+      }
+    ],
+    "decision": "accepted",
+    "note": "",
+    "also_from": []
+  }
+]

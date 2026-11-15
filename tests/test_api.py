@@ -159,6 +159,18 @@ def test_hooks_api(client):
     assert client.get("/api/lore/hooks").json() == []
 
 
+def test_present_edit_delete_api(client):
+    a = client.post("/api/lore/present/entries", json={"entity": "Griffin", "detail": "royal emblem"}).json()
+    b = client.post("/api/lore/present/entries", json={"entity": "Griffin", "detail": "nests in cliffs"}).json()
+    assert client.delete(f"/api/lore/present/entries/{a['id']}").json() == {"ok": True}
+    assert client.patch(f"/api/lore/present/entries/{b['id']}", json={"detail": "nests high"}).status_code == 200
+    p = client.get("/api/lore/present").json()
+    assert [e["detail"] for e in p["entries"]] == ["nests high"]
+    assert "royal emblem" not in p["markdown"]
+    assert client.patch(f"/api/lore/present/entries/{b['id']}", json={"detail": " "}).status_code == 400
+    assert client.delete("/api/lore/present/entries/nope").status_code == 400
+
+
 def test_adopt_rejects_non_lore_runs(client):
     client.post("/api/runs", json={"id": "r2", "type": "research", "researchers": []})
     assert client.post("/api/runs/r2/adopt", json={"file": "world"}).status_code == 400

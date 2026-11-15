@@ -409,8 +409,32 @@ def _manual_present() -> list[dict]:
     return json.loads(_manual_file().read_text()) if _manual_file().exists() else []
 
 
+def _save_manual_present(manual: list[dict]) -> None:
+    _manual_file().parent.mkdir(parents=True, exist_ok=True)
+    _manual_file().write_text(json.dumps(manual, indent=2, ensure_ascii=False) + "\n")
+
+
+def _present_overrides_file():
+    return config.LORE_DIR / "present_overrides.json"
+
+
+def _load_present_overrides() -> dict:
+    p = _present_overrides_file()
+    return json.loads(p.read_text()) if p.exists() else {}
+
+
+def _save_present_overrides(data: dict) -> None:
+    p = _present_overrides_file()
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
+
+
+PRESENT_EDITABLE = ("entity", "change", "detail")
+
+
 def present_entries(exclude_run: str | None = None) -> list[dict]:
-    """All accepted 'lore' entries from committed runs, in commit order, plus run-less manual notes."""
+    """All accepted 'lore' entries from committed runs, in commit order, plus run-less manual notes.
+    User edits/deletions in present_overrides.json are applied last, so they always win."""
     out = []
     for meta in runs.committed_runs():
         if meta["id"] == exclude_run:
@@ -419,7 +443,50 @@ def present_entries(exclude_run: str | None = None) -> list[dict]:
             if entry.get("kind") == "lore":
                 out.append({**entry, "run_id": meta["id"], "run_title": meta.get("title")})
     out.extend({**e, "run_id": None, "run_title": "manual"} for e in _manual_present())
-    return out
+    overrides = _load_present_overrides()
+    result = []
+    for e in out:
+        patch = overrides.get(e.get("id"))
+        if patch:
+            if patch.get("deleted"):
+                continue
+            e.update({k: v for k, v in patch.items() if k in PRESENT_EDITABLE})
+            e["edited"] = True
+        result.append(e)
+    return result
+
+
+def update_present_entry(entry_id: str, patch: dict) -> None:
+    clean = {k: v for k, v in patch.items() if k in PRESENT_EDITABLE}
+    if not clean:
+        raise ValueError(f"nothing to update; editable fields are {', '.join(PRESENT_EDITABLE)}")
+    if any(not isinstance(v, str) for v in clean.values()):
+        raise ValueError("fields must be strings")
+    if "detail" in clean and not clean["detail"].strip():
+        raise ValueError("a fact needs detail; delete it instead")
+    manual = _manual_present()
+    for e in manual:
+        if e.get("id") == entry_id:
+            e.update(clean)
+            _save_manual_present(manual)
+            return
+    if not any(e.get("id") == entry_id for e in present_entries()):
+        raise ValueError(f"unknown present entry {entry_id!r}")
+    overrides = _load_present_overrides()
+    overrides.setdefault(entry_id, {}).update(clean)
+    _save_present_overrides(overrides)
+
+
+def delete_present_entry(entry_id: str) -> None:
+    manual = _manual_present()
+    if any(e.get("id") == entry_id for e in manual):
+        _save_manual_present([e for e in manual if e.get("id") != entry_id])
+        return
+    if not any(e.get("id") == entry_id for e in present_entries()):
+        raise ValueError(f"unknown present entry {entry_id!r}")
+    overrides = _load_present_overrides()
+    overrides[entry_id] = {"deleted": True}
+    _save_present_overrides(overrides)
 
 
 def materialize_present(exclude_run: str | None = None) -> str:
@@ -458,7 +525,7 @@ def add_manual_entry(entry: dict, run_id: str | None = None) -> dict:
         manual = _manual_present()
         clean["id"] = _new_id("m")
         manual.append(clean)
-        _manual_file().write_text(json.dumps(manual, indent=2, ensure_ascii=False) + "\n")
+        _save_manual_present(manual)
     return clean
 
 

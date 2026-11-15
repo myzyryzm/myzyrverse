@@ -1,0 +1,1 @@
+the sherden dont have a connection to the sea peoples. like the people of egypt view them as part of the same "foreign invader" archetype

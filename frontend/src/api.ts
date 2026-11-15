@@ -49,6 +49,9 @@ export const api = {
   present: () => req<{ entries: LedgerEntry[]; markdown: string }>("GET", "/lore/present"),
   addPresent: (body: { run_id: string | null; entity: string; change: string; detail: string }) =>
     req("POST", "/lore/present/entries", body),
+  updatePresent: (id: string, patch: { entity?: string; change?: string; detail?: string }) =>
+    req("PATCH", `/lore/present/entries/${enc(id)}`, patch),
+  deletePresent: (id: string) => req("DELETE", `/lore/present/entries/${enc(id)}`),
 
   questions: () => req<OpenQuestion[]>("GET", "/lore/open-questions"),
   addQuestion: (question: string, about: string) => req("POST", "/lore/open-questions", { question, about }),

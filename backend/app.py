@@ -446,6 +446,24 @@ def present_add(body: ManualEntry):
     return lore.add_manual_entry(body.model_dump(exclude={"run_id"}), run_id=body.run_id)
 
 
+@app.patch("/api/lore/present/entries/{entry_id}")
+def present_update(entry_id: str, patch: dict):
+    try:
+        lore.update_present_entry(entry_id, patch)
+    except ValueError as e:
+        raise HTTPException(400, str(e))
+    return {"ok": True}
+
+
+@app.delete("/api/lore/present/entries/{entry_id}")
+def present_delete(entry_id: str):
+    try:
+        lore.delete_present_entry(entry_id)
+    except ValueError as e:
+        raise HTTPException(400, str(e))
+    return {"ok": True}
+
+
 @app.get("/api/lore/open-questions")
 def questions_list():
     return lore.open_questions()

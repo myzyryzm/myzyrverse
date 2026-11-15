@@ -1,0 +1,219 @@
+{
+  "backfilled": true,
+  "backfill_checked": true,
+  "events": [
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "antiquarian",
+      "model": "claude-opus-5-5",
+      "session_id": "93409de4-9ab4-4430-a5c4-60661e0e68bb",
+      "cost_usd": 1.9586536,
+      "duration_ms": 368542,
+      "duration_api_ms": null,
+      "num_turns": 31,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "historian",
+      "model": "claude-opus-5-5",
+      "session_id": "d2c8699f-2174-4644-834f-2644ca7b499a",
+      "cost_usd": 1.8289753000000002,
+      "duration_ms": 331648,
+      "duration_api_ms": null,
+      "num_turns": 27,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "mythographer",
+      "model": "claude-opus-5-5",
+      "session_id": "f29e0b31-950a-4bf1-8309-55d45416e351",
+      "cost_usd": 1.4185631,
+      "duration_ms": 252936,
+      "duration_api_ms": null,
+      "num_turns": 17,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "psychologist",
+      "model": "claude-opus-5-5",
+      "session_id": "c08d47ce-2617-426b-8ea4-37df70be5755",
+      "cost_usd": 0.9645368,
+      "duration_ms": 210299,
+      "duration_api_ms": null,
+      "num_turns": 4,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "antiquarian",
+      "model": "claude-opus-5-5",
+      "session_id": "743a744f-130e-4007-a989-6000c84449ac",
+      "cost_usd": 1.5623253000000001,
+      "duration_ms": 267552,
+      "duration_api_ms": null,
+      "num_turns": 22,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "historian",
+      "model": "claude-opus-5-5",
+      "session_id": "afc7de29-e1b4-48dc-8bfb-4fbc82379ff0",
+      "cost_usd": 1.2904267,
+      "duration_ms": 204285,
+      "duration_api_ms": null,
+      "num_turns": 17,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "mythographer",
+      "model": "claude-opus-5-5",
+      "session_id": "7392cb23-0df4-4ea2-8971-4cd798ae4389",
+      "cost_usd": 1.1940584,
+      "duration_ms": 182579,
+      "duration_api_ms": null,
+      "num_turns": 14,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "psychologist",
+      "model": "claude-opus-5-5",
+      "session_id": "4d760e74-cfed-444e-9872-b19aca9c29db",
+      "cost_usd": 0.8055529000000001,
+      "duration_ms": 130462,
+      "duration_api_ms": null,
+      "num_turns": 4,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "research_editor",
+      "model": "claude-opus-5-5",
+      "session_id": "17af1060-a54a-4f7a-a880-476dd43a6241",
+      "cost_usd": 0.23816930000000003,
+      "duration_ms": 20496,
+      "duration_api_ms": null,
+      "num_turns": 2,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "gate_review",
+      "t": "2026-11-15T22:28:44+00:00",
+      "gate": "human_gate_research",
+      "accepted": 5,
+      "maybe": 0,
+      "rejected": 3,
+      "accepted_with_notes": 0,
+      "total": 8,
+      "cut_by_editor": 4,
+      "by_researcher": {
+        "antiquarian": {
+          "accepted": 3
+        },
+        "mythographer": {
+          "accepted": 2,
+          "rejected": 1
+        },
+        "historian": {
+          "rejected": 1
+        },
+        "psychologist": {
+          "rejected": 1
+        }
+      },
+      "by_kind": {
+        "world": {
+          "accepted": 5,
+          "rejected": 2
+        },
+        "characterization": {
+          "rejected": 1
+        }
+      }
+    },
+    {
+      "kind": "llm_call",
+      "t": "2026-11-15T22:30:17+00:00",
+      "node": "loremaster",
+      "model": "claude-opus-5-5",
+      "session_id": "78bcf0a9-5e72-4a05-b3fc-7f4b16a49c44",
+      "cost_usd": 0.4412416,
+      "duration_ms": 85922,
+      "duration_api_ms": 90590,
+      "num_turns": 1,
+      "web_searches": 0,
+      "input_tokens": 32798,
+      "output_tokens": 8595,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 33325
+    },
+    {
+      "kind": "segment",
+      "t": "2026-11-15T22:30:17+00:00",
+      "started": "2026-11-15T22:28:44+00:00",
+      "ended": "2026-11-15T22:30:17+00:00",
+      "outcome": "paused:human_gate_outline",
+      "duration_ms": 92094
+    },
+    {
+      "kind": "gate_review",
+      "t": "2026-11-15T23:07:56+00:00",
+      "gate": "human_gate_outline",
+      "doc": "lore_doc",
+      "edited": true,
+      "chars_before": 10449,
+      "chars_after": 9455,
+      "similarity": 0.944
+    }
+  ]
+}
