@@ -26,6 +26,19 @@ export const RESEARCHER_LABELS: Record<string, string> = {
   psychologist: "Psychologist (character friction)",
 };
 
+export const NODE_LABELS: Record<string, string> = {
+  research_editor: "Research editor",
+  weaver: "Weaver",
+  arcmaster: "Arcmaster",
+  loremaster: "Loremaster",
+  writer: "Writer",
+  grand_critic: "Grand Critic",
+  archivist: "Archivist",
+};
+
+/** "claude-opus-5-5" -> "opus-5-5" for compact labels. */
+export const shortModel = (id: string) => id.replace(/^claude-/, "");
+
 export function slug(s: string): string {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40);
 }

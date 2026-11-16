@@ -171,6 +171,8 @@ Your manual edits to questions and events are stored as overrides and always win
 - **Loremaster review**: how often the lore doc (or outline / arc plan) was regenerated and whether you approved it as written or edited it; ledger rows kept vs dropped, per kind, with rows you added and questions you answered.
 - **Prose review**: the Grand Critic's verdict and score for each draft, automatic revisions, your force rewrites, and whether you edited the approved prose.
 
+Each review panel has a model filter (*All models* by default, then every model that has made a call). A filtered panel only counts work that model produced: proposals from researchers that ran on it, a lore doc / outline / arc plan whose author ran on it, a ledger the Archivist wrote on it, and prose the **Writer** wrote on it (the critic's own model does not matter). Reviews are attributed through the run's `llm_call` events, so older runs filter too.
+
 Each run logs events to `runs/<id>/metrics.json` (`backend/metrics.py`); the view is computed from those files. Runs from before metrics existed are backfilled once from the checkpoint, `proposals.json` and the final ledger, and are tagged *partial*: their cost and decisions are there, but tokens, active time, regenerations and edits were never recorded. A dash means no data, not zero.
 
 ## Layout
@@ -196,5 +198,7 @@ Per-node model and effort live in `backend/config.py`. The writer uses `claude-f
 ```bash
 MODEL_WRITER=claude-opus-5-5 EFFORT_HISTORIAN=medium MAX_REVISIONS=2 .venv/bin/uvicorn backend.app:app
 ```
+
+Those are only defaults. Each run can pick its own models in the control deck: the new-run form has a dropdown beside every researcher and the research editor, and whenever the run is paused, a **Next:** row above Start / Resume picks the model for the agent(s) that run next (Writer and Grand Critic together at the outline gate of a chapter). The choices are saved on the run (`meta.json` and the checkpoint's `models`), so Retry and Regenerate reuse them. The dropdown options are `config.MODELS`.
 
 Checkpoints are in `data/checkpoints.sqlite`, one thread per run, so a paused run survives a server restart. The usage panel shows the API-equivalent cost the CLI reports for each node; on a subscription that is a measure of usage, not a bill. See [Metrics](#metrics) for totals across runs.

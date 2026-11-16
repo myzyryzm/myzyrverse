@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { api } from "../api";
 import type { AppConfig, NewRunPrefill, RunMeta, RunState, RunType, StoryEvent } from "../types";
-import { GATE_LABELS, RESEARCHER_LABELS, RUN_TYPE_LABELS, slug } from "../util";
+import { GATE_LABELS, NODE_LABELS, RESEARCHER_LABELS, RUN_TYPE_LABELS, shortModel, slug } from "../util";
 
 interface Props {
   config: AppConfig | null;
@@ -22,6 +22,21 @@ const DEFAULT_RESEARCHERS: Record<RunType, string[]> = {
   plan_arc: ["historian", "psychologist"],
   lore: ["antiquarian", "psychologist"],
 };
+
+/** Model picker for one agent. Always lists the current value, so a model set by a MODEL_<NODE>
+ *  override (not in the list) still shows. */
+function ModelSelect({ config, node, value, onChange, disabled }: {
+  config: AppConfig; node: string; value: string; onChange: (m: string) => void; disabled?: boolean;
+}) {
+  const options = config.available_models;
+  return (
+    <select className="small" value={value} disabled={disabled} onChange={(e) => onChange(e.target.value)}
+            aria-label={`Model for ${NODE_LABELS[node] ?? node}`} title={`Model for ${NODE_LABELS[node] ?? node}`}>
+      {value && !options.some((m) => m.id === value) && <option value={value}>{shortModel(value)}</option>}
+      {options.map((m) => <option key={m.id} value={m.id}>{m.label}</option>)}
+    </select>
+  );
+}
 
 export default function ControlDeck(p: Props) {
   const [creating, setCreating] = useState(false);
@@ -80,6 +95,9 @@ function NewRunForm({ config, runs, prefill, act, onDone }: Props & { onDone: (i
   const [researchers, setResearchers] = useState<string[]>(DEFAULT_RESEARCHERS[prefill?.type ?? "chapter"]);
   const [targetEvent, setTargetEvent] = useState(prefill?.target_event_id ?? "");
   const [events, setEvents] = useState<StoryEvent[]>([]);
+  const [models, setModels] = useState<Record<string, string>>({});
+  const modelFor = (node: string) => models[node] ?? config?.models[node] ?? "";
+  const setModel = (node: string) => (m: string) => setModels((prev) => ({ ...prev, [node]: m }));
 
   useEffect(() => {
     api.events().then(setEvents).catch(() => setEvents([]));
@@ -97,10 +115,14 @@ function NewRunForm({ config, runs, prefill, act, onDone }: Props & { onDone: (i
     setResearchers(DEFAULT_RESEARCHERS[t]);
   };
 
-  const submit = () =>
-    act(() => api.createRun({ id, type, title, brief, pov: type === "chapter" ? pov : "",
-                              researchers, target_event_id: type === "plan_arc" ? targetEvent : "" }),
-        (meta) => onDone((meta as RunMeta).id));
+  const submit = () => {
+    // Pin the research agents' models on the run; later steps are picked at each pause.
+    const nodes = researchers.length ? [...researchers, "research_editor"] : [];
+    const chosen = Object.fromEntries(nodes.map((n) => [n, modelFor(n)]).filter(([, m]) => m));
+    return act(() => api.createRun({ id, type, title, brief, pov: type === "chapter" ? pov : "", researchers,
+                                     target_event_id: type === "plan_arc" ? targetEvent : "", models: chosen }),
+               (meta) => onDone((meta as RunMeta).id));
+  };
 
   const briefHint = {
     chapter: "What should this chapter do? Who, where, what must happen, what you're unsure about.",
@@ -136,12 +158,25 @@ function NewRunForm({ config, runs, prefill, act, onDone }: Props & { onDone: (i
       <div className="checks">
         <span className="muted">Researchers (run in parallel; none skips research):</span>
         {(config?.researchers ?? Object.keys(RESEARCHER_LABELS)).map((r) => (
-          <label key={r}>
-            <input type="checkbox" checked={researchers.includes(r)}
-                   onChange={(e) => setResearchers(e.target.checked ? [...researchers, r] : researchers.filter((x) => x !== r))} />
-            {RESEARCHER_LABELS[r] ?? r}
-          </label>
+          <div key={r} className="agent-row">
+            <label>
+              <input type="checkbox" checked={researchers.includes(r)}
+                     onChange={(e) => setResearchers(e.target.checked ? [...researchers, r] : researchers.filter((x) => x !== r))} />
+              {RESEARCHER_LABELS[r] ?? r}
+            </label>
+            {config && <ModelSelect config={config} node={r} value={modelFor(r)} onChange={setModel(r)}
+                                    disabled={!researchers.includes(r)} />}
+          </div>
         ))}
+        {config && (
+          <div className="agent-row">
+            <span className={researchers.length ? "" : "muted"}>
+              Research editor <span className="muted small-text">(trims the proposals)</span>
+            </span>
+            <ModelSelect config={config} node="research_editor" value={modelFor("research_editor")}
+                         onChange={setModel("research_editor")} disabled={!researchers.length} />
+          </div>
+        )}
       </div>
       <div className="row">
         <button className="primary" disabled={!id || (type === "plan_arc" && !targetEvent)} onClick={submit}>Create</button>
@@ -157,6 +192,16 @@ function RunControls({ runState, act, getEdits, config, onSelect }: Props) {
   const gate = !s.running ? s.next[0] : undefined;
   const [notes, setNotes] = useState("");
   const logRef = useRef<HTMLDivElement>(null);
+
+  // Models for the agents that run after Start/Resume. Preselected from the run's earlier choice,
+  // then the configured default; reset whenever the run moves to another pause.
+  const nextNodes = s.running ? [] : s.next_nodes ?? [];
+  const [picked, setPicked] = useState<Record<string, string>>({});
+  const pauseKey = `${id}:${s.next[0] ?? (s.started ? "" : "start")}`;
+  useEffect(() => setPicked({}), [pauseKey]);
+  const runModels = s.values.models ?? s.meta.models ?? {};
+  const modelFor = (n: string) => picked[n] ?? runModels[n] ?? config?.models[n] ?? "";
+  const nextModels = Object.fromEntries(nextNodes.map((n) => [n, modelFor(n)]).filter(([, m]) => m));
 
   useEffect(() => {
     logRef.current?.scrollTo({ top: logRef.current.scrollHeight });
@@ -187,10 +232,23 @@ function RunControls({ runState, act, getEdits, config, onSelect }: Props) {
 
       {s.error && <div className="error-box">{s.error}</div>}
 
+      {config && nextNodes.length > 0 && (!s.started || gate) && (
+        <div className="next-models">
+          <span className="muted small-text">Next:</span>
+          {nextNodes.map((n) => (
+            <label key={n}>
+              {NODE_LABELS[n] ?? n}
+              <ModelSelect config={config} node={n} value={modelFor(n)}
+                           onChange={(m) => setPicked((prev) => ({ ...prev, [n]: m }))} />
+            </label>
+          ))}
+        </div>
+      )}
+
       <div className="actions">
-        {!s.started && <button className="primary big" onClick={() => act(() => api.start(id))}>Start</button>}
+        {!s.started && <button className="primary big" onClick={() => act(() => api.start(id, nextModels))}>Start</button>}
         {gate && (
-          <button className="primary big" onClick={() => act(() => api.resume(id, getEdits()))}>{resumeLabel}</button>
+          <button className="primary big" onClick={() => act(() => api.resume(id, getEdits(), nextModels))}>{resumeLabel}</button>
         )}
         {s.error && !s.running && <button className="big" onClick={() => act(() => api.retry(id))}>Retry failed step</button>}
         {s.running && <button className="ghost" onClick={() => act(() => api.cancel(id))}>Cancel</button>}

@@ -193,7 +193,7 @@ The coup forces her to choose between them.
 
 **Pressure points:**
 - The guild's courteous neutrality, which he reads as a snub to his distant royal blood.
-- Not knowing how much the guild knows about Robert's line.
+- Not knowing how much the guild knows about Seti II's line.
 
 **Worst act, and the justification:** if the author wants it, he tries to place a royal overseer inside the guild, or to buy its loyalty. "What served my predecessor serves me." That attempt hands the guild its motive to stay silent before the coup.
 

@@ -241,3 +241,76 @@ def test_editor_runs_when_there_are_many_proposals(client):
     assert s["next"] == ["human_gate_research"]
     assert [u["node"] for u in s["usage"]].count("research_editor") == 1
     assert len(s["values"]["research_proposals"]) == 4  # the fake editor keeps everything
+
+
+# ---------------- per-run models ----------------
+
+SONNET, HAIKU = "claude-sonnet-5-5", "claude-haiku-5-5"
+
+
+def _calls(run_id):
+    from backend import metrics
+    return [e for e in metrics.load(run_id)["events"] if e["kind"] == "llm_call"]
+
+
+def test_models_are_validated_and_saved(client):
+    ok = client.post("/api/runs", json={"id": "lore-v", "type": "lore", "models": {"loremaster": SONNET}})
+    assert ok.status_code == 200 and ok.json()["models"] == {"loremaster": SONNET}
+    r = client.post("/api/runs", json={"id": "lore-x", "type": "lore", "models": {"loremaster": "gpt-4"}})
+    assert r.status_code == 400 and "unknown models" in r.text
+    r = client.post("/api/runs", json={"id": "lore-y", "type": "lore", "models": {"poet": SONNET}})
+    assert r.status_code == 400 and "unknown nodes" in r.text
+    cfg = client.get("/api/config").json()
+    assert {m["id"] for m in cfg["available_models"]} >= {SONNET, HAIKU}
+
+
+def test_chosen_models_reach_the_agents(client):
+    client.post("/api/runs", json={"id": "lore-mm", "type": "lore", "researchers": ["historian", "psychologist"],
+                                   "models": {"historian": SONNET, "research_editor": HAIKU}})
+    client.post("/api/runs/lore-mm/start")
+    s = _wait(client, "lore-mm")
+    assert s["next"] == ["human_gate_research"] and s["next_nodes"] == ["loremaster"]
+    by_node = {e["node"]: e["model"] for e in _calls("lore-mm")}
+    assert by_node["historian"] == SONNET and by_node["research_editor"] == HAIKU
+    assert by_node["psychologist"] == app_module.config.NODE_SETTINGS["psychologist"]["model"]
+    assert {u["node"]: u["model"] for u in s["usage"]}["historian"] == SONNET
+
+    bad = client.post("/api/runs/lore-mm/resume", json={"edits": {"research_proposals": _decide_all(s)},
+                                                        "models": {"loremaster": "nope"}})
+    assert bad.status_code == 400
+    client.post("/api/runs/lore-mm/resume", json={"edits": {"research_proposals": _decide_all(s)},
+                                                  "models": {"loremaster": HAIKU}})
+    s = _wait(client, "lore-mm")
+    assert _calls("lore-mm")[-1] == {**_calls("lore-mm")[-1], "node": "loremaster", "model": HAIKU}
+    assert s["values"]["models"] == {"historian": SONNET, "research_editor": HAIKU, "loremaster": HAIKU}
+    assert client.get("/api/runs/lore-mm").json()["models"]["loremaster"] == HAIKU
+
+
+def test_start_without_researchers_takes_models(client):
+    client.post("/api/runs", json={"id": "lore-nr", "type": "lore", "researchers": []})
+    assert client.get("/api/runs/lore-nr/state").json()["next_nodes"] == ["loremaster"]
+    client.post("/api/runs/lore-nr/start", json={"models": {"loremaster": SONNET}})
+    _wait(client, "lore-nr")
+    assert _calls("lore-nr")[0]["node"] == "loremaster" and _calls("lore-nr")[0]["model"] == SONNET
+
+
+@pytest.mark.parametrize("run_type", ["chapter", "research", "plan_arc", "lore"])
+def test_next_nodes_match_what_runs(client, run_type):
+    """At every gate, next_nodes names exactly the LLM nodes that run before the next pause."""
+    body = {"id": f"nn-{run_type}".replace("_", "-"), "type": run_type, "researchers": ["psychologist"]}
+    if run_type == "plan_arc":
+        body["target_event_id"] = client.post("/api/lore/events", json={"title": "The coup"}).json()["id"]
+    rid = body["id"]
+    client.post("/api/runs", json=body)
+    assert client.get(f"/api/runs/{rid}/state").json()["next_nodes"] == []  # researchers chosen at create
+    client.post(f"/api/runs/{rid}/start")
+    s = _wait(client, rid)
+    gates = 0
+    while s["next"]:
+        expected, before = s["next_nodes"], len(_calls(rid))
+        edits = {"research_proposals": _decide_all(s, "accepted")} if s["next"] == ["human_gate_research"] else {}
+        client.post(f"/api/runs/{rid}/resume", json={"edits": edits})
+        s = _wait(client, rid)
+        assert {e["node"] for e in _calls(rid)[before:]} == set(expected), (run_type, gates)
+        gates += 1
+    assert s["values"]["review_status"] == "COMMITTED" and gates >= 2

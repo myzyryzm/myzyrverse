@@ -29,12 +29,13 @@ export const api = {
   runs: () => req<RunMeta[]>("GET", "/runs"),
   createRun: (body: {
     id: string; type: string; title: string; brief: string; pov: string;
-    researchers: string[]; target_event_id: string;
+    researchers: string[]; target_event_id: string; models: Record<string, string>;
   }) => req<RunMeta>("POST", "/runs", body),
   deleteRun: (id: string) => req("DELETE", `/runs/${enc(id)}`),
   runState: (id: string) => req<RunState>("GET", `/runs/${enc(id)}/state`),
-  start: (id: string) => req("POST", `/runs/${enc(id)}/start`),
-  resume: (id: string, edits: Record<string, unknown>) => req("POST", `/runs/${enc(id)}/resume`, { edits }),
+  start: (id: string, models: Record<string, string> = {}) => req("POST", `/runs/${enc(id)}/start`, { models }),
+  resume: (id: string, edits: Record<string, unknown>, models: Record<string, string> = {}) =>
+    req("POST", `/runs/${enc(id)}/resume`, { edits, models }),
   retry: (id: string) => req("POST", `/runs/${enc(id)}/retry`),
   cancel: (id: string) => req("POST", `/runs/${enc(id)}/cancel`),
   regenerate: (id: string, notes: string) => req("POST", `/runs/${enc(id)}/regenerate`, { notes }),

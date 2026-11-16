@@ -146,10 +146,10 @@ async def call(node: str, state: RunState, prompt: str, *, sys_prompt: str,
         config.SOURCES_DIR.mkdir(parents=True, exist_ok=True)
         kwargs["cwd"] = config.SOURCES_DIR
     result = await run_agent(prompt, node=node, system_prompt=sys_prompt, run_id=state.get("run_id"),
-                             output_schema=output_schema, **kwargs)
-    metrics.record_call(state.get("run_id"), node, config.NODE_SETTINGS[node]["model"], result)
+                             output_schema=output_schema, model=(state.get("models") or {}).get(node), **kwargs)
+    metrics.record_call(state.get("run_id"), node, result.model, result)
     return result
 
 
 def usage(node: str, result: AgentResult) -> list[dict]:
-    return [result.usage_record(node, config.NODE_SETTINGS[node]["model"])]
+    return [result.usage_record(node, result.model or config.NODE_SETTINGS[node]["model"])]

@@ -8,6 +8,7 @@ export interface RunMeta {
   pov: string;
   researchers: string[];
   target_event_id: string;
+  models?: Record<string, string>;
   characters_present: string[];
   order: number | null;
   status: RunStatus;
@@ -72,6 +73,7 @@ export interface ArcPlan {
 
 export interface RunValues {
   run_type?: RunType;
+  models?: Record<string, string>;
   review_status?: string;
   research_notes?: string;
   chapter_outline?: string;
@@ -145,6 +147,8 @@ export interface RunState {
   started: boolean;
   values: RunValues;
   next: string[];
+  /** LLM nodes that run after Start/Resume, until the next pause; empty while running. */
+  next_nodes: string[];
   running: boolean;
   error: string | null;
   log: LogLine[];
@@ -194,7 +198,13 @@ export interface AppConfig {
   fake_llm: boolean;
   researchers: string[];
   models: Record<string, string>;
+  available_models: ModelOption[];
   max_revisions: number;
+}
+
+export interface ModelOption {
+  id: string;
+  label: string;
 }
 
 export interface NewRunPrefill {
@@ -293,7 +303,11 @@ export interface MetricsTotals {
   ledger: LedgerReview & { runs: number; regenerations: number };
 }
 
+export type ReviewTotals = Pick<MetricsTotals, "research" | "docs" | "prose" | "ledger">;
+
 export interface MetricsView {
   totals: MetricsTotals;
+  /** The review sections again, counting only work each model produced. */
+  by_model: Record<string, ReviewTotals>;
   runs: RunMetrics[];
 }

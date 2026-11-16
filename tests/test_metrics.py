@@ -137,3 +137,64 @@ def test_outline_review_compares_arc_plans_as_markdown():
         {"title": "B", "description": "b", "characters": ["Tiye"], "follows_from": ""}]}
     edited = metrics.gate_review("human_gate_outline", "plan_arc", {"arc_plan": plan}, {"arc_plan": moved})
     assert edited["edited"] is True and edited["chars_after"] > edited["chars_before"]
+
+
+SONNET = "claude-sonnet-5-5"
+
+
+def test_review_metrics_split_by_model(client):
+    opus = app_module.config.NODE_SETTINGS["psychologist"]["model"]
+    assert opus != SONNET
+    client.post("/api/runs", json={"id": "lore-bm", "type": "lore", "researchers": ["historian", "psychologist"],
+                                   "models": {"historian": SONNET, "loremaster": SONNET}})
+    client.post("/api/runs/lore-bm/start")
+    s = _wait(client, "lore-bm")
+    proposals = s["values"]["research_proposals"]
+    for p in proposals:
+        p["decision"] = "accepted" if p["researcher"] == "historian" else "rejected"
+    n_hist = sum(p["researcher"] == "historian" for p in proposals)
+    n_psy = len(proposals) - n_hist
+    assert n_hist and n_psy
+    client.post("/api/runs/lore-bm/resume", json={"edits": {"research_proposals": proposals}})
+    _wait(client, "lore-bm")
+    client.post("/api/runs/lore-bm/resume", json={"edits": {}})  # lore doc as written
+    _wait(client, "lore-bm")
+    client.post("/api/runs/lore-bm/resume", json={"edits": {}})  # ledger as proposed
+    _wait(client, "lore-bm")
+
+    view = client.get("/api/metrics").json()
+    assert set(view["by_model"]) == {opus, SONNET}
+    son, op = view["by_model"][SONNET], view["by_model"][opus]
+    assert (son["research"]["accepted"], son["research"]["rejected"]) == (n_hist, 0)
+    assert list(son["research"]["by_researcher"]) == ["historian"]
+    assert sum(c["accepted"] for c in son["research"]["by_kind"].values()) == n_hist
+    assert (op["research"]["accepted"], op["research"]["rejected"]) == (0, n_psy)
+    assert [d["doc"] for d in son["docs"]] == ["lore_doc"] and op["docs"] == []
+    assert son["ledger"]["runs"] == 0 and op["ledger"]["runs"] == 1
+    assert view["totals"]["research"]["total"] == n_hist + n_psy  # "All" is unchanged
+
+    # A review recorded before the per-researcher breakdown is recounted from proposals.json.
+    data = metrics.load("lore-bm")
+    for e in data["events"]:
+        e.pop("by_researcher_kind", None)
+        e.pop("notes_by_researcher", None)
+    metrics._save("lore-bm", data)
+    son = client.get("/api/metrics").json()["by_model"][SONNET]
+    assert sum(c["accepted"] for c in son["research"]["by_kind"].values()) == n_hist
+
+
+def test_prose_metrics_follow_the_writer_model(client):
+    client.post("/api/runs", json={"id": "ch-bm", "type": "chapter", "title": "C", "brief": "b",
+                                   "researchers": [], "models": {"writer": SONNET}})
+    client.post("/api/runs/ch-bm/start")
+    _wait(client, "ch-bm")
+    client.post("/api/runs/ch-bm/resume", json={"edits": {}})  # outline
+    _wait(client, "ch-bm")
+    client.post("/api/runs/ch-bm/resume", json={"edits": {}})  # prose
+    _wait(client, "ch-bm")
+
+    meta = runs.read_meta("ch-bm")
+    assert metrics.summarize("ch-bm", meta, model=SONNET)["prose"]["approved"] is True
+    critic_model = app_module.config.NODE_SETTINGS["grand_critic"]["model"]
+    assert metrics.summarize("ch-bm", meta, model=critic_model)["prose"] is None
+    assert metrics.summarize("ch-bm", meta, model=critic_model)["doc"]["doc"] == "chapter_outline"  # weaver

@@ -179,6 +179,10 @@ legend { font-family: var(--serif); font-weight: 700; font-size: 15px; padding: 
 .checks { display: flex; flex-direction: column; gap: 3px; font-size: 13px; }
 .checks label { display: flex; gap: 6px; align-items: center; }
 .checks input { width: auto; }
+.checks .agent-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.checks .agent-row > :first-child { min-width: 0; }
+.next-models { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 13px; }
+.next-models label { display: flex; align-items: center; gap: 6px; }
 
 .run-head { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
 .run-title { font: 700 19px/1.2 var(--serif); }
@@ -393,7 +397,7 @@ sup.ref a:hover { text-decoration: underline; }
 .mpanel { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: var(--bg); display: flex; flex-direction: column; gap: 8px; min-width: 0; overflow-x: auto; }
 .mpanel h3 { margin: 0; font: 700 18px/1.2 var(--serif); }
 .mpanel-head { display: flex; align-items: center; gap: 8px; }
-.mpanel-head .seg-toggle { margin-left: auto; }
+.mpanel-head .seg-toggle, .mpanel-head select { margin-left: auto; }
 .seg-toggle { display: inline-flex; }
 .seg-toggle button { padding: 2px 10px; font-size: 12px; border-radius: 0; }
 .seg-toggle button:first-child { border-radius: 6px 0 0 6px; }

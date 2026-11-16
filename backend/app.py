@@ -25,6 +25,7 @@ from pydantic import BaseModel, Field
 
 from . import config, logbus, lore, metrics, runs
 from .graph import build_graph, prune_stale_channels
+from .nodes.maestro import llm_nodes_after
 from .state import (
     FINAL_APPROVED, OUTLINE_APPROVED, RESEARCH_APPROVED, RESEARCHING,
 )
@@ -124,20 +125,37 @@ class NewRun(BaseModel):
     pov: str = ""
     researchers: list[str] = Field(default_factory=list)
     target_event_id: str = ""
+    models: dict[str, str] = Field(default_factory=dict)  # node -> model id
+
+
+class Start(BaseModel):
+    models: dict[str, str] = Field(default_factory=dict)
 
 
 class Resume(BaseModel):
     edits: dict = Field(default_factory=dict)
+    models: dict[str, str] = Field(default_factory=dict)  # for the nodes that run next
 
 
 class Regenerate(BaseModel):
     notes: str = ""
 
 
+def _check_models(models: dict[str, str]) -> None:
+    bad_nodes = sorted(set(models) - set(config.NODE_SETTINGS))
+    if bad_nodes:
+        raise HTTPException(400, f"unknown nodes {bad_nodes}")
+    allowed = config.allowed_models()
+    bad = sorted({m for m in models.values() if m not in allowed})
+    if bad:
+        raise HTTPException(400, f"unknown models {bad}")
+
+
 @app.get("/api/config")
 def get_config():
     return {"fake_llm": config.FAKE_LLM, "researchers": list(config.RESEARCHERS),
             "models": {k: v["model"] for k, v in config.NODE_SETTINGS.items()},
+            "available_models": config.MODELS,
             "max_revisions": config.MAX_REVISIONS}
 
 
@@ -153,9 +171,11 @@ def create_run(body: NewRun):
         raise HTTPException(400, f"unknown researchers {bad}")
     if body.type == "plan_arc" and not body.target_event_id:
         raise HTTPException(400, "plan_arc runs need a target_event_id")
+    _check_models(body.models)
     try:
         meta = runs.create_run(run_id=body.id, run_type=body.type, title=body.title, brief=body.brief,
-                               pov=body.pov, researchers=body.researchers, target_event_id=body.target_event_id)
+                               pov=body.pov, researchers=body.researchers, target_event_id=body.target_event_id,
+                               models=body.models)
     except (ValueError, FileExistsError) as e:
         raise HTTPException(400, str(e))
     metrics.init(body.id)
@@ -191,11 +211,18 @@ async def run_state(run_id: str):
     values = dict(st.values or {})
     values.pop("canon", None)
     usage = values.pop("usage", []) or []
+    next_nodes: list[str] = []
+    if not _running(run_id):
+        if st.next:
+            next_nodes = llm_nodes_after(st.next[0], meta["type"])
+        elif not st.values and not meta.get("researchers"):
+            next_nodes = llm_nodes_after("start", meta["type"])
     return {
         "meta": meta,
         "started": bool(st.values),
         "values": values,
         "next": list(st.next or []),
+        "next_nodes": next_nodes,
         "running": _running(run_id),
         "error": ERRORS.get(run_id),
         "log": logbus.tail(run_id),
@@ -208,20 +235,28 @@ async def run_state(run_id: str):
 async def get_metrics():
     """Cost, time, tokens and review stats per run and across all runs."""
     summaries = []
-    for meta in runs.list_runs():
+    metas = runs.list_runs()
+    for meta in metas:
         if not _running(meta["id"]):  # a running run backfills itself on launch
             await _backfill_metrics(meta["id"])
         summaries.append({**metrics.summarize(meta["id"], meta), "running": _running(meta["id"])})
     summaries.sort(key=lambda s: s.get("created_at") or "", reverse=True)
-    return {"totals": metrics.summarize_all(summaries), "runs": summaries}
+    totals = metrics.summarize_all(summaries)
+    used = [m["model"] for m in totals["models"] if m["model"] != "?"]
+    return {"totals": totals, "by_model": metrics.by_model(metas, used), "runs": summaries}
 
 
 @app.post("/api/runs/{run_id}/start")
-async def start_run(run_id: str):
+async def start_run(run_id: str, body: Start | None = None):
     meta = _require_run(run_id)
     st = await _graph().aget_state(_cfg(run_id))
     if st.values:
         raise HTTPException(400, "run already started; use resume or retry")
+    chosen = body.models if body else {}
+    _check_models(chosen)
+    models = {**(meta.get("models") or {}), **chosen}
+    if chosen:
+        runs.update_meta(run_id, models=models)
     initial = {
         "run_id": run_id,
         "run_type": meta["type"],
@@ -230,6 +265,7 @@ async def start_run(run_id: str):
         "pov": meta.get("pov", ""),
         "researchers": meta.get("researchers", []),
         "target_event_id": meta.get("target_event_id", ""),
+        "models": models,
         "canon": lore.build_canon(run_id),
         "author_research_notes": "",
         "revision_count": 0,
@@ -250,6 +286,7 @@ async def resume_run(run_id: str, body: Resume):
     bad = set(body.edits) - EDITABLE
     if bad:
         raise HTTPException(400, f"fields not editable: {sorted(bad)}")
+    _check_models(body.models)
     if st.next[0] == "human_gate_research":
         proposals = body.edits.get("research_proposals", st.values.get("research_proposals")) or []
         undecided = sum(p.get("decision", "pending") == "pending" for p in proposals)
@@ -257,13 +294,18 @@ async def resume_run(run_id: str, body: Resume):
             raise HTTPException(400, f"{undecided} proposal(s) still need a decision: accept, maybe or reject")
     metrics.record_gate_review(run_id, st.next[0], st.values.get("run_type", ""), dict(st.values), body.edits)
     patch = {**body.edits, "canon": lore.build_canon(run_id)}
+    if body.models:
+        models = {**(st.values.get("models") or {}), **body.models}
+        patch["models"] = models
+        runs.update_meta(run_id, models=models)
     if "brief" in body.edits:
         runs.write_artifact(run_id, "brief", body.edits["brief"])
     meta_fields = {k: body.edits[k] for k in ("pov", "title", "characters_present") if k in body.edits}
     if meta_fields:
         runs.update_meta(run_id, **meta_fields)
     await _graph().aupdate_state(_cfg(run_id), patch)
-    logbus.log(run_id, f"resume from {st.next[0]}" + (f" with edits to {', '.join(sorted(body.edits))}" if body.edits else ""))
+    logbus.log(run_id, f"resume from {st.next[0]}" + (f" with edits to {', '.join(sorted(body.edits))}" if body.edits else "")
+               + (f"; models {', '.join(f'{n}={m}' for n, m in sorted(body.models.items()))}" if body.models else ""))
     _launch(run_id, None)
     return {"ok": True}
 

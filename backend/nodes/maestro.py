@@ -90,6 +90,21 @@ def decide(state: RunState) -> dict:
     return {"next_steps": "human_gate_final", "review_status": PENDING_FINAL_REVIEW}
 
 
+# The LLM nodes that run after resuming past a gate, until the next pause. Mirrors decide();
+# "start" is an unstarted run with no researchers ticked (research is skipped).
+_AFTER: dict[str, dict[str, list[str]]] = {
+    "human_gate_research": {"chapter": ["weaver"], "research": ["archivist"],
+                            "plan_arc": ["arcmaster"], "lore": ["loremaster"]},
+    "human_gate_outline": {"chapter": ["writer", "grand_critic"], "plan_arc": ["archivist"], "lore": ["archivist"]},
+    "human_gate_final": {"chapter": ["archivist"]},
+}
+_AFTER["start"] = _AFTER["human_gate_research"]
+
+
+def llm_nodes_after(gate: str, run_type: str) -> list[str]:
+    return list(_AFTER.get(gate, {}).get(run_type, []))
+
+
 async def maestro(state: RunState) -> dict:
     update = decide(state)
     nxt = update["next_steps"]

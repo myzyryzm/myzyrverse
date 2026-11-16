@@ -1,7 +1,7 @@
 import { Fragment, useCallback, useEffect, useState } from "react";
 import { api } from "../api";
-import type { CallRollup, DecisionCounts, KeepCounts, MetricsView, RunMetrics } from "../types";
-import { RUN_TYPE_LABELS, errMsg } from "../util";
+import type { CallRollup, DecisionCounts, KeepCounts, MetricsView, ReviewTotals, RunMetrics } from "../types";
+import { RUN_TYPE_LABELS, errMsg, shortModel } from "../util";
 
 interface Props {
   onClose: () => void;
@@ -123,6 +123,22 @@ function KeepRow({ name, c }: { name: string; c: KeepCounts }) {
   );
 }
 
+/** Per-panel filter: "all", or only the work produced by one model. */
+function ModelFilter({ models, value, onChange, label }: {
+  models: string[]; value: string; onChange: (m: string) => void; label: string;
+}) {
+  if (!models.length) return null;
+  return (
+    <select className="small" value={value} onChange={(e) => onChange(e.target.value)}
+            aria-label={`Filter ${label} by model`} title={`Only count work produced by this model`}>
+      <option value="all">All models</option>
+      {models.map((m) => <option key={m} value={m}>{shortModel(m)}</option>)}
+    </select>
+  );
+}
+
+type Panel = "research" | "lore" | "prose";
+
 function UsageTable({ rows, keyLabel }: { rows: (CallRollup & { label: string; sub?: string })[]; keyLabel: string }) {
   return (
     <table className="mtable">
@@ -234,6 +250,8 @@ export default function Metrics({ onClose, notify }: Props) {
   const [data, setData] = useState<MetricsView | null>(null);
   const [open, setOpen] = useState<string | null>(null);
   const [by, setBy] = useState<"node" | "model">("node");
+  const [filter, setFilter] = useState<Record<Panel, string>>({ research: "all", lore: "all", prose: "all" });
+  const setPanel = (p: Panel) => (m: string) => setFilter((f) => ({ ...f, [p]: m }));
 
   const load = useCallback(() => {
     api.metrics().then(setData).catch((e) => notify(errMsg(e)));
@@ -257,6 +275,13 @@ export default function Metrics({ onClose, notify }: Props) {
   }, [onClose]);
 
   const t = data?.totals;
+  const models = (t?.models ?? []).map((m) => m.model).filter((m) => m !== "?");
+  const view = (p: Panel): ReviewTotals | undefined =>
+    filter[p] !== "all" && data?.by_model[filter[p]] ? data.by_model[filter[p]] : t;
+  const research = view("research")?.research;
+  const lore = view("lore");
+  const prose = view("prose")?.prose;
+  const forModel = (p: Panel) => (filter[p] === "all" ? "" : ` for ${shortModel(filter[p])}`);
   return (
     <div className="modal-overlay" onMouseDown={(e) => { if (e.target === e.currentTarget) onClose(); }}>
       <div className="modal" role="dialog" aria-modal="true" aria-label="Metrics">
@@ -267,7 +292,7 @@ export default function Metrics({ onClose, notify }: Props) {
           <button className="ghost" onClick={onClose} aria-label="Close">✕</button>
         </div>
 
-        {!t || !data ? <p className="hint metrics-body">Loading…</p> : (
+        {!t || !data || !research || !lore || !prose ? <p className="hint metrics-body">Loading…</p> : (
           <div className="metrics-body">
             <div className="stats">
               <Stat label="Cost" value={usd(t.usage.cost_usd)} sub={`${t.runs} runs · ${num(t.usage.calls)} agent calls`} />
@@ -287,8 +312,11 @@ export default function Metrics({ onClose, notify }: Props) {
 
             <div className="metrics-grid">
               <section className="mpanel">
-                <h3>Research review</h3>
-                {t.research.total === 0 ? <p className="hint">No research reviews yet.</p> : (
+                <div className="mpanel-head">
+                  <h3>Research review</h3>
+                  <ModelFilter models={models} value={filter.research} onChange={setPanel("research")} label="research review" />
+                </div>
+                {research.total === 0 ? <p className="hint">No research reviews{forModel("research")} yet.</p> : (
                   <>
                     <Legend items={[["accepted", 1], ["maybe", 2], ["rejected", 3]]} />
                     <table className="mtable">
@@ -297,37 +325,41 @@ export default function Metrics({ onClose, notify }: Props) {
                           <th className="num">Rej.</th><th className="num">Rate</th></tr>
                       </thead>
                       <tbody>
-                        <DecisionRow name="All proposals" c={t.research} />
-                        {Object.entries(t.research.by_researcher).sort().map(([k, c]) => <DecisionRow key={k} name={k} c={c} />)}
+                        <DecisionRow name="All proposals" c={research} />
+                        {Object.entries(research.by_researcher).sort().map(([k, c]) => <DecisionRow key={k} name={k} c={c} />)}
                       </tbody>
                     </table>
-                    {Object.keys(t.research.by_kind).length > 0 && (
+                    {Object.keys(research.by_kind).length > 0 && (
                       <table className="mtable">
                         <thead><tr><th>By kind</th><th /><th className="num">Acc.</th><th className="num">Maybe</th>
                           <th className="num">Rej.</th><th className="num">Rate</th></tr></thead>
                         <tbody>
-                          {Object.entries(t.research.by_kind).sort().map(([k, c]) => <DecisionRow key={k} name={k} c={c} />)}
+                          {Object.entries(research.by_kind).sort().map(([k, c]) => <DecisionRow key={k} name={k} c={c} />)}
                         </tbody>
                       </table>
                     )}
                     <p className="small-text muted">
-                      {t.research.total} proposals over {t.research.runs} reviews · {t.research.accepted_with_notes} accepted
-                      with notes · {t.research.cut_by_editor} cut by the editor · {t.research.regenerations} regenerations
+                      {research.total} proposals over {research.runs} reviews · {research.accepted_with_notes} accepted
+                      with notes · {filter.research === "all" && `${research.cut_by_editor} cut by the editor · `}
+                      {research.regenerations} regenerations
                     </p>
                   </>
                 )}
               </section>
 
               <section className="mpanel">
-                <h3>Loremaster review</h3>
-                {t.docs.length === 0 && t.ledger.runs === 0 ? <p className="hint">No synthesis or ledger reviews yet.</p> : (
+                <div className="mpanel-head">
+                  <h3>Loremaster review</h3>
+                  <ModelFilter models={models} value={filter.lore} onChange={setPanel("lore")} label="loremaster review" />
+                </div>
+                {lore.docs.length === 0 && lore.ledger.runs === 0 ? <p className="hint">No synthesis or ledger reviews{forModel("lore")} yet.</p> : (
                   <>
-                    {t.docs.length > 0 && (
+                    {lore.docs.length > 0 && (
                       <table className="mtable">
                         <thead><tr><th>Document</th><th className="num">Runs</th><th className="num">Regenerated</th>
                           <th className="num">Edited by hand</th></tr></thead>
                         <tbody>
-                          {t.docs.map((d) => (
+                          {lore.docs.map((d) => (
                             <tr key={d.doc}>
                               <td>{DOC_LABELS[d.doc] ?? d.doc}</td>
                               <td className="num">{d.runs}</td>
@@ -338,20 +370,20 @@ export default function Metrics({ onClose, notify }: Props) {
                         </tbody>
                       </table>
                     )}
-                    {t.ledger.runs > 0 && (
+                    {lore.ledger.runs > 0 && (
                       <>
                         <Legend items={[["kept", 1], ["dropped", 3]]} />
                         <table className="mtable">
                           <thead><tr><th>Ledger rows</th><th /><th className="num">Kept</th><th className="num">Dropped</th>
                             <th className="num">Rate</th></tr></thead>
                           <tbody>
-                            <KeepRow name="All rows" c={t.ledger} />
-                            {Object.entries(t.ledger.by_kind).sort().map(([k, c]) => <KeepRow key={k} name={KIND_LABELS[k] ?? k} c={c} />)}
+                            <KeepRow name="All rows" c={lore.ledger} />
+                            {Object.entries(lore.ledger.by_kind).sort().map(([k, c]) => <KeepRow key={k} name={KIND_LABELS[k] ?? k} c={c} />)}
                           </tbody>
                         </table>
                         <p className="small-text muted">
-                          {t.ledger.runs} ledger reviews · {t.ledger.added_by_user} rows added by you ·{" "}
-                          {t.ledger.answered} questions answered · {t.ledger.regenerations} regenerations
+                          {lore.ledger.runs} ledger reviews · {lore.ledger.added_by_user} rows added by you ·{" "}
+                          {lore.ledger.answered} questions answered · {lore.ledger.regenerations} regenerations
                         </p>
                       </>
                     )}
@@ -360,19 +392,22 @@ export default function Metrics({ onClose, notify }: Props) {
               </section>
 
               <section className="mpanel">
-                <h3>Prose review</h3>
-                {t.prose.runs === 0 ? <p className="hint">No chapter has reached the critic yet.</p> : (
+                <div className="mpanel-head">
+                  <h3>Prose review</h3>
+                  <ModelFilter models={models} value={filter.prose} onChange={setPanel("prose")} label="prose review (writer's model)" />
+                </div>
+                {prose.runs === 0 ? <p className="hint">No chapter{forModel("prose") && ` written${forModel("prose")}`} has reached the critic yet.</p> : (
                   <>
                     <Legend items={[["passed", 1], ["failed", 3]]} />
-                    <Split label="Critic verdicts" parts={[{ name: "passed", n: t.prose.passed, step: 1 },
-                                                           { name: "failed", n: t.prose.failed, step: 3 }]} />
+                    <Split label="Critic verdicts" parts={[{ name: "passed", n: prose.passed, step: 1 },
+                                                           { name: "failed", n: prose.failed, step: 3 }]} />
                     <dl className="kv">
-                      <dt>Critic pass rate</dt><dd>{pct(t.prose.passed, t.prose.critic_rounds)} of {t.prose.critic_rounds} rounds</dd>
-                      <dt>Average critic score</dt><dd>{t.prose.avg_score == null ? DASH : `${t.prose.avg_score}/10`}</dd>
-                      <dt>Automatic revisions</dt><dd>{t.prose.failed}</dd>
-                      <dt>Your force rewrites</dt><dd>{t.prose.force_rewrites}</dd>
-                      <dt>Approved</dt><dd>{t.prose.approved} of {t.prose.runs} chapters</dd>
-                      <dt>Edited by hand</dt><dd>{t.prose.edited} of {t.prose.approved} ({pct(t.prose.edited, t.prose.approved)})</dd>
+                      <dt>Critic pass rate</dt><dd>{pct(prose.passed, prose.critic_rounds)} of {prose.critic_rounds} rounds</dd>
+                      <dt>Average critic score</dt><dd>{prose.avg_score == null ? DASH : `${prose.avg_score}/10`}</dd>
+                      <dt>Automatic revisions</dt><dd>{prose.failed}</dd>
+                      <dt>Your force rewrites</dt><dd>{prose.force_rewrites}</dd>
+                      <dt>Approved</dt><dd>{prose.approved} of {prose.runs} chapters</dd>
+                      <dt>Edited by hand</dt><dd>{prose.edited} of {prose.approved} ({pct(prose.edited, prose.approved)})</dd>
                     </dl>
                   </>
                 )}

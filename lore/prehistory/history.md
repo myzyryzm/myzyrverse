@@ -13,10 +13,10 @@
 - Two grandsons of Ramesses II fought over the throne: the elder, **Seti II**, and the younger, **Amenmesse**.
 - Seti II died. His son **Siptah** took up the claim as rival pharaoh and killed his uncle Amenmesse.
 - Siptah's wife was **Twosret**, a Hittite princess, sister of **Šuppiluliuma II**, the Hittite king at the time. The marriage was the Hittites' last entanglement in Egyptian affairs before their own fall.
-- **Amenmesse's top general** then defeated Siptah and avenged his master. **Siptah died** in that defeat.
+- **Setnakhte**, Amenmesse's top general, then defeated Siptah and avenged his master. **Siptah died** in that defeat.
   - He was not a direct descendant of Ramesses II, but had some royal blood: "a second son of a second son of a third daughter."
   - He took the throne around 1185 and died in battle while taking it, or after a very short reign.
-  - His son is **Ramesses III**. The historical parallel is Setnakhte, founder of the 20th Dynasty.
+  - His son is **Ramesses III**. As in history, Setnakhte founds the 20th Dynasty.
 - The war badly weakened the New Kingdom.
 - Twosret was already pregnant when Siptah died. Their child was born in secret, and nobody knows about it (characters.md, "The hidden heir").
 

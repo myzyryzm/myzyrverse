@@ -66,3 +66,16 @@ NODE_SETTINGS: dict[str, dict] = {
 for _name, _s in NODE_SETTINGS.items():
     _s["model"] = os.environ.get(f"MODEL_{_name.upper()}", _s["model"])
     _s["effort"] = os.environ.get(f"EFFORT_{_name.upper()}", _s["effort"])
+
+# Models a run may pick per node (the control deck's dropdowns). NODE_SETTINGS stays the default.
+MODELS: list[dict] = [
+    {"id": OPUS, "label": "Opus 5.5"},
+    {"id": FABLE, "label": "Fable 5.1"},
+    {"id": "claude-sonnet-5-5", "label": "Sonnet 5.5"},
+    {"id": "claude-haiku-5-5", "label": "Haiku 5.5"},
+]
+
+
+def allowed_models() -> set[str]:
+    """The listed models plus whatever a MODEL_<NODE> override set as a default."""
+    return {m["id"] for m in MODELS} | {s["model"] for s in NODE_SETTINGS.values()}

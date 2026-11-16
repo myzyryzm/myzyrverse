@@ -35,6 +35,8 @@ class RunState(TypedDict, total=False):
     pov: str
     researchers: list[str]
     target_event_id: str
+    # per-run model choice, node -> model id; nodes not listed use config.NODE_SETTINGS
+    models: dict[str, str]
     canon: dict  # prehistory, present_lore, open_questions, events, previous_summaries
 
     # research: each researcher's structured output (background, proposals, sources)

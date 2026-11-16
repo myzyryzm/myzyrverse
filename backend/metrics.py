@@ -27,6 +27,9 @@ FILE = "metrics.json"
 TOKEN_KEYS = ("input", "output", "cache_read", "cache_write")
 DECISIONS = ("accepted", "maybe", "rejected")
 DOC_FIELDS = {"plan_arc": "arc_plan", "lore": "lore_doc"}  # anything else: chapter_outline
+DOC_NODES = {"arc_plan": "arcmaster", "lore_doc": "loremaster", "chapter_outline": "weaver"}
+RESEARCH_NODES = ("antiquarian", "historian", "mythographer", "psychologist")
+REVIEW_KEYS = ("research", "docs", "prose", "ledger")
 
 
 # ---------------- storage ----------------
@@ -89,23 +92,34 @@ def research_counts(proposals: list[dict], cut: int | None = None) -> dict:
     out["accepted_with_notes"] = 0
     by_researcher: dict[str, Counter] = defaultdict(Counter)
     by_kind: dict[str, Counter] = defaultdict(Counter)
+    # per researcher: kind x decision and notes, so the counts can be split by the researcher's model
+    by_researcher_kind: dict[str, dict[str, Counter]] = defaultdict(lambda: defaultdict(Counter))
+    notes_by_researcher: Counter = Counter()
     for p in proposals:
         d = p.get("decision") or "pending"
+        researcher = p.get("researcher") or "unknown"
+        noted = False
         if d == "modified":  # legacy: accepted with changes
             d = "accepted"
-            out["accepted_with_notes"] += 1
+            noted = True
         elif d == "accepted" and (p.get("note") or "").strip():
+            noted = True
+        if noted:
             out["accepted_with_notes"] += 1
+            notes_by_researcher[researcher] += 1
         if d not in DECISIONS:
             continue
         out[d] += 1
-        by_researcher[p.get("researcher") or "unknown"][d] += 1
+        by_researcher[researcher][d] += 1
         if p.get("kind"):
             by_kind[p["kind"]][d] += 1
+            by_researcher_kind[researcher][p["kind"]][d] += 1
     out["total"] = sum(out[d] for d in DECISIONS)
     out["cut_by_editor"] = cut
     out["by_researcher"] = {k: dict(v) for k, v in by_researcher.items()}
     out["by_kind"] = {k: dict(v) for k, v in by_kind.items()}
+    out["by_researcher_kind"] = {r: {k: dict(c) for k, c in kinds.items()} for r, kinds in by_researcher_kind.items()}
+    out["notes_by_researcher"] = dict(notes_by_researcher)
     return out
 
 
@@ -157,6 +171,18 @@ def record_gate_review(run_id: str, gate: str, run_type: str, before: dict, edit
         record(run_id, "gate_review", gate=gate, **fields)
 
 
+def _proposals(run_id: str) -> list[dict]:
+    """The proposals as decided at the last research gate (written by the gate node)."""
+    raw = runs.read_artifact(run_id, "proposals")
+    if not raw.strip():
+        return []
+    try:
+        out = json.loads(raw)
+    except json.JSONDecodeError:
+        return []
+    return out if isinstance(out, list) else []
+
+
 # ---------------- backfill ----------------
 
 def needs_backfill(run_id: str) -> bool:
@@ -183,13 +209,7 @@ def backfill(run_id: str, meta: dict, values: dict) -> None:
                       **{f"{k}_tokens": None for k in TOKEN_KEYS}})
     reviewed = {e.get("gate") for e in events if e["kind"] == "gate_review"}
     if "human_gate_research" not in reviewed:
-        proposals = []
-        raw = runs.read_artifact(run_id, "proposals")
-        if raw.strip():
-            try:
-                proposals = json.loads(raw)
-            except json.JSONDecodeError:
-                proposals = []
+        proposals = _proposals(run_id)
         if proposals and not any((p.get("decision") or "pending") == "pending" for p in proposals):
             added.append({"kind": "gate_review", "t": None, "gate": "human_gate_research",
                           **research_counts(proposals, len(values.get("research_proposals_cut") or []) or None)})
@@ -240,7 +260,38 @@ def _merge(acc: dict, part: dict) -> None:
             acc[k] = _add(acc.get(k), v)
 
 
-def summarize(run_id: str, meta: dict) -> dict:
+def _model_at(events: list[dict], node: str, upto: int | None = None) -> str | None:
+    """The model `node` last ran on before events[upto] (any time in the run if it had not run yet)."""
+    found = None
+    for e in events[:upto]:
+        if e["kind"] == "llm_call" and e.get("node") == node:
+            found = e.get("model")
+    if found is None and upto is not None:
+        return _model_at(events, node)
+    return found
+
+
+def _research_subset(run_id: str, review: dict, keep: set[str]) -> dict | None:
+    """One research review restricted to the proposals of the researchers in `keep`."""
+    by_r = {r: c for r, c in (review.get("by_researcher") or {}).items() if r in keep}
+    if not by_r:
+        return None
+    if "by_researcher_kind" in review:
+        by_kind = _sum_nested([(review["by_researcher_kind"] or {}).get(r) or {} for r in by_r], DECISIONS)
+        notes = sum((review.get("notes_by_researcher") or {}).get(r, 0) for r in by_r)
+    else:  # recorded before the per-researcher breakdown: recount from the reviewed proposals
+        sub = [p for p in _proposals(run_id) if (p.get("researcher") or "unknown") in by_r]
+        c = research_counts(sub) if sub else {"by_kind": {}, "accepted_with_notes": 0}
+        by_kind, notes = c["by_kind"], c["accepted_with_notes"]
+    counts = {d: sum(c.get(d) or 0 for c in by_r.values()) for d in DECISIONS}
+    return {**counts, "accepted_with_notes": notes, "total": sum(counts.values()), "cut_by_editor": None,
+            "by_researcher": by_r, "by_kind": by_kind}
+
+
+def summarize(run_id: str, meta: dict, model: str | None = None) -> dict:
+    """One run's metrics. With `model`, the review sections only count work that model produced:
+    proposals from researchers that ran on it, a document or ledger whose author node ran on it,
+    and prose the writer wrote on it. Usage and time are never filtered."""
     data = load(run_id) or {"backfilled": False, "events": []}
     events = data["events"]
 
@@ -264,36 +315,63 @@ def summarize(run_id: str, meta: dict) -> dict:
     else:
         elapsed = _ms_between(meta.get("created_at"), meta.get("committed_at"))
 
-    def last_review(gate: str) -> dict | None:
-        found = [e for e in events if e["kind"] == "gate_review" and e.get("gate") == gate]
+    def on_model(node: str, i: int | None = None) -> bool:
+        return model is None or _model_at(events, node, i) == model
+
+    def last_review(gate: str) -> tuple[int, dict] | None:
+        found = [(i, e) for i, e in enumerate(events) if e["kind"] == "gate_review" and e.get("gate") == gate]
         return found[-1] if found else None
 
     def strip(e: dict | None) -> dict | None:
         return {k: v for k, v in e.items() if k not in ("kind", "t", "gate")} if e else None
 
-    regens = Counter(e.get("gate") for e in events if e["kind"] == "regenerate")
-    outline_reviews = [e for e in events if e["kind"] == "gate_review" and e.get("gate") == "human_gate_outline"]
-    last_outline = outline_reviews[-1] if outline_reviews else None
-    doc = None
-    if last_outline or regens["human_gate_outline"]:
-        doc = {"doc": (last_outline or {}).get("doc") or DOC_FIELDS.get(meta.get("type"), "chapter_outline"),
-               "regenerations": regens["human_gate_outline"],
-               "approved": last_outline is not None,
-               **{k: (last_outline or {}).get(k) for k in ("edited", "similarity", "chars_before", "chars_after")}}
+    def regens(gate: str, nodes) -> int:
+        return sum(1 for i, e in enumerate(events) if e["kind"] == "regenerate" and e.get("gate") == gate
+                   and (model is None or any(on_model(n, i) for n in nodes)))
 
+    # research: each researcher's proposals belong to the model that researcher ran on
+    research_review = last_review("human_gate_research")
+    research = strip(research_review[1]) if research_review else None
+    if model is not None and research_review:
+        i, e = research_review
+        keep = {r for r in (e.get("by_researcher") or {}) if _model_at(events, r, i) == model}
+        research = _research_subset(run_id, e, keep)
+    researchers = meta.get("researchers") or [r for r in RESEARCH_NODES if _model_at(events, r)]
+    research_regens = regens("human_gate_research", researchers) if research or model is None else 0
+
+    # the outline / arc plan / lore doc belongs to the node that wrote it
+    outline = last_review("human_gate_outline")
+    doc_field = (outline[1] if outline else {}).get("doc") or DOC_FIELDS.get(meta.get("type"), "chapter_outline")
+    doc_node = DOC_NODES[doc_field]
+    doc = None
+    if on_model(doc_node, outline[0] if outline else None):
+        last_outline = outline[1] if outline else None
+        doc_regens = regens("human_gate_outline", [doc_node])
+        if last_outline or doc_regens:
+            doc = {"doc": doc_field, "regenerations": doc_regens, "approved": last_outline is not None,
+                   **{k: (last_outline or {}).get(k) for k in ("edited", "similarity", "chars_before", "chars_after")}}
+
+    # prose belongs to the writer: each critic round judges the draft the writer had just written
     critics = [{"verdict": e.get("verdict"), "score": e.get("score"), "tone_drift": e.get("tone_drift"),
-                "draft": e.get("draft")} for e in events if e["kind"] == "critic"]
-    final = last_review("human_gate_final")
+                "draft": e.get("draft")} for i, e in enumerate(events) if e["kind"] == "critic" and on_model("writer", i)]
+    final_review = last_review("human_gate_final")
+    final = final_review[1] if final_review and on_model("writer", final_review[0]) else None
+    force_rewrites = regens("human_gate_final", ["writer"])
     prose = None
-    if critics or final or regens["human_gate_final"]:
+    if critics or final or force_rewrites:
         scores = [c["score"] for c in critics if c.get("score")]
         prose = {"critic": critics,
                  "passed": sum(c["verdict"] == "PASSED" for c in critics),
                  "failed": sum(c["verdict"] == "FAILED" for c in critics),
                  "avg_score": round(sum(scores) / len(scores), 2) if scores else None,
-                 "force_rewrites": regens["human_gate_final"],
+                 "force_rewrites": force_rewrites,
                  "approved": final is not None,
                  **{k: (final or {}).get(k) for k in ("edited", "similarity", "chars_before", "chars_after")}}
+
+    # the ledger belongs to the archivist
+    ledger_review = last_review("human_gate_ledger")
+    ledger = strip(ledger_review[1]) if ledger_review and on_model("archivist", ledger_review[0]) else None
+    ledger_regens = regens("human_gate_ledger", ["archivist"])
 
     return {
         "id": run_id, "title": meta.get("title") or run_id, "type": meta.get("type"), "status": meta.get("status"),
@@ -302,12 +380,12 @@ def summarize(run_id: str, meta: dict) -> dict:
         "usage": usage,
         "nodes": sorted(nodes.values(), key=lambda n: -(n["cost_usd"] or 0)),
         "time": {"active_ms": active, "waiting_ms": waiting, "elapsed_ms": elapsed},
-        "research": strip(last_review("human_gate_research")),
-        "research_regenerations": regens["human_gate_research"],
+        "research": research,
+        "research_regenerations": research_regens,
         "doc": doc,
         "prose": prose,
-        "ledger": strip(last_review("human_gate_ledger")),
-        "ledger_regenerations": regens["human_gate_ledger"],
+        "ledger": ledger,
+        "ledger_regenerations": ledger_regens,
     }
 
 
@@ -322,6 +400,15 @@ def _sum_nested(dicts: list[dict], keys) -> dict:
             acc = out.setdefault(name, {k: 0 for k in keys})
             for k in keys:
                 acc[k] += counts.get(k) or 0
+    return out
+
+
+def by_model(metas: list[dict], models: list[str]) -> dict[str, dict]:
+    """The review sections of summarize_all, once per model, counting only that model's work."""
+    out = {}
+    for m in models:
+        totals = summarize_all([summarize(meta["id"], meta, model=m) for meta in metas])
+        out[m] = {k: totals[k] for k in REVIEW_KEYS}
     return out
 
 

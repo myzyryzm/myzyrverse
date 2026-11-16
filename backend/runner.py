@@ -33,6 +33,7 @@ class AgentResult:
     usage: dict = field(default_factory=dict)
     duration_api_ms: int | None = None
     tokens: dict = field(default_factory=dict)  # input, output, cache_read, cache_write, web_searches
+    model: str = ""  # the model this call ran on
 
     def usage_record(self, node: str, model: str) -> dict:
         return {
@@ -86,14 +87,18 @@ async def run_agent(
     cwd: str | os.PathLike | None = None,
     add_dirs: list[str | os.PathLike] | None = None,
     max_turns: int = 80,
+    model: str | None = None,
 ) -> AgentResult:
     settings = config.NODE_SETTINGS[node]
+    model = model or settings["model"]
     if config.FAKE_LLM:
         from .fakes import fake_result
 
-        logbus.log(run_id, f"{node}: FAKE_LLM response")
+        logbus.log(run_id, f"{node}: FAKE_LLM response ({model})")
         await asyncio.sleep(0.3)
-        return fake_result(node, prompt, output_schema)
+        r = fake_result(node, prompt, output_schema)
+        r.model = model
+        return r
 
     from claude_agent_sdk import (
         AssistantMessage,
@@ -111,7 +116,7 @@ async def run_agent(
     tools = list(settings["tools"])
     options = ClaudeAgentOptions(
         system_prompt=system_prompt,
-        model=settings["model"],
+        model=model,
         effort=settings["effort"],
         allowed_tools=tools,
         tools=tools,
@@ -124,7 +129,7 @@ async def run_agent(
         output_format={"type": "json_schema", "schema": output_schema} if output_schema else None,
     )
 
-    logbus.log(run_id, f"{node}: started ({settings['model']}, effort {settings['effort']})")
+    logbus.log(run_id, f"{node}: started ({model}, effort {settings['effort']})")
     text_parts: list[str] = []
     result: ResultMessage | None = None
     async for message in query(prompt=prompt, options=options):
@@ -156,4 +161,5 @@ async def run_agent(
         usage=result.usage or {},
         duration_api_ms=result.duration_api_ms,
         tokens=token_counts(result.usage, result.model_usage),
+        model=model,
     )

@@ -6,7 +6,7 @@ Ages are approximate and still in flux. The children should all be around coming
 - About 25 years into his reign.
 - Obsessed with legacy. He idolizes Ramesses II and wants to be remembered as his equal.
 - Plans a war against Assyria (politics.md).
-- Son of Amenmesse's top general, who took the throne at the end of the War of Succession, so his royal blood is distant.
+- Son of **Setnakhte**, Amenmesse's top general, who took the throne at the end of the War of Succession, so his royal blood is distant.
 - Dies in the harem conspiracy.
 
 ## Isis, Great Royal Wife (~45)
@@ -72,6 +72,6 @@ Ages are approximate and still in flux. The children should all be around coming
 - Gender and role undecided.
 
 ## Dead before the story
-- Seti II, Amenmesse and Siptah (War of Succession). Siptah died when Amenmesse's general defeated him.
-- Ramesses III's father.
+- Seti II, Amenmesse and Siptah (War of Succession). Siptah died when Amenmesse's general Setnakhte defeated him.
+- Setnakhte, Ramesses III's father.
 - Twosret's fate is unknown *(open)*.

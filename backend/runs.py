@@ -77,7 +77,8 @@ def next_chapter_order() -> int:
 
 
 def create_run(*, run_id: str, run_type: str, title: str, brief: str, pov: str = "",
-               researchers: list[str] | None = None, target_event_id: str = "") -> dict:
+               researchers: list[str] | None = None, target_event_id: str = "",
+               models: dict[str, str] | None = None) -> dict:
     if exists(run_id):
         raise FileExistsError(f"run {run_id} already exists")
     meta = {
@@ -87,6 +88,7 @@ def create_run(*, run_id: str, run_type: str, title: str, brief: str, pov: str =
         "pov": pov,
         "researchers": list(researchers or []),
         "target_event_id": target_event_id,
+        "models": dict(models or {}),
         "characters_present": [pov] if pov else [],
         "order": next_chapter_order() if run_type == "chapter" else None,
         "status": "draft",
