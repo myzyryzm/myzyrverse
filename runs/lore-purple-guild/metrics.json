@@ -1,0 +1,239 @@
+{
+  "backfilled": true,
+  "events": [
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "antiquarian",
+      "model": "claude-opus-5-5",
+      "session_id": "d4f6c55a-4553-4290-91cb-b5b7353e77e9",
+      "cost_usd": 2.0418982,
+      "duration_ms": 398198,
+      "duration_api_ms": null,
+      "num_turns": 35,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "historian",
+      "model": "claude-opus-5-5",
+      "session_id": "66f73ffd-3f98-4ecb-bbdc-b38a224e6e30",
+      "cost_usd": 1.6675394,
+      "duration_ms": 293670,
+      "duration_api_ms": null,
+      "num_turns": 25,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "mythographer",
+      "model": "claude-opus-5-5",
+      "session_id": "a9aaee00-1afc-4c51-9b49-6e358557b392",
+      "cost_usd": 1.4710362000000001,
+      "duration_ms": 261060,
+      "duration_api_ms": null,
+      "num_turns": 18,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "psychologist",
+      "model": "claude-opus-5-5",
+      "session_id": "aabe3e5f-a849-401c-81f3-2f43b837c2b7",
+      "cost_usd": 1.008415,
+      "duration_ms": 263845,
+      "duration_api_ms": null,
+      "num_turns": 4,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "antiquarian",
+      "model": "claude-opus-5-5",
+      "session_id": "284f6489-2f69-4170-b68f-61842c60fd5b",
+      "cost_usd": 1.7436065999999997,
+      "duration_ms": 340985,
+      "duration_api_ms": null,
+      "num_turns": 28,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "historian",
+      "model": "claude-opus-5-5",
+      "session_id": "365db129-e23c-46eb-86bd-70223c792d11",
+      "cost_usd": 1.6831342999999999,
+      "duration_ms": 290183,
+      "duration_api_ms": null,
+      "num_turns": 25,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "mythographer",
+      "model": "claude-opus-5-5",
+      "session_id": "833660e7-d9b3-4cfd-a55f-6c177f6e7fb1",
+      "cost_usd": 1.4521517000000002,
+      "duration_ms": 229114,
+      "duration_api_ms": null,
+      "num_turns": 19,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "psychologist",
+      "model": "claude-opus-5-5",
+      "session_id": "07d4957f-5c4f-4f82-8f78-0235de07376a",
+      "cost_usd": 0.9660983000000001,
+      "duration_ms": 199488,
+      "duration_api_ms": null,
+      "num_turns": 4,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "loremaster",
+      "model": "claude-opus-5-5",
+      "session_id": "2b2f51ae-2c95-4e00-a9de-5589c4327046",
+      "cost_usd": 0.6050453,
+      "duration_ms": 315274,
+      "duration_api_ms": null,
+      "num_turns": 1,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "loremaster",
+      "model": "claude-opus-5-5",
+      "session_id": "8a54c54e-57f2-472b-8c58-d62499a83fa9",
+      "cost_usd": 0.7457933,
+      "duration_ms": 204299,
+      "duration_api_ms": null,
+      "num_turns": 1,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "llm_call",
+      "t": null,
+      "node": "archivist",
+      "model": "claude-opus-5-5",
+      "session_id": "ef683aa9-7214-4892-ba25-adfae13a2865",
+      "cost_usd": 0.5152644000000001,
+      "duration_ms": 64651,
+      "duration_api_ms": null,
+      "num_turns": 2,
+      "web_searches": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_write_tokens": null
+    },
+    {
+      "kind": "gate_review",
+      "t": null,
+      "gate": "human_gate_research",
+      "accepted": 12,
+      "maybe": 0,
+      "rejected": 9,
+      "accepted_with_notes": 6,
+      "total": 21,
+      "cut_by_editor": null,
+      "by_researcher": {
+        "antiquarian": {
+          "accepted": 4,
+          "rejected": 1
+        },
+        "psychologist": {
+          "rejected": 2,
+          "accepted": 3
+        },
+        "historian": {
+          "accepted": 3,
+          "rejected": 3
+        },
+        "mythographer": {
+          "rejected": 3,
+          "accepted": 2
+        }
+      },
+      "by_kind": {}
+    },
+    {
+      "kind": "gate_review",
+      "t": null,
+      "gate": "human_gate_ledger",
+      "kept": 47,
+      "dropped": 13,
+      "added_by_user": 0,
+      "answered": 3,
+      "by_kind": {
+        "lore": {
+          "kept": 13,
+          "dropped": 3
+        },
+        "answer": {
+          "kept": 3,
+          "dropped": 0
+        },
+        "new_question": {
+          "kept": 21,
+          "dropped": 7
+        },
+        "hook": {
+          "kept": 10,
+          "dropped": 3
+        }
+      }
+    }
+  ],
+  "backfill_checked": true
+}

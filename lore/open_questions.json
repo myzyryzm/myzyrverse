@@ -156,7 +156,7 @@
     },
     {
       "id": "q-edff3e2b",
-      "question": "Who is the hidden child of Gendry and Arya? Gender, who raised them, who knows the secret, and what role do they play?",
+      "question": "Who is the hidden child of Siptah and Twosret? Gender, who raised them, who knows the secret, and what role do they play?",
       "about": "Hidden heir",
       "status": "open",
       "answer": "",
@@ -167,8 +167,8 @@
     },
     {
       "id": "q-22f30ece",
-      "question": "What happened to Arya, the Hittite princess, after Gendry's defeat?",
-      "about": "Arya",
+      "question": "What happened to Twosret, the Hittite princess and sister of Šuppiluliuma II, after Siptah's defeat?",
+      "about": "Twosret",
       "status": "open",
       "answer": "",
       "answered_by_run": null,
@@ -178,10 +178,10 @@
     },
     {
       "id": "q-367276ef",
-      "question": "Whose general or vizier defeated Gendry: Stannis's man avenging him, or Gendry's own man turning on him? Did Gendry die then?",
+      "question": "Whose general or vizier defeated Siptah: Amenmesse's man avenging him, or Siptah's own man turning on him? Did Siptah die then?",
       "about": "War of Succession",
       "status": "answered",
-      "answer": "Stannis's top general, Ramesses III's father, defeated Gendry and avenged Stannis.",
+      "answer": "Amenmesse's top general, Ramesses III's father, defeated Siptah and avenged Amenmesse.",
       "answered_by_run": null,
       "created_by": "user",
       "source_run": null,
@@ -387,7 +387,7 @@
     },
     {
       "id": "q-a0da56d6",
-      "question": "Arya was pregnant when Gendry died. How was the baby hidden, and by whom?",
+      "question": "Twosret was pregnant when Siptah died. How was the baby hidden, and by whom?",
       "about": "Hidden heir",
       "status": "open",
       "answer": "",

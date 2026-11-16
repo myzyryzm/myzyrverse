@@ -21,10 +21,10 @@ Historical fantasy set in the eastern Mediterranean around **1160 BCE**, during 
 | 1275–1210 | Ramesses II ("the Great") reigns |
 | 1210–~1190 | His son reigns (~20 years) |
 | 1190–1185 | War of Succession (history.md) |
-| ~1185 | Stannis's top general, who has distant royal blood, defeats Gendry, takes the throne and dies soon after. His son becomes Ramesses III. |
-| ~1184 | Secret child of Gendry and Arya born |
+| ~1185 | Amenmesse's top general, who has distant royal blood, defeats Siptah, takes the throne and dies soon after. His son becomes Ramesses III. |
+| ~1184 | Secret child of Siptah and Twosret born |
 | ~1175 | Tiye marries Ramesses III at ~15 and bears a son, Pentawer, soon after (derived from ages) |
 | 1160 | Story begins, ~year 25 of Ramesses III |
 
 ## Placeholder names
-Some names are working placeholders, a few borrowed from ASOIAF: **Isis, Robert, Stannis, Gendry, Arya.** Use them as written until they are replaced. Do not build meaning or wordplay on them.
+**Isis** is a working placeholder name. Use it as written until it is replaced. Do not build meaning or wordplay on it.
