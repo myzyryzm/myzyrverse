@@ -126,3 +126,14 @@ def test_ledger_counts_deleted_rows_as_dropped():
     c = metrics.ledger_counts(before, after)
     assert (c["kept"], c["dropped"], c["added_by_user"]) == (1, 2, 1)
     assert c["by_kind"] == {"lore": {"kept": 1, "dropped": 1}, "hook": {"kept": 0, "dropped": 1}}
+
+
+def test_outline_review_compares_arc_plans_as_markdown():
+    plan = {"overview": "o", "risks": [], "milestones": [
+        {"title": "A", "description": "a", "characters": [], "follows_from": ""}]}
+    same = metrics.gate_review("human_gate_outline", "plan_arc", {"arc_plan": plan}, {"arc_plan": dict(plan)})
+    assert same["doc"] == "arc_plan" and same["edited"] is False
+    moved = {**plan, "milestones": plan["milestones"] + [
+        {"title": "B", "description": "b", "characters": ["Tiye"], "follows_from": ""}]}
+    edited = metrics.gate_review("human_gate_outline", "plan_arc", {"arc_plan": plan}, {"arc_plan": moved})
+    assert edited["edited"] is True and edited["chars_after"] > edited["chars_before"]

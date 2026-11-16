@@ -48,7 +48,7 @@ def decide(state: RunState) -> dict:
 
     if run_type == "plan_arc":
         if not state.get("arc_plan"):
-            return {"next_steps": "weaver"}
+            return {"next_steps": "arcmaster"}
         if status == PENDING_OUTLINE_REVIEW:
             return {"next_steps": "human_gate_outline"}
         return {"next_steps": "archivist"}

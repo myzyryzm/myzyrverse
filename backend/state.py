@@ -54,7 +54,7 @@ class RunState(TypedDict, total=False):
 
     # outline / arc plan / lore document
     chapter_outline: str
-    arc_plan: str
+    arc_plan: dict  # structured: overview, milestones, risks (backend/arcplan.py)
     lore_doc: str
 
     # prose + critique loop

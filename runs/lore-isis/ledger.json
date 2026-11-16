@@ -1,0 +1,382 @@
+[
+  {
+    "kind": "lore",
+    "entity": "Isis",
+    "change": "birth year",
+    "detail": "Isis was born around 1205 BCE, which makes her about 45 in 1160.",
+    "ref_id": "",
+    "characters": [
+      "Isis"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-isis-1",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Tyre",
+    "change": "young royal house",
+    "detail": "Tyre's royalty is new and fragile, about two generations old. Egyptian archives still record Tyre's rulers as Pharaoh's vassals who fell at his feet 'seven times and seven times', called him 'my sun', and begged for water and firewood for the island. Old Egyptian families remember this. Within recent memory Tyre has risen from a vassal port to a house Pharaoh marries as an equal, on the strength of its murex beds. (Divergence: historically Sidon was the senior Phoenician city in this period.)",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-isis-2",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Isis",
+    "change": "knows Tyre's vassal past",
+    "detail": "Isis knows Tyre was once Egypt's vassal and does not believe her house was always royal. She holds herself above everyone because she knows that one slip would make her a servant's daughter again in the old court's eyes. Her scorn for Tiye is the scorn she fears from Egypt's old families, turned onto someone below her.",
+    "ref_id": "",
+    "characters": [
+      "Isis",
+      "Tiye"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-isis-3",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Ugarit",
+    "change": "fall",
+    "detail": "Ugarit and the northern ports fell around 1192–1190 BCE, the historical date. Ugarit's king had sent his army north to help the Hittites, and the relief arrived only after his city was sacked. Tyre, acting as harbour-master of the coast, took in wrecked ships and their crews.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-isis-4",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Isis",
+    "change": "girlhood formative event",
+    "detail": "Isis was about 13 to 15 and living on the island of Tyre when Ugarit and the north fell. Her lesson was that allies arrive late and a city on the sea stands alone. Assyria's raids on the dye coast look to her like the start of Ugarit again, and that drives her push for war.",
+    "ref_id": "",
+    "characters": [
+      "Isis"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-isis-5",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Isis",
+    "change": "claim in Tyre / exported",
+    "detail": "When her marriage to Ramesses III was arranged (about 1185–1182, when she was about 20 to 23), Isis had a real claim to rule in Tyre, either jointly with her brother or as their father's favourite. Her brother, or the merchant houses behind him, ended the rivalry by marrying her into Egypt. The marriage was done to her; she did not bargain for it. Egypt wanted it to draw northern Canaan back into its orbit, and Tyre wanted it to remove a rival claimant.",
+    "ref_id": "",
+    "characters": [
+      "Isis",
+      "Ramesses III"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-isis-6",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Isis's brother",
+    "change": "new fact",
+    "detail": "Isis has a brother in Tyre's royal house who was her rival for rule. He, or the merchant houses backing him, sent her to Egypt as a bride to take her out of contention.",
+    "ref_id": "",
+    "characters": [
+      "Isis"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-isis-7",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Isis",
+    "change": "marriage contract",
+    "detail": "Tyre's price for the marriage copied Hatti's price for Ramesses II's Hittite bride: Isis had to be named Great Royal Wife, not lodged in the khener as one more foreign wife. The house that exported her against her will fought for her rank to protect its investment. The dowry was dyed purple wool and finished cloth, silver, cedar, and the use of Tyrian ships for Egyptian troops. Egyptian soldiers escorted her caravan down the coast road to Pi-Ramesses. (Divergence: historically no Levantine city-state won Great Royal Wife rank for a daughter.)",
+    "ref_id": "",
+    "characters": [
+      "Isis",
+      "Ramesses III"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-isis-8",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Isis's Tyrian household",
+    "change": "new fact",
+    "detail": "Isis came to Egypt with a sworn Tyrian household: ladies, scribes who write Akkadian and Canaanite, and her own priests. It is a small Tyre inside the khener at Pi-Ramesses, with its own budget and its own envoys.",
+    "ref_id": "",
+    "characters": [
+      "Isis"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-isis-9",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Isis",
+    "change": "relationship with Ramesses III",
+    "detail": "Isis loved and still loves Ramesses III. The love is respect, not lust or romance, and she bore his children. They are real allies, and the planned Assyrian war is the project they built together, joining his legacy to her homeland's safety. She is not a warhawk for its own sake; she wants her home protected. The author is emphatic that his death is a real personal grief to her, not only a political loss. After the coup her course runs from mourning the man to revenge.",
+    "ref_id": "",
+    "characters": [
+      "Isis",
+      "Ramesses III"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-isis-10",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Isis",
+    "change": "shields Aegon",
+    "detail": "Aegon's unfitness, not Tiye, is the real fault line in Isis's marriage. She cannot admit he is unfit, because a failed heir of her blood would disprove the creed her pride rests on. She shields him and blames his father's contempt, his companions and the black-market purple trade. She has a fairly good idea how bad his purple use is and defends him anyway; it is self-defence dressed as a mother's love. If he redeems himself, it would vindicate her and humble her at once.",
+    "ref_id": "",
+    "characters": [
+      "Isis",
+      "Aegon",
+      "Ramesses III"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-isis-11",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Isis",
+    "change": "attitude to Tiye",
+    "detail": "Isis thinks secondary wives are beneath jealousy. Her contempt for Tiye is about rank, not the bed. Her weapon is form: she will not address an inferior by a rank she has not granted. In the eyes of the old court both women are upstarts, and neither admits it.",
+    "ref_id": "",
+    "characters": [
+      "Isis",
+      "Tiye"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-isis-12",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Isis",
+    "change": "",
+    "detail": "Did Isis see the refugees or the burning northern ports herself as a girl, or did she only hear of Ugarit's fall through ships and letters?",
+    "ref_id": "",
+    "characters": [
+      "Isis"
+    ],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-isis-13",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Isis",
+    "change": "",
+    "detail": "Did Ramesses III ever send Isis away to a provincial harem-palace such as Mer-wer (Gurob), as some scholars think Ramesses II did with his Hittite bride?",
+    "ref_id": "",
+    "characters": [
+      "Isis",
+      "Ramesses III"
+    ],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-isis-14",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "isis",
+    "change": "",
+    "detail": "Did her claim in Tyre come from shared rule with her brother or from being their father's favourite?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-isis-15",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "isis",
+    "change": "",
+    "detail": "Does her brother still rule Tyre in 1160, or has the claim passed to his children?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-isis-16",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "isis",
+    "change": "",
+    "detail": "Is her absence from Pi-Ramesses during the coup her own choice, or arranged by Tiye's side?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-isis-17",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "isis",
+    "change": "",
+    "detail": "Does Isis suspect the conspiracy before it strikes?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-isis-18",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "isis",
+    "change": "",
+    "detail": "Was she betrothed before or after the north fell? Was the marriage Tyre's insurance against Ugarit's fate?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-isis-19",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "isis",
+    "change": "",
+    "detail": "Did she arrange or press for Helen's marriage to Aegon?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-isis-20",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "isis",
+    "change": "",
+    "detail": "How does she regard Jon's choice to train with the Sherden?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-isis-21",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "isis",
+    "change": "",
+    "detail": "Did she take an Egyptian court name, or keep her Tyrian one?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-isis-22",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "hook",
+    "entity": "isis",
+    "change": "",
+    "detail": "Her brother receives her in Tyre as the sister he once exported. Is she a war leader, a claimant, or a spent investment to be managed?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-isis-23",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "hook",
+    "entity": "isis",
+    "change": "",
+    "detail": "The Egyptian archives still hold Tyre's vassal letters begging for water and wood. The new regime reads them aloud at court, or sends copies to Tyre.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-isis-24",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "hook",
+    "entity": "isis",
+    "change": "",
+    "detail": "The Ugarit lesson comes true. Tyre calls on Egypt, Egypt is now Assyria's ally, and no relief comes.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-isis-25",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "hook",
+    "entity": "isis",
+    "change": "",
+    "detail": "Titles become a battlefield. She refuses to name Pentawer as king or the Assyrian bride as queen, and every exchange becomes a negotiation over forms of address.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-isis-26",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "hook",
+    "entity": "isis",
+    "change": "",
+    "detail": "Her Tyrian scribes and envoys, who write Akkadian, become the means of reaching Babylon or Elam after the coup, reviving Ramesses III's alliance without him.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-isis-27",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "hook",
+    "entity": "isis",
+    "change": "",
+    "detail": "A reckoning with Aegon. She is forced to admit aloud what she always knew about his purple use. Later, if he redeems himself, she has to decide whether to claim the credit.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-isis-28",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  },
+  {
+    "kind": "hook",
+    "entity": "isis",
+    "change": "",
+    "detail": "Tiye, at the height of her power, names the thing Isis never says: that they were both upstarts, both married off for their families.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-isis-29",
+    "created_at": "2026-11-16T00:20:10+00:00"
+  }
+]

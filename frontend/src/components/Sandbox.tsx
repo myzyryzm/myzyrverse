@@ -1,14 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
 import { api } from "../api";
-import type { LedgerEntry, Proposal, RunState, RunType } from "../types";
+import type { ArcPlan, LedgerEntry, Proposal, RunState, RunType } from "../types";
 import { GATE_LABELS, errMsg } from "../util";
 import ProposalReview, { RESEARCHER_SHORT, normalizeDecision } from "./ProposalReview";
 import ResearchReader from "./ResearchReader";
 import LedgerReview, { LEDGER_GROUPS } from "./LedgerReview";
+import ArcPlanEditor, { asPlan } from "./ArcPlanEditor";
 
-type TextField = "research_notes" | "chapter_outline" | "arc_plan" | "lore_doc" | "draft_prose" | "critique_notes" | "summary"
+type TextField = "research_notes" | "chapter_outline" | "lore_doc" | "draft_prose" | "critique_notes" | "summary"
   | "author_research_notes";
-type TabId = TextField | "ledger" | "sources" | `history-${number}`;
+type EditableField = TextField | "arc_plan" | "ledger";
+type TabId = EditableField | "sources" | `history-${number}`;
 
 const GATE_FIELD: Record<string, TextField | "ledger"> = {
   human_gate_research: "research_notes",
@@ -29,7 +31,7 @@ const TAB_LABELS: Record<string, string> = {
 };
 
 // What the outline gate edits, per run type.
-const OUTLINE_FIELD: Partial<Record<RunType, TextField>> = { plan_arc: "arc_plan", lore: "lore_doc" };
+const OUTLINE_FIELD: Partial<Record<RunType, EditableField>> = { plan_arc: "arc_plan", lore: "lore_doc" };
 
 interface Props {
   runState: RunState | null;
@@ -41,13 +43,14 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
   const v = runState?.values ?? {};
   const gate = runState && !runState.running ? runState.next[0] : undefined;
   const runType = runState?.meta.type;
-  const editable: TextField | "ledger" | undefined = gate
+  const editable: EditableField | undefined = gate
     ? gate === "human_gate_outline" ? (runType && OUTLINE_FIELD[runType]) ?? "chapter_outline" : GATE_FIELD[gate]
     : undefined;
   const canAdopt = runType === "lore" && (gate === "human_gate_ledger" || runState?.meta.status === "committed");
 
   const [drafts, setDrafts] = useState<Partial<Record<TextField, string>>>({});
   const [ledger, setLedger] = useState<LedgerEntry[] | null>(null);
+  const [arcPlan, setArcPlan] = useState<ArcPlan | null>(null);
   const [chars, setChars] = useState<string | null>(null);
   const [tab, setTab] = useState<TabId | null>(null);
   const [proposals, setProposals] = useState<Proposal[] | null>(null);
@@ -60,6 +63,7 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
     if (runState?.running) {
       setDrafts({});
       setLedger(null);
+      setArcPlan(null);
       setChars(null);
       setProposals(null);
       setReviewAt(null);
@@ -87,11 +91,12 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
         if (val !== undefined && val !== v[k]) edits[k] = val;
       }
       if (ledger) edits.proposed_ledger = ledger;
+      if (arcPlan) edits.arc_plan = arcPlan;
       if (proposals) edits.research_proposals = proposals;
       if (chars !== null) edits.characters_present = chars.split(",").map((s) => s.trim()).filter(Boolean);
       return edits;
     });
-  }, [drafts, ledger, chars, proposals, v, registerEdits]);
+  }, [drafts, ledger, arcPlan, chars, proposals, v, registerEdits]);
 
   // A superscript was clicked: show the Sources tab and bring that source into view.
   useEffect(() => {
@@ -108,7 +113,7 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
     // Always present at a gate: your notes on the research live on this tab and stay editable at every gate.
     if (has("research_notes") || editable === "research_notes" || gate) t.push("research_notes");
     if (v.research_sources?.length) t.push("sources");
-    if (has("arc_plan") || editable === "arc_plan") t.push("arc_plan");
+    if (v.arc_plan || editable === "arc_plan") t.push("arc_plan");
     if (has("lore_doc") || editable === "lore_doc") t.push("lore_doc");
     if (has("chapter_outline") || editable === "chapter_outline") t.push("chapter_outline");
     if (has("draft_prose") || editable === "draft_prose") t.push("draft_prose");
@@ -171,7 +176,14 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
           </ol>
         )}
 
-        {active && active !== "ledger" && active !== "sources" && !active.startsWith("history-") && (
+        {active === "arc_plan" && (
+          <>
+            <ArcPlanEditor plan={arcPlan ?? asPlan(v.arc_plan)} editable={editable === "arc_plan"} onChange={setArcPlan} />
+            {arcPlan && editable === "arc_plan" && <div className="hint">Edited. Your version is sent when you press Resume.</div>}
+          </>
+        )}
+
+        {active && active !== "ledger" && active !== "sources" && active !== "arc_plan" && !active.startsWith("history-") && (
           <>
             {active === "lore_doc" && canAdopt && (
               <AdoptLore runId={runState.meta.id} adoptedTo={runState.meta.adopted_to ?? null} act={act} />

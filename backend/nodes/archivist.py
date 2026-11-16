@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .. import logbus
+from ..arcplan import milestone_entries, render_plan
 from ..state import PENDING_LEDGER_REVIEW, RunState
 from .common import build_prompt, call, system_prompt, usage
 from .loremaster import doc_list
@@ -58,10 +59,11 @@ async def archivist(state: RunState) -> dict:
         task = "Propose ledger entries for what this chapter establishes, plus the summary and characters present."
     elif run_type == "plan_arc":
         sections = [("Approved research", state.get("research_notes", "")),
-                    ("Approved arc plan", state.get("arc_plan", ""))]
-        task = (f"Turn each milestone in the approved arc plan into a sub_event entry (ref_id = "
-                f"{state.get('target_event_id') or ''}). Also propose new_question entries for anything the plan "
-                "depends on that canon leaves open, and answer entries if the plan settles an open question.")
+                    ("Approved arc plan", render_plan(state.get("arc_plan")))]
+        task = ("This was an arc plan. Its milestones are added as sub_event entries automatically: do not propose "
+                "sub_event, lore or event_update entries. Propose new_question entries for anything the plan depends "
+                "on that canon leaves open, and answer entries if the plan settles an open question. "
+                "characters_present = the characters the milestones involve.")
     elif run_type == "lore":
         sections = [("Approved research", state.get("research_notes", "")),
                     ("Approved lore document", state.get("lore_doc", ""))]
@@ -95,7 +97,11 @@ async def archivist(state: RunState) -> dict:
     for e in out.get("entries") or []:
         if e.get("kind") == "new_question" and (e.get("detail") or "").strip().lower() in known:
             continue  # already an open question
+        if run_type == "plan_arc" and e.get("kind") == "sub_event":
+            continue  # milestones come straight from the plan below
         entries.append({**e, "source": "ai", "accepted": True})
+    if run_type == "plan_arc":
+        entries = milestone_entries(state.get("arc_plan"), state.get("target_event_id") or "") + entries
     if run_type == "lore":
         entries += doc_entries(state.get("lore_doc") or "", state.get("title") or "",
                                known | {(e.get("detail") or "").strip().lower() for e in entries

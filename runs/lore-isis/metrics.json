@@ -89,6 +89,133 @@
       "ended": "2026-11-15T22:54:16+00:00",
       "outcome": "paused:human_gate_research",
       "duration_ms": 623674
+    },
+    {
+      "kind": "gate_review",
+      "t": "2026-11-15T23:54:54+00:00",
+      "gate": "human_gate_research",
+      "accepted": 6,
+      "maybe": 0,
+      "rejected": 2,
+      "accepted_with_notes": 0,
+      "total": 8,
+      "cut_by_editor": 5,
+      "by_researcher": {
+        "antiquarian": {
+          "accepted": 3
+        },
+        "mythographer": {
+          "accepted": 2
+        },
+        "psychologist": {
+          "accepted": 1,
+          "rejected": 1
+        },
+        "historian": {
+          "rejected": 1
+        }
+      },
+      "by_kind": {
+        "characterization": {
+          "accepted": 4,
+          "rejected": 2
+        },
+        "plot": {
+          "accepted": 1
+        },
+        "world": {
+          "accepted": 1
+        }
+      }
+    },
+    {
+      "kind": "llm_call",
+      "t": "2026-11-15T23:58:16+00:00",
+      "node": "loremaster",
+      "model": "claude-opus-5-5",
+      "session_id": "b246ec27-86fd-4396-9f54-2f3f82fec684",
+      "cost_usd": 0.4550183,
+      "duration_ms": 197997,
+      "duration_api_ms": 295651,
+      "num_turns": 1,
+      "web_searches": 0,
+      "input_tokens": 30270,
+      "output_tokens": 10295,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 30797
+    },
+    {
+      "kind": "segment",
+      "t": "2026-11-15T23:58:16+00:00",
+      "started": "2026-11-15T23:54:54+00:00",
+      "ended": "2026-11-15T23:58:16+00:00",
+      "outcome": "paused:human_gate_outline",
+      "duration_ms": 201884
+    },
+    {
+      "kind": "gate_review",
+      "t": "2026-11-16T00:17:06+00:00",
+      "gate": "human_gate_outline",
+      "doc": "lore_doc",
+      "edited": true,
+      "chars_before": 9814,
+      "chars_after": 9599,
+      "similarity": 0.973
+    },
+    {
+      "kind": "llm_call",
+      "t": "2026-11-16T00:17:50+00:00",
+      "node": "archivist",
+      "model": "claude-opus-5-5",
+      "session_id": "2b42ee89-ab69-463d-a43f-3a37e16ab11e",
+      "cost_usd": 0.3695674,
+      "duration_ms": 37321,
+      "duration_api_ms": 42127,
+      "num_turns": 2,
+      "web_searches": 0,
+      "input_tokens": 33996,
+      "output_tokens": 4153,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 35446
+    },
+    {
+      "kind": "segment",
+      "t": "2026-11-16T00:17:50+00:00",
+      "started": "2026-11-16T00:17:06+00:00",
+      "ended": "2026-11-16T00:17:50+00:00",
+      "outcome": "paused:human_gate_ledger",
+      "duration_ms": 43412
+    },
+    {
+      "kind": "gate_review",
+      "t": "2026-11-16T00:20:10+00:00",
+      "gate": "human_gate_ledger",
+      "kept": 29,
+      "dropped": 0,
+      "added_by_user": 0,
+      "answered": 0,
+      "by_kind": {
+        "lore": {
+          "kept": 12,
+          "dropped": 0
+        },
+        "new_question": {
+          "kept": 10,
+          "dropped": 0
+        },
+        "hook": {
+          "kept": 7,
+          "dropped": 0
+        }
+      }
+    },
+    {
+      "kind": "segment",
+      "t": "2026-11-16T00:20:10+00:00",
+      "started": "2026-11-16T00:20:10+00:00",
+      "ended": "2026-11-16T00:20:10+00:00",
+      "outcome": "finished",
+      "duration_ms": 17
     }
   ]
 }

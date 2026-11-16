@@ -10,6 +10,7 @@ from __future__ import annotations
 import json
 
 from .. import logbus, runs
+from ..arcplan import clean_plan, render_plan
 from ..state import FINAL_APPROVED, LEDGER_APPROVED, OUTLINE_APPROVED, RESEARCH_APPROVED, RunState
 from .researchers import render_research, render_sources
 
@@ -39,8 +40,11 @@ async def human_gate_research(state: RunState) -> dict:
 async def human_gate_outline(state: RunState) -> dict:
     _save_notes(state)
     if state.get("run_type") == "plan_arc":
-        runs.write_artifact(state["run_id"], "plan", state.get("arc_plan", ""))
-    elif state.get("run_type") == "lore":
+        plan = clean_plan(state.get("arc_plan"))  # the author may have blanked titles or characters
+        runs.write_artifact(state["run_id"], "plan", render_plan(plan))
+        logbus.log(state["run_id"], f"gate: arc plan approved with {len(plan['milestones'])} milestone(s)")
+        return {"arc_plan": plan, "review_status": OUTLINE_APPROVED, "author_notes": ""}
+    if state.get("run_type") == "lore":
         runs.write_artifact(state["run_id"], "lore", state.get("lore_doc", ""))
     else:
         runs.write_artifact(state["run_id"], "outline", state.get("chapter_outline", ""))

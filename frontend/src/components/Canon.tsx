@@ -387,7 +387,7 @@ function Events({ version, runs, bump, notify, onPlanArc, onOpenPlanner }: Props
 
   return (
     <div className="stack">
-      <p className="hint">Where you want the story to go. Arcs span chapters; chapter events must happen in their target chapter. The Weaver steers toward both.</p>
+      <p className="hint">Where you want the story to go. Arcs span chapters; chapter events must happen in their target chapter. The Arcmaster plans arcs into milestones; the Weaver steers chapters toward both.</p>
       <button onClick={onOpenPlanner}>Open arc planner (character timelines)…</button>
       {roots.map((e) => render(e, 0))}
       <fieldset>

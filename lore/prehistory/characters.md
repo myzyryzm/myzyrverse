@@ -38,7 +38,6 @@ Ages are approximate and still in flux. The children should all be around coming
 - The heir, and a party boy: women, drink, maybe drugs (low-dose purple is a psychedelic; see magic.md).
 - Never took his schooling or his military training seriously. An early-Tyrion type.
 - Must come across as **clearly unfit to rule**. His father despises his lack of martial interest, and the two are at odds.
-- **Early in the story, someone dies protecting him**, because he was off being a degenerate instead of where he was supposed to be.
 - Arc: the screw-up who falls flat on his face, has to live with what he caused, and grows into someone who succeeds. At present he is the likely king at the end *(open)*.
 - Married, or about to be married, to his younger sister. The marriage is loveless.
 

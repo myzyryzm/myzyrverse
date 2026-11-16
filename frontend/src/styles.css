@@ -155,6 +155,10 @@ legend { font-family: var(--serif); font-weight: 700; font-size: 15px; padding: 
 .card.ev.in_progress { border-left: 3px solid var(--accent); }
 .answer { font-size: 13px; }
 
+.arc-plan .card.milestone { gap: 6px; }
+.arc-plan .milestone-title { flex: 1; min-width: 0; font-family: var(--serif); font-size: 16px; font-weight: 600; }
+.arc-plan input[readonly], .arc-plan textarea[readonly] { background: var(--panel-2); }
+
 .critique-peek { border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; background: var(--bg); }
 .critique-peek summary { cursor: pointer; font-weight: 600; }
 .critique-peek pre { white-space: pre-wrap; font: 13px/1.5 var(--sans); max-height: 240px; overflow: auto; }

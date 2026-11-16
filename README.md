@@ -31,12 +31,15 @@ flowchart TD
 
     subgraph Synthesis["2 · Synthesis"]
         direction LR
-        W["Weaver<br/>beat sheet or arc plan"]
+        W["Weaver<br/>beat sheet"]
+        AM["Arcmaster<br/>arc plan"]
         LM["Loremaster<br/>lore document"]
     end
-    G1 -- "chapter / arc plan" --> W
+    G1 -- "chapter" --> W
+    G1 -- "arc plan" --> AM
     G1 -- "lore" --> LM
     W --> G2
+    AM --> G2
     LM --> G2
 
     G2[/"GATE 2 · Outline review<br/>edit the beats, plan or document; Regenerate with notes"/]
@@ -122,7 +125,7 @@ Each researcher returns three things:
 The graph pauses before each gate. The paused output appears in the center column, where you can edit it.
 
 1. **Research review**: each researcher proposes at most 3 ideas, each one idea of one kind (plot, characterization or world). When there are more than 3 in all, the **research editor** keeps the strongest distinct ones (at most `MAX_PROPOSALS`, default 8), folds near-duplicates together and lists the rest under **Cut by the editor**, where you can bring one back. The Research tab switches between **Background** and **Proposals**. **Review proposals** opens a popup that steps through them (← →). On each one you can note any part, answer its questions, add an overall note, and **Accept**, **Maybe** or **Reject** (keys A / M / R; **Maybe the rest** and **Reject the rest** decide everything left). Accepted ones reach later agents as settled; accepted with a note means accepted with those changes. Maybes reach them as open ideas that are never recorded as canon. Rejected ones are removed. Every proposal needs a decision before you can resume. Decisions are saved to `runs/<id>/proposals.json`. Below the research, write **your notes on the research** (answers, decisions, corrections). Your notes are editable at every later gate too, are saved to `runs/<id>/notes.md`, and are placed above every later agent's task as the highest-priority input.
-2. **Outline review**: edit the beat sheet, the arc plan, or the lore document.
+2. **Outline review**: edit the beat sheet, the arc plan, or the lore document. The Arcmaster returns the arc plan as structured milestones (title, what happens, characters, what it follows from) plus an overview and risks; edit, reorder, add or remove milestones here. Each milestone then becomes a sub-event row on the ledger as is, in that order, landing on its characters' timelines.
 3. **Final prose review**: edit the chapter. The critic's notes are shown above it.
 4. **Lore ledger review**: accept, edit, reject or add proposed lore changes, answers, questions and sub-events. Every row starts ticked; untick what you don't want. In lore runs the loremaster's body only states what is established (canon, accepted proposals, your notes and answers); gaps become its **Proposed open questions** and loose ideas its **Hooks** (at most 8 of each). Each of those arrives here as its own row. Kept questions join **Open questions** in the Canon column (answer one on its card and it is committed already answered, so later agents treat it as settled); kept hooks join the **Hooks** tab, where you can also add and delete your own. Hooks are notes for you: agents never see them.
 
@@ -176,7 +179,7 @@ Each run logs events to `runs/<id>/metrics.json` (`backend/metrics.py`); the vie
 backend/
   graph.py         the StateGraph (read its docstring for the LangGraph concepts used)
   nodes/maestro.py deterministic router: decides the next node from state
-  nodes/*.py       one file per node: researchers, weaver, loremaster, writer, grand_critic, archivist, gates, commit
+  nodes/*.py       one file per node: researchers, weaver, arcmaster, loremaster, writer, grand_critic, archivist, gates, commit
   prompts/*.md     every system prompt. Edit these to tune voice and tone.
   runner.py        Claude Agent SDK wrapper (one function: run_agent)
   metrics.py       per-run event log (runs/<id>/metrics.json) and the Metrics summaries

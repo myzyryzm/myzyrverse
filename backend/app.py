@@ -307,8 +307,7 @@ async def regenerate(run_id: str, body: Regenerate):
                  **{f"{r}_research": {} for r in config.RESEARCHERS}}
     elif gate == "human_gate_outline":
         field = {"plan_arc": "arc_plan", "lore": "lore_doc"}.get(meta["type"], "chapter_outline")
-        patch = {field: ""}
-        patch["review_status"] = RESEARCH_APPROVED
+        patch = {field: {} if field == "arc_plan" else "", "review_status": RESEARCH_APPROVED}
     elif gate == "human_gate_final":
         patch = {"draft_history": [v.get("draft_prose", "")], "draft_prose": "", "critique_verdict": "",
                  "critique_notes": "", "revision_count": 0, "review_status": OUTLINE_APPROVED}

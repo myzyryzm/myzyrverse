@@ -57,6 +57,7 @@ NODE_SETTINGS: dict[str, dict] = {
     "psychologist": {"model": OPUS, "effort": "high", "tools": ["Read", "Grep", "Glob"]},
     "research_editor": {"model": OPUS, "effort": "high", "tools": []},
     "weaver": {"model": OPUS, "effort": "high", "tools": []},
+    "arcmaster": {"model": OPUS, "effort": "high", "tools": []},
     "loremaster": {"model": OPUS, "effort": "high", "tools": []},
     "writer": {"model": FABLE, "effort": "high", "tools": []},
     "grand_critic": {"model": OPUS, "effort": "high", "tools": []},

@@ -4,5 +4,10 @@
   },
   "lore-purple-guild-12": {
     "deleted": true
+  },
+  "lore-purple-guild-4": {
+    "entity": "Tyre",
+    "change": "control of the purple supply",
+    "detail": "Tyre controls the purple supply through the murex beds off its coast, worked by divers and trap-setters with baited wicker traps on floats, the snails kept alive in seawater pools. Tyre's dominance over northern Canaan rests on this access. Its daylight dye yards make the dye it sells. The dependence is mutual: the guild needs Tyre's beds, and Tyre cannot make nodes."
   }
 }

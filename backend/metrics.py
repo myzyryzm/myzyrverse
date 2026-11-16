@@ -21,6 +21,7 @@ from datetime import datetime
 from typing import Any
 
 from . import runs
+from .arcplan import render_plan
 
 FILE = "metrics.json"
 TOKEN_KEYS = ("input", "output", "cache_read", "cache_write")
@@ -141,7 +142,8 @@ def gate_review(gate: str, run_type: str, before: dict, edits: dict) -> dict | N
         return research_counts(proposals, len(after.get("research_proposals_cut") or []))
     if gate == "human_gate_outline":
         field = DOC_FIELDS.get(run_type, "chapter_outline")
-        return {"doc": field, **_edit_stats(before.get(field, ""), after.get(field, ""))}
+        text = render_plan if field == "arc_plan" else (lambda d: d or "")  # compare the plan as markdown
+        return {"doc": field, **_edit_stats(text(before.get(field)), text(after.get(field)))}
     if gate == "human_gate_final":
         return {"doc": "draft_prose", **_edit_stats(before.get("draft_prose", ""), after.get("draft_prose", ""))}
     if gate == "human_gate_ledger":

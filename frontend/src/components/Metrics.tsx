@@ -10,7 +10,7 @@ interface Props {
 
 const DOC_LABELS: Record<string, string> = {
   lore_doc: "Lore doc (Loremaster)",
-  arc_plan: "Arc plan (Weaver)",
+  arc_plan: "Arc plan (Arcmaster)",
   chapter_outline: "Chapter outline (Weaver)",
 };
 

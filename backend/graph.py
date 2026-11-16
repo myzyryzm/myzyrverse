@@ -10,8 +10,8 @@
              maestro -> archivist -> maestro -> human_gate_ledger -> maestro [pause]
              maestro -> commit -> END
 
-Research runs skip weaver/writer/critic; plan_arc runs use weaver in arc mode
-and the outline gate for the plan; lore runs use the loremaster in place of the
+Research runs skip weaver/writer/critic; plan_arc runs use the arcmaster in
+place of the weaver and the outline gate for the plan; lore runs use the loremaster in place of the
 weaver and the outline gate for the lore document.
 
 LangGraph pieces used:
@@ -32,12 +32,12 @@ from langgraph.graph import END, START, StateGraph
 
 from . import config
 from .nodes import (
-    archivist, commit, gates, grand_critic, loremaster, maestro, research_editor, researchers, weaver, writer,
+    arcmaster, archivist, commit, gates, grand_critic, loremaster, maestro, research_editor, researchers, weaver, writer,
 )
 from .state import RunState
 
 GATES = ["human_gate_research", "human_gate_outline", "human_gate_final", "human_gate_ledger"]
-WORKERS = ["research_editor", "weaver", "loremaster", "writer", "grand_critic", "archivist"]
+WORKERS = ["research_editor", "weaver", "arcmaster", "loremaster", "writer", "grand_critic", "archivist"]
 
 
 def default_nodes() -> dict:
@@ -46,6 +46,7 @@ def default_nodes() -> dict:
         "join_research": researchers.join_research,
         "research_editor": research_editor.research_editor,
         "weaver": weaver.weaver,
+        "arcmaster": arcmaster.arcmaster,
         "loremaster": loremaster.loremaster,
         "writer": writer.writer,
         "grand_critic": grand_critic.grand_critic,

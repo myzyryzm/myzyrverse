@@ -63,6 +63,17 @@ def _fake(node: str, prompt: str, schema: dict | None) -> AgentResult:
             "selected": [{"id": i, "duplicates": [], "reason": "placeholder reason"} for i in ids]})
     if node == "weaver":
         return AgentResult(text="### Scene 1\n- Beat: placeholder\n\n### Scene 2\n- Beat: placeholder" + _echo(prompt))
+    if node == "arcmaster":
+        return AgentResult(text="", structured_output={
+            "overview": "Placeholder causal overview." + _echo(prompt),
+            "milestones": [
+                {"title": "Grain convoys fail", "description": "Placeholder milestone", "characters": ["Tiye"],
+                 "follows_from": "Placeholder: the present shortage"},
+                {"title": "Sherden demand pay", "description": "Placeholder milestone", "characters": [],
+                 "follows_from": "Placeholder: no grain, no pay"},
+            ],
+            "risks": ["Placeholder risk"],
+        })
     if node == "loremaster":
         return AgentResult(text="# Placeholder lore document\n\n## Origins\nPlaceholder background.\n\n"
                                 "## Proposed open questions\n- Placeholder question one?\n- Placeholder **question** two?\n\n"
@@ -80,13 +91,14 @@ def _fake(node: str, prompt: str, schema: dict | None) -> AgentResult:
             "summary": f"fake critic: {verdict}",
             "notes": [{"issue": "placeholder issue", "quote": "lamps guttered", "fix": "placeholder fix"}],
         })
-    if node == "archivist" and "sub_event entry" in prompt:
+    if node == "archivist" and "This was an arc plan" in prompt:
+        # Milestones become sub_events in code; the fake still returns a stray one to show it is ignored.
         return AgentResult(text="", structured_output={
             "summary": "Placeholder arc plan summary.",
-            "characters_present": ["Tiye", "Pentawere"],
+            "characters_present": ["Tiye"],
             "entries": [
-                {"kind": "sub_event", "entity": "Grain convoys fail", "change": "1", "detail": "Placeholder milestone", "ref_id": "", "characters": ["Tiye"], "confidence": "medium"},
-                {"kind": "sub_event", "entity": "Sherden demand pay", "change": "2", "detail": "Placeholder milestone", "ref_id": "", "characters": [], "confidence": "medium"},
+                {"kind": "new_question", "entity": "Sherden", "change": "question", "detail": "Who pays the Sherden once the grain fails?", "ref_id": "", "characters": [], "confidence": "medium"},
+                {"kind": "sub_event", "entity": "Stray milestone", "change": "9", "detail": "Should be dropped", "ref_id": "", "characters": [], "confidence": "low"},
             ],
         })
     if node == "archivist":

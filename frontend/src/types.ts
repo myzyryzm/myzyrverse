@@ -54,12 +54,28 @@ export interface UsageRecord {
   num_turns: number | null;
 }
 
+/** One step toward an arc's target event. Becomes a sub-event under it at the ledger gate. */
+export interface ArcMilestone {
+  title: string;
+  description: string;
+  /** Named characters who take part; the milestone lands on their timelines. */
+  characters: string[];
+  follows_from: string;
+}
+
+/** The Arcmaster's plan; milestones are in story order. */
+export interface ArcPlan {
+  overview: string;
+  milestones: ArcMilestone[];
+  risks: string[];
+}
+
 export interface RunValues {
   run_type?: RunType;
   review_status?: string;
   research_notes?: string;
   chapter_outline?: string;
-  arc_plan?: string;
+  arc_plan?: ArcPlan;
   lore_doc?: string;
   draft_prose?: string;
   draft_history?: string[];

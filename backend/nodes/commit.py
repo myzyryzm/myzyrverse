@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .. import logbus, runs
+from ..arcplan import render_plan
 from ..state import COMMITTED, RunState
 
 
@@ -23,7 +24,7 @@ async def commit(state: RunState) -> dict:
     if state.get("run_type") == "chapter":
         runs.write_artifact(run_id, "prose", state.get("draft_prose", ""))
     if state.get("run_type") == "plan_arc":
-        runs.write_artifact(run_id, "plan", state.get("arc_plan", ""))
+        runs.write_artifact(run_id, "plan", render_plan(state.get("arc_plan")))
     if state.get("run_type") == "lore":
         runs.write_artifact(run_id, "lore", state.get("lore_doc", ""))
     runs.update_meta(run_id, status="committed", committed_at=runs.now_iso(),

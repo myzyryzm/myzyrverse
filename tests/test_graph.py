@@ -108,12 +108,38 @@ async def test_plan_arc_run():
     g = build_graph(MemorySaver())
     gates, values = await _walk(g, "arc1", _start("arc1", run_type="plan_arc", researchers=[], target_event_id=ev["id"]))
     assert gates == ["human_gate_outline", "human_gate_ledger"]
-    assert values["arc_plan"]
+    assert [m["title"] for m in values["arc_plan"]["milestones"]] == ["Grain convoys fail", "Sherden demand pay"]
+    nodes = [u["node"] for u in values["usage"]]
+    assert "arcmaster" in nodes and "weaver" not in nodes
+    # milestones reach the ledger straight from the plan; a sub_event the archivist model proposes is ignored
+    subs_rows = [e for e in values["proposed_ledger"] if e["kind"] == "sub_event"]
+    assert [(e["entity"], e["change"], e["ref_id"]) for e in subs_rows] == [
+        ("Grain convoys fail", "1", ev["id"]), ("Sherden demand pay", "2", ev["id"])]
+    assert any(e["kind"] == "new_question" for e in values["proposed_ledger"])
+    assert "1. **Grain convoys fail**" in runs.read_artifact("arc1", "plan")
     tl = lore.timelines_view()
     subs = {e["title"]: e for e in lore.events() if e.get("parent_id") == ev["id"]}
+    assert set(subs) == {"Grain convoys fail", "Sherden demand pay"}
     assert subs["Grain convoys fail"]["category"] == "personal"
     assert subs["Sherden demand pay"]["category"] == "world"
     assert subs["Grain convoys fail"]["id"] in tl["unplaced"]["Tiye"]
+
+
+@pytest.mark.asyncio
+async def test_plan_arc_outline_edits_reach_the_ledger():
+    ev = lore.create_event("Battle of the Delta")
+    g = build_graph(MemorySaver())
+    edited = {"overview": "My overview", "risks": [], "milestones": [
+        {"title": "Envoy murdered", "description": "At the quay", "characters": ["Jon", " "], "follows_from": ""},
+        {"title": "  ", "description": "untitled milestones are dropped", "characters": [], "follows_from": ""},
+        {"title": "Grain convoys fail", "description": "Moved second", "characters": ["Tiye"], "follows_from": ""},
+    ]}
+    _, values = await _walk(g, "arc2", _start("arc2", run_type="plan_arc", researchers=[], target_event_id=ev["id"]),
+                            {"human_gate_outline": {"arc_plan": edited}})
+    assert [m["title"] for m in values["arc_plan"]["milestones"]] == ["Envoy murdered", "Grain convoys fail"]
+    subs = sorted((e for e in lore.events() if e.get("parent_id") == ev["id"]), key=lambda e: e["order"])
+    assert [(e["title"], e["order"], e["characters"]) for e in subs] == [
+        ("Envoy murdered", 1, ["Jon"]), ("Grain convoys fail", 2, ["Tiye"])]
 
 
 @pytest.mark.asyncio
@@ -159,6 +185,13 @@ def test_maestro_lore_routing():
     assert decide({**base, "review_status": "RESEARCH_APPROVED"})["next_steps"] == "loremaster"
     assert decide({**base, "lore_doc": "d", "review_status": "PENDING_OUTLINE_REVIEW"})["next_steps"] == "human_gate_outline"
     assert decide({**base, "lore_doc": "d", "review_status": "OUTLINE_APPROVED"})["next_steps"] == "archivist"
+
+
+def test_maestro_plan_arc_routing():
+    base = {"run_type": "plan_arc", "research_complete": True}
+    assert decide({**base, "review_status": "RESEARCH_APPROVED"})["next_steps"] == "arcmaster"
+    assert decide({**base, "arc_plan": "p", "review_status": "PENDING_OUTLINE_REVIEW"})["next_steps"] == "human_gate_outline"
+    assert decide({**base, "arc_plan": "p", "review_status": "OUTLINE_APPROVED"})["next_steps"] == "archivist"
 
 
 @pytest.mark.asyncio
