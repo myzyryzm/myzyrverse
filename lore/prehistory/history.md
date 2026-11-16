@@ -11,9 +11,9 @@
 
 ## The War of Succession (1190–1185)
 - Two grandsons of Ramesses II fought over the throne: the elder, **Seti II**, and the younger, **Amenmesse**.
-- Seti II died. His son **Siptah** took up the claim as rival pharaoh and killed his uncle Amenmesse.
+- Amenmesse died. His son **Siptah** took up the claim as rival pharaoh and killed his uncle Seti II. Seti II left no surviving heirs.
 - Siptah's wife was **Twosret**, a Hittite princess, sister of **Šuppiluliuma II**, the Hittite king at the time. The marriage was the Hittites' last entanglement in Egyptian affairs before their own fall.
-- **Setnakhte**, Amenmesse's top general, then defeated Siptah and avenged his master. **Siptah died** in that defeat.
+- **Setnakhte**, Seti II's top general, then defeated Siptah and avenged his master. **Siptah died** in that defeat.
   - He was not a direct descendant of Ramesses II, but had some royal blood: "a second son of a second son of a third daughter."
   - He took the throne around 1185 and died in battle while taking it, or after a very short reign.
   - His son is **Ramesses III**. As in history, Setnakhte founds the 20th Dynasty.
@@ -35,7 +35,7 @@
 ## Intentional divergences from the historical record
 - The harem conspiracy succeeds. Historically it failed and the conspirators were tried (the Judicial Papyrus of Turin).
 - Ramesses II reigns 1275–1210 here (historically ~1279–1213). His son reigns ~20 years (Merneptah ruled ~10).
-- The succession war here is two brothers plus a nephew, and it reuses the real late-19th-Dynasty names with new relationships. Historically Amenmesse briefly displaced Seti II (their exact relation is uncertain), Siptah was a young king of uncertain parentage, and Twosret was Seti II's Egyptian Great Royal Wife who later ruled as pharaoh. Here Siptah is Seti II's son, and Twosret is Siptah's wife, a Hittite princess and sister of Šuppiluliuma II.
+- The succession war here is two brothers plus a nephew, and it reuses the real late-19th-Dynasty names with new relationships. Historically Amenmesse briefly displaced Seti II (their exact relation is uncertain), Siptah was a young king of uncertain parentage, and Twosret was Seti II's Egyptian Great Royal Wife who later ruled as pharaoh. Here Siptah is Amenmesse's son, and Twosret is Siptah's wife, a Hittite princess and sister of Šuppiluliuma II.
 - The Great Royal Wife is a princess of Tyre. Historically she was Iset Ta-Hemdjert, origin unknown.
 - Assyria is expanding west and raiding northern Canaan.
 - Tiye's son keeps his historical name, **Pentawer**. In history he was tried for the conspiracy; here he wins the throne.

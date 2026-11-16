@@ -73,6 +73,8 @@ export interface ArcPlan {
 
 export interface RunValues {
   run_type?: RunType;
+  /** The author's brief the run was started with. */
+  brief?: string;
   models?: Record<string, string>;
   review_status?: string;
   research_notes?: string;

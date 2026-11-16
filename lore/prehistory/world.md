@@ -21,7 +21,7 @@ Historical fantasy set in the eastern Mediterranean around **1160 BCE**, during 
 | 1275–1210 | Ramesses II ("the Great") reigns |
 | 1210–~1190 | His son reigns (~20 years) |
 | 1190–1185 | War of Succession (history.md) |
-| ~1185 | Setnakhte, Amenmesse's top general, who has distant royal blood, defeats Siptah, takes the throne and dies soon after. His son becomes Ramesses III. |
+| ~1185 | Setnakhte, Seti II's top general, who has distant royal blood, defeats Siptah, takes the throne and dies soon after. His son becomes Ramesses III. |
 | ~1184 | Secret child of Siptah and Twosret born |
 | ~1175 | Tiye marries Ramesses III at ~15 and bears a son, Pentawer, soon after (derived from ages) |
 | 1160 | Story begins, ~year 25 of Ramesses III |

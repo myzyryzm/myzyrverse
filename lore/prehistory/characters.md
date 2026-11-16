@@ -6,7 +6,7 @@ Ages are approximate and still in flux. The children should all be around coming
 - About 25 years into his reign.
 - Obsessed with legacy. He idolizes Ramesses II and wants to be remembered as his equal.
 - Plans a war against Assyria (politics.md).
-- Son of **Setnakhte**, Amenmesse's top general, who took the throne at the end of the War of Succession, so his royal blood is distant.
+- Son of **Setnakhte**, Seti II's top general, who took the throne at the end of the War of Succession, so his royal blood is distant.
 - Dies in the harem conspiracy.
 
 ## Isis, Great Royal Wife (~45)
@@ -67,11 +67,11 @@ Ages are approximate and still in flux. The children should all be around coming
 
 ## The hidden heir, child of Siptah and Twosret (~24, born ~1184)
 - Twosret was pregnant when Siptah died, and the child was born after his death (~1184). How the baby was hidden is *(open)*.
-- Almost nobody knows this person exists. By Seti II's line they are technically the rightful heir.
+- Almost nobody knows this person exists. Seti II left no surviving heirs, so as Siptah's child, and therefore a direct descendant of Ramesses II, they are technically the rightful heir. Ramesses III's line descends from Setnakhte, who is not.
 - Not a Daenerys, whose claim everyone knows. This heir is unknown, perhaps raised by farmers as in the Cyrus the Great legend.
 - Gender and role undecided.
 
 ## Dead before the story
-- Seti II, Amenmesse and Siptah (War of Succession). Siptah died when Amenmesse's general Setnakhte defeated him.
+- Seti II, Amenmesse and Siptah (War of Succession). Siptah died when Seti II's general Setnakhte defeated him.
 - Setnakhte, Ramesses III's father.
 - Twosret's fate is unknown *(open)*.

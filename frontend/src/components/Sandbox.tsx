@@ -263,6 +263,10 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
               step through its cards and drop what you don't want. Click ✎ on a card to edit it.
               Commit writes the kept rows, linked to this run.
             </p>
+            <div className="field">
+              <span>Brief (the run's initial input)</span>
+              <div className="run-brief">{v.brief?.trim() || <span className="muted">(no brief)</span>}</div>
+            </div>
             <label className="field">
               <span>Summary (feeds later chapters)</span>
               <textarea readOnly={editable !== "ledger"} value={drafts.summary ?? v.summary ?? ""}

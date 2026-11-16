@@ -1,1 +1,1 @@
-write the backstory on the war of succession in egypt between Seti II (and then his son) versus Amenmesse (and then his general Setnakhte)
+write the backstory on the egyptian war of succession between seti and Amenmesse

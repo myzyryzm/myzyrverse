@@ -50,7 +50,7 @@
 
 ## Marriage to Ramesses III
 - His position:
-  - He is the son of Setnakhte, Amenmesse's top general, who took the throne at the end of the War of Succession.
+  - He is the son of Setnakhte, Seti II's top general, who took the throne at the end of the War of Succession.
   - His royal blood is distant.
   - He is obsessed with legacy and wants to equal Ramesses II.
 - Isis loved him and still loves him. The love is not lust or romance. She respects him, and she bore his children.
