@@ -1,0 +1,412 @@
+[
+  {
+    "id": "historian-1",
+    "researcher": "historian",
+    "kind": "plot",
+    "title": "The Two Crowns: Delta king against Theban-Nubian king",
+    "pitch": "",
+    "affects": [
+      "War of Succession",
+      "Seti II",
+      "Amenmesse",
+      "Siptah",
+      "Nubian nobleman",
+      "Deir el-Medina",
+      "Thebes",
+      "Pi-Ramesses"
+    ],
+    "parts": [
+      {
+        "label": "plot",
+        "text": "Make the War of Succession a geographical split on the Mughal and Ottoman model. Seti II, the elder, holds Pi-Ramesses, the Delta and the northern garrisons. Amenmesse, the younger, was Viceroy of Kush when their father died, and he crowns himself at Thebes. He pays for the war with Nubian gold and is backed by the priesthood of Amun. The war is mostly a stalemate between the two halves. It turns on betrayals: officials who change sides, and the Theban tomb-builders' village fought over and ransacked. Seti's tomb is plundered and a foreman is killed by \"the enemy\" [1, 10, 14, 16]. Amenmesse's death does not end it. His teenage son Siptah inherits the southern crown and its army, as Mustafa reappeared after the Ottoman Interregnum seemed over [16].",
+        "refs": [
+          1,
+          3,
+          10,
+          14,
+          16
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This fits canon's two brothers plus a nephew and the five-year span 1190–1185, and it follows the historical evidence that Amenmesse ruled only in Thebes and Nubia (labelled divergence: historically Seti II was not killed by Siptah). It gives the Nubian gold family a wartime past, since they either bankrolled the losing southern crown or changed sides at the right moment, and it gives the Deir el-Medina strike a memory of the war behind it.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Did the Nubian gold family back Amenmesse to the end, or change sides like Khaemtir? Is that why Pi-Ramesses still distrusts them?",
+        "answer": ""
+      },
+      {
+        "q": "Are there families in the Deir el-Medina workforce whose feud dates from the war, the line of the murdered foreman against the line of the man who bought his post?",
+        "answer": ""
+      }
+    ],
+    "decision": "accepted",
+    "note": "",
+    "also_from": [
+      "antiquarian",
+      "mythographer"
+    ]
+  },
+  {
+    "id": "psychologist-2",
+    "researcher": "psychologist",
+    "kind": "characterization",
+    "title": "Seti II and Amenmesse: the first run of the Aegon question",
+    "pitch": "",
+    "affects": [
+      "Seti II",
+      "Amenmesse",
+      "Ramesses III",
+      "Aegon",
+      "Pentawer",
+      "Tiye"
+    ],
+    "parts": [
+      {
+        "label": "characterization",
+        "text": "Seti II is the legitimate elder and hollow: indecisive or indolent, sure that being born first is a virtue in itself. Amenmesse is the abler younger brother, convinced that the order of birth was an accident of the gods. He tells himself he takes what Egypt needs, not what he wants. Setnakhte chose the unfit legitimate son, and good men died for him. Make Seti II's failing different from Aegon's vices, for example timidity or grief over dead sons, so that the echo is in the structure, not a copy. It gives Ramesses III's contempt for Aegon a layer of dread underneath. He also has a buried sympathy for capable younger claimants that his own dynasty's founding story forbids.",
+        "refs": [],
+        "note": "Amenmesse is seen as more of a warrior than Seti II. but Seti II isnt necessarily hollow. but Amenmesse has support b/c of his warrior instinct. Seti II isnt seen as having warrior instinct though. he could be seen as hollow but underestimated"
+      },
+      {
+        "label": "integration",
+        "text": "Canon gives neither brother a personality, so this fills a gap. It sets up the conspiracy, a capable usurper against an unfit heir, as history repeating itself. Divergence: the historical record says almost nothing about either man's character.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Was Seti II unfit through vice, as Aegon is, or through something more forgivable such as timidity, illness or grief?",
+        "answer": "it isnt vice, but it hasnt been decided yet"
+      },
+      {
+        "q": "Did the old king openly favour Amenmesse, which would have given the younger son a grievance as well as an ambition?",
+        "answer": "no"
+      }
+    ],
+    "decision": "accepted",
+    "note": "",
+    "also_from": []
+  },
+  {
+    "id": "historian-3",
+    "researcher": "historian",
+    "kind": "world",
+    "title": "Setnakhte the Avenger and the erased kings",
+    "pitch": "",
+    "affects": [
+      "Setnakhte",
+      "Ramesses III",
+      "Hidden heir",
+      "Amenmesse",
+      "Siptah",
+      "Seti II",
+      "Egyptian priesthood"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "Ramesses III's legitimacy rests on a Severan founding story [17, 18]. Setnakhte took the throne as the avenger of Seti II. He gave Seti a grand reburial, executed Seti's killers, and called himself Seti's chosen heir. Following Egypt's own practice of erasing condemned kings [1], his regime struck Amenmesse and Siptah from the king lists, recarved their statues and erased their officials. Official history calls the war a time of foreign gold and anarchy that Setnakhte ended, with no rival kings in it [5, 13]. In 1160, temple scribes teach this version and only old men remember otherwise. That makes a living child of Siptah more than a rival claimant: proof that the dynasty's founding story is a lie.",
+        "refs": [
+          1,
+          5,
+          13,
+          17,
+          18
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This builds directly on canon's Setnakhte avenging Seti II and his distant royal blood, and it raises the stakes of the hidden heir without deciding who the heir is. It also sits well with Ramesses III's obsession with legacy, since his own name depends on a curated history.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Who outside the court still keeps the true king list: a Theban priestly house, the guild's archivists, or Nubian records?",
+        "answer": ""
+      },
+      {
+        "q": "Does Setnakhte's avenger claim also cover a Twosret story, for example that she died or was sent back to a fallen Hatti?",
+        "answer": ""
+      }
+    ],
+    "decision": "accepted",
+    "note": "",
+    "also_from": [
+      "antiquarian",
+      "mythographer"
+    ]
+  },
+  {
+    "id": "psychologist-1",
+    "researcher": "psychologist",
+    "kind": "characterization",
+    "title": "Setnakhte: the loyalist who became what he fought",
+    "pitch": "",
+    "affects": [
+      "Setnakhte",
+      "Ramesses III",
+      "Seti II",
+      "Siptah",
+      "War of Succession"
+    ],
+    "parts": [
+      {
+        "label": "characterization",
+        "text": "Setnakhte went to war for one idea: the elder son's right, the birth order that keeps Ma'at. When Siptah killed Seti II and left no heir, the only way to avenge that principle was to break it. He never believed in his own coronation. He thought of himself as the realm's caretaker, the king's justice wearing the king's crown. His worst act, killing a direct descendant of Ramesses II, he files under vengeance, never usurpation. The shame he could not name passes to his son. Ramesses III's obsession with legacy is a son trying to pay off a debt his father would not admit to.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This fits canon: Seti II's top general avenges his master and founds a dynasty on distant blood. It gives Ramesses III's idolizing of Ramesses II an inherited cause. It does not settle how Setnakhte died or whether he knew of Siptah's child.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Did Setnakhte ever tell Ramesses III that he thought of himself as a caretaker rather than a true king, or does his son only sense it?",
+        "answer": ""
+      },
+      {
+        "q": "Was his loyalty to Seti II personal love for the man or devotion to the principle alone?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": "",
+    "also_from": [
+      "mythographer"
+    ]
+  },
+  {
+    "id": "historian-2",
+    "researcher": "historian",
+    "kind": "plot",
+    "title": "Siptah's Kingmaker",
+    "pitch": "",
+    "affects": [
+      "Siptah",
+      "Twosret",
+      "Setnakhte",
+      "Seti II",
+      "War of Succession"
+    ],
+    "parts": [
+      {
+        "label": "plot",
+        "text": "Siptah was a teenager when his father died, and he was made king by a Bay figure: a foreign-born chancellor who could never wear the crown himself, as Ricimer could not [11, 19]. This kingmaker carried the southern cause after Amenmesse's death, arranged the Hittite marriage to Twosret, and planned the killing of Seti II. Once Siptah held the whole throne, he and Twosret executed the kingmaker as \"the great enemy\" [11, 12]. The kingmaker's clients were left without a patron, and their defection to Setnakhte, the way Aurangzeb discarded Murad and Murad's men changed sides, is what let Setnakhte break Siptah within the year [15].",
+        "refs": [
+          11,
+          12,
+          15,
+          19
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "Canon already has Siptah kill Seti II and fall to Setnakhte. This supplies the mechanism of that fall from the real record, where Bay was executed in Siptah's Year 5 for unknown reasons. Nothing settled about the hidden heir changes.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Is the kingmaker's family still alive in 1160, and on which side of the harem conspiracy?",
+        "answer": "leave this open. it's an enticing idea"
+      },
+      {
+        "q": "Was Twosret the one who demanded his death, as some scholars suspect of the historical Tausret?",
+        "answer": "yes"
+      }
+    ],
+    "decision": "accepted",
+    "note": "",
+    "also_from": []
+  },
+  {
+    "id": "antiquarian-3",
+    "researcher": "antiquarian",
+    "kind": "world",
+    "title": "The tomb-builders lived the war",
+    "pitch": "",
+    "affects": [
+      "Deir el-Medina strike",
+      "Deir el-Medina",
+      "Thebes",
+      "Amenmesse",
+      "Seti II"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "The Deir el-Medina crew served whichever king held Thebes. Rival kings' tombs were cut, vandalized and repaired a short walk apart, and Seti II's and Amenmesse's tombs are still there to see [1, 3]. The village remembers a chief workman killed by 'the enemy', and a bully who went over the vizier's head straight to the rebel king to escape punishment [4]. In 1160 some of the crew's elders and their families served the losing side, while others profited when Seti's men purged the village. The feuds of that war still run through the crew.",
+        "refs": [
+          1,
+          3,
+          4
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This gives the planned Deir el-Medina strike a pre-existing fault line inside the village, without deciding who starts it. Paneb and Neferhotep are real names, about 40 years too early to be alive in 1160, so use their memory or invented successors.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Do any of the crew still privately honor Amenmesse or Siptah, whose names are officially erased?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": "",
+    "also_from": []
+  },
+  {
+    "id": "psychologist-3",
+    "researcher": "psychologist",
+    "kind": "characterization",
+    "title": "Twosret: the princess who saw a claim as a death sentence",
+    "pitch": "",
+    "affects": [
+      "Twosret",
+      "Hidden heir",
+      "Šuppiluliuma II",
+      "Isis",
+      "Setnakhte"
+    ],
+    "parts": [
+      {
+        "label": "characterization",
+        "text": "Twosret grew up among Hittite stories of royal kin-killing and was sent to Egypt as her dying house's last bet. She watched Hatti collapse behind her and her husband die in front of her. Whatever her fate, write her as a woman who came to believe that a royal claim is what gets children killed. For her child she wants not a throne but anonymity. Her lie is that this is pure protection. Part of it is also her own verdict on everything her brother and husband gambled away. She is Isis's dark twin: two exported princesses in the same years, one clinging to rank because losing it would mean disgrace, the other burying it because keeping it would mean death.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This is consistent with a hidden heir whom almost no one knows about. It sets out her outlook without deciding her fate, who carried out the hiding, or the child's later role, all of which stay open.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does Twosret resent Šuppiluliuma II for spending her on a losing war, as Isis was spent by her own brother?",
+        "answer": ""
+      },
+      {
+        "q": "If Twosret is alive, would she oppose her child ever learning their claim?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": "",
+    "also_from": []
+  },
+  {
+    "id": "mythographer-2",
+    "researcher": "mythographer",
+    "kind": "plot",
+    "title": "The broken partition: Delta against Thebes and Kush",
+    "pitch": "",
+    "affects": [
+      "Seti II",
+      "Amenmesse",
+      "Siptah",
+      "Nubian nobleman's family",
+      "Thebes",
+      "Pi-Ramesses"
+    ],
+    "parts": [
+      {
+        "label": "plot",
+        "text": "At their father's death, Seti II (the elder) and Amenmesse agree to divide rule in the manner of Eteocles and Polyneices [25, 26]. Seti II holds Pi-Ramesses and the Delta. Amenmesse governs Thebes and Kush as the king's deputy, which gives him the Nubian gold. When Seti II moves to take back the south, each brother can honestly call the other the oath-breaker. Amenmesse crowns himself at Thebes, and the war becomes the north against the south, with Nubian gold paying southern armies. This borrows the real theory that Amenmesse held Upper Egypt [1, 3]. After his death the southern cause passes to his son Siptah and his Hittite marriage.",
+        "refs": [
+          1,
+          3,
+          25,
+          26,
+          30
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "Keeps canon's sequence: Amenmesse dies, Siptah kills Seti II, Setnakhte defeats Siptah. It gives the war a geography, and it gives the Nubian gold family a side in it, which can feed that open role without settling it. Divergence: historically there was no documented partition pact.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Did the Nubian gold family back Amenmesse to the end, or change sides in time to keep the mines under Setnakhte?",
+        "answer": ""
+      },
+      {
+        "q": "Was the partition sworn before witnesses (priests, the vizier), so that someone alive in 1160 knows which brother really broke it?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  },
+  {
+    "id": "mythographer-1",
+    "researcher": "mythographer",
+    "kind": "characterization",
+    "title": "Ramesses III as the usurper's son, after Henry V",
+    "pitch": "",
+    "affects": [
+      "Ramesses III",
+      "Setnakhte",
+      "Seti II",
+      "the nobility",
+      "the Assyrian war plan"
+    ],
+    "parts": [
+      {
+        "label": "characterization",
+        "text": "Ramesses III's obsession with legacy is a debt, not vanity. His father won the crown as an avenger and kept it as a usurper: Setnakhte was 'a second son of a second son of a third daughter.' Ramesses III believes the gods and the old families give Ramesses II's blood what he himself has to earn through deeds. Like Henry V he pays it off in public: rich offerings for Seti II's cult, temples, his wars carved in stone [23, 24, 31]. Privately he half-believes that only a great foreign victory will make his house rightful. The Assyrian war is his Agincourt, which means he is least able to hear arguments against it.",
+        "refs": [
+          23,
+          24,
+          30,
+          31
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "Fits his canon idolizing of Ramesses II and Setnakhte's distant blood. It sharpens the nobles' resentment: they fund what is really his private penance. No events change.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does he also quietly pay offerings for Siptah's spirit as an insurance against vengeance, or does he honour only Seti II?",
+        "answer": ""
+      },
+      {
+        "q": "Does he share his father's sense of guilt, or does he believe Setnakhte's account of the war completely?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": ""
+  }
+]

@@ -145,6 +145,100 @@
       "ended": "2026-11-16T02:25:53+00:00",
       "outcome": "paused:human_gate_research",
       "duration_ms": 412451
+    },
+    {
+      "kind": "gate_review",
+      "t": "2026-11-18T05:52:19+00:00",
+      "gate": "human_gate_research",
+      "accepted": 4,
+      "maybe": 0,
+      "rejected": 5,
+      "accepted_with_notes": 0,
+      "total": 9,
+      "cut_by_editor": 5,
+      "by_researcher": {
+        "historian": {
+          "accepted": 3
+        },
+        "psychologist": {
+          "accepted": 1,
+          "rejected": 2
+        },
+        "antiquarian": {
+          "rejected": 1
+        },
+        "mythographer": {
+          "rejected": 2
+        }
+      },
+      "by_kind": {
+        "plot": {
+          "accepted": 2,
+          "rejected": 1
+        },
+        "characterization": {
+          "accepted": 1,
+          "rejected": 3
+        },
+        "world": {
+          "accepted": 1,
+          "rejected": 1
+        }
+      },
+      "by_researcher_kind": {
+        "historian": {
+          "plot": {
+            "accepted": 2
+          },
+          "world": {
+            "accepted": 1
+          }
+        },
+        "psychologist": {
+          "characterization": {
+            "accepted": 1,
+            "rejected": 2
+          }
+        },
+        "antiquarian": {
+          "world": {
+            "rejected": 1
+          }
+        },
+        "mythographer": {
+          "plot": {
+            "rejected": 1
+          },
+          "characterization": {
+            "rejected": 1
+          }
+        }
+      },
+      "notes_by_researcher": {}
+    },
+    {
+      "kind": "llm_call",
+      "t": "2026-11-18T05:54:05+00:00",
+      "node": "loremaster",
+      "model": "claude-opus-5-5",
+      "session_id": "a956b240-8cef-477d-887d-141ad6581b67",
+      "cost_usd": 0.5382755,
+      "duration_ms": 105287,
+      "duration_api_ms": 106280,
+      "num_turns": 1,
+      "web_searches": 0,
+      "input_tokens": 37872,
+      "output_tokens": 11381,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 38399
+    },
+    {
+      "kind": "segment",
+      "t": "2026-11-18T05:54:05+00:00",
+      "started": "2026-11-18T05:52:19+00:00",
+      "ended": "2026-11-18T05:54:05+00:00",
+      "outcome": "paused:human_gate_outline",
+      "duration_ms": 106601
     }
   ]
 }

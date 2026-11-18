@@ -145,6 +145,97 @@
       "ended": "2026-11-16T02:21:40+00:00",
       "outcome": "paused:human_gate_research",
       "duration_ms": 777806
+    },
+    {
+      "kind": "gate_review",
+      "t": "2026-11-18T06:24:11+00:00",
+      "gate": "human_gate_research",
+      "accepted": 6,
+      "maybe": 0,
+      "rejected": 1,
+      "accepted_with_notes": 0,
+      "total": 7,
+      "cut_by_editor": 5,
+      "by_researcher": {
+        "mythographer": {
+          "accepted": 1
+        },
+        "psychologist": {
+          "accepted": 2
+        },
+        "historian": {
+          "rejected": 1,
+          "accepted": 2
+        },
+        "antiquarian": {
+          "accepted": 1
+        }
+      },
+      "by_kind": {
+        "plot": {
+          "accepted": 2
+        },
+        "characterization": {
+          "accepted": 2,
+          "rejected": 1
+        },
+        "world": {
+          "accepted": 2
+        }
+      },
+      "by_researcher_kind": {
+        "mythographer": {
+          "plot": {
+            "accepted": 1
+          }
+        },
+        "psychologist": {
+          "characterization": {
+            "accepted": 2
+          }
+        },
+        "historian": {
+          "characterization": {
+            "rejected": 1
+          },
+          "world": {
+            "accepted": 1
+          },
+          "plot": {
+            "accepted": 1
+          }
+        },
+        "antiquarian": {
+          "world": {
+            "accepted": 1
+          }
+        }
+      },
+      "notes_by_researcher": {}
+    },
+    {
+      "kind": "llm_call",
+      "t": "2026-11-18T06:25:54+00:00",
+      "node": "loremaster",
+      "model": "claude-opus-5-5",
+      "session_id": "b41434d2-cbbe-4e99-9839-bf963b167ece",
+      "cost_usd": 0.4944912,
+      "duration_ms": 101896,
+      "duration_api_ms": 103023,
+      "num_turns": 1,
+      "web_searches": 0,
+      "input_tokens": 35339,
+      "output_tokens": 10672,
+      "cache_read_tokens": 1160,
+      "cache_write_tokens": 34706
+    },
+    {
+      "kind": "segment",
+      "t": "2026-11-18T06:25:54+00:00",
+      "started": "2026-11-18T06:24:11+00:00",
+      "ended": "2026-11-18T06:25:54+00:00",
+      "outcome": "paused:human_gate_outline",
+      "duration_ms": 102603
     }
   ]
 }

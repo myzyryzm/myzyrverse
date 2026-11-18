@@ -6,6 +6,7 @@ import ProposalReview, { RESEARCHER_SHORT, normalizeDecision } from "./ProposalR
 import ResearchReader from "./ResearchReader";
 import LedgerReview, { LEDGER_GROUPS } from "./LedgerReview";
 import ArcPlanEditor, { asPlan } from "./ArcPlanEditor";
+import { QuestionsContext, useQuestionMap } from "../questions";
 
 type TextField = "research_notes" | "chapter_outline" | "lore_doc" | "draft_prose" | "critique_notes" | "summary"
   | "author_research_notes";
@@ -57,6 +58,8 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
   const [reviewAt, setReviewAt] = useState<number | null>(null);
   const [ledgerGroup, setLedgerGroup] = useState<string | null>(null);
   const [flashSrc, setFlashSrc] = useState<number | null>(null);
+  // Refetch when the run moves (a gate or commit can add or answer questions).
+  const questions = useQuestionMap([runState?.meta.status, runState?.running]);
 
   // Drop local edits once the run moves on (they were sent with Resume, or discarded by Regenerate).
   useEffect(() => {
@@ -140,7 +143,7 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
   const openGroup = LEDGER_GROUPS.find((g) => g.id === ledgerGroup);
 
   return (
-    <>
+    <QuestionsContext.Provider value={questions}>
       <div className="col-title">
         The Sandbox
         {gate && <span className="badge gate">{GATE_LABELS[gate]} · editable</span>}
@@ -300,7 +303,7 @@ export default function Sandbox({ runState, registerEdits, act }: Props) {
                         onChange={setLedger} onClose={() => setLedgerGroup(null)} />
         )}
       </div>
-    </>
+    </QuestionsContext.Provider>
   );
 }
 

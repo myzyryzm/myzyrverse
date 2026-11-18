@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import type { LedgerEntry } from "../types";
+import { QuestionsContext } from "../questions";
+import { QRef } from "./Rich";
 
 export interface LedgerGroup {
   id: string;
@@ -60,6 +62,8 @@ export default function LedgerReview({ group, entries, editable, onChange, onClo
   const at = Math.min(pos, Math.max(n - 1, 0));
   const i = idxs[at];
   const e = i === undefined ? undefined : entries[i];
+  const questions = useContext(QuestionsContext);
+  const refQ = e?.kind === "answer" ? questions.get(e.ref_id?.trim() ?? "") : undefined;
   const kept = (x: LedgerEntry) => x.accepted !== false;
   const answered = (x: LedgerEntry) => x.kind === "new_question" && !!x.answer?.trim();
 
@@ -185,6 +189,12 @@ export default function LedgerReview({ group, entries, editable, onChange, onClo
               {(e.kind === "answer" || e.kind === "event_update") && (
                 <Field label={e.kind === "answer" ? "Question id" : "Event id"} value={e.ref_id} editing={canEdit}
                        onChange={(ref_id) => patch({ ref_id })} />
+              )}
+              {refQ && (
+                <div className="field">
+                  <span>Question <QRef q={refQ} /></span>
+                  <div className="ledger-text q-text">{refQ.question}</div>
+                </div>
               )}
 
               <div className="field">

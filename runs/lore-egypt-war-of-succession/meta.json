@@ -10,7 +10,9 @@
     "mythographer"
   ],
   "target_event_id": "",
-  "models": {},
+  "models": {
+    "loremaster": "claude-opus-5-5"
+  },
   "characters_present": [],
   "order": null,
   "status": "draft",

@@ -297,6 +297,19 @@ legend { font-family: var(--serif); font-weight: 700; font-size: 15px; padding: 
 sup.ref { font: 600 10px/1 var(--sans); margin-left: 1px; }
 sup.ref a { color: var(--lapis); text-decoration: none; }
 sup.ref a:hover { text-decoration: underline; }
+.qref { font: 600 0.82em/1 var(--sans); color: var(--lapis); text-decoration: underline dotted; text-underline-offset: 2px; cursor: help; }
+.qref:focus { outline: none; text-decoration-style: solid; }
+.qref-tip {
+  position: fixed; z-index: 100; transform: translateY(-100%); width: max-content; max-width: 360px;
+  display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 6px;
+  background: var(--panel); border: 1px solid var(--line); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  font: 400 13px/1.45 var(--sans); color: var(--ink); text-decoration: none; white-space: normal; cursor: auto; pointer-events: none;
+}
+.qref-tip.below { transform: none; }
+.qref-about { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.qref-q { font: 600 15px/1.35 var(--serif); }
+.qref-answer { color: var(--ok); }
+.qref-status { font-size: 11px; color: var(--muted); }
 
 .proposal-list { display: flex; flex-direction: column; gap: 8px; }
 .proposal-card {

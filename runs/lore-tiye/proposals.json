@@ -1,0 +1,307 @@
+[
+  {
+    "id": "mythographer-1",
+    "researcher": "mythographer",
+    "kind": "plot",
+    "title": "The deed and the door: both parents made the match",
+    "pitch": "",
+    "affects": [
+      "Tiye",
+      "Tywin",
+      "Olenna",
+      "Ramesses III",
+      "Isis"
+    ],
+    "parts": [
+      {
+        "label": "plot",
+        "text": "Do not choose between the two origins. Use both, and give each parent half the work, as the Boleyn father and the Norfolk uncle share it in Wolf Hall, or Bathsheba and Nathan in 1 Kings [26, 30]. Tywin, a common soldier, really did save Ramesses III's life, perhaps at the Year 8 battle in the Delta mouths around 1177. That deed got the family a reward and an audience, nothing more. Olenna, a servant in the khener, turned the audience into a bed. She put her 13-year-old where the king would see her again, and over the next two years worked her into a marriage, so Tiye wed at 15. The court tells the soldier's story, because it flatters the king. The truth is the handmaid's.",
+        "refs": [
+          26,
+          27,
+          30
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This fits the timeline: Tiye marries around 1175 at about 15, two years after the Year 8 victory. It turns the open either/or into a both/and. It still leaves open which parent is alive, and leaves room for Tywin as a general.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Was Olenna a servant in the Great Royal Wife's own apartments? If so, Isis's scorn for a servant's daughter is personal.",
+        "answer": "yes"
+      },
+      {
+        "q": "Does Tiye know her marriage was her mother's work, or does she believe the soldier's story too?",
+        "answer": "yes"
+      }
+    ],
+    "decision": "accepted",
+    "note": "",
+    "also_from": []
+  },
+  {
+    "id": "psychologist-2",
+    "researcher": "psychologist",
+    "kind": "characterization",
+    "title": "The family's fortune is the bride-price",
+    "pitch": "",
+    "affects": [
+      "Tiye",
+      "Olenna",
+      "Tywin",
+      "Ramesses III",
+      "Sherden"
+    ],
+    "parts": [
+      {
+        "label": "characterization",
+        "text": "Whichever parent survives, Olenna or Tywin, rose on Tiye's marriage, and she knows the family's wealth is the price that was paid for her at fifteen. She loves that parent, relies on them, and quietly cannot forgive them. Her lie is 'my family is the only ally I have.' Her parent's is 'we gave her a better life.' Each uses the other. Tiye's cunning was learned partly from watching how she herself was spent.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This works under either open origin without choosing one. It explains why the surviving parent is visibly rich and makes them the natural first recruit to the conspiracy and also its likeliest betrayer.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Did the parent ask Tiye's consent at fifteen, or did she learn of the match as a done deal?",
+        "answer": "tiye wasnt asked"
+      }
+    ],
+    "decision": "accepted",
+    "note": "",
+    "also_from": [
+      "mythographer"
+    ]
+  },
+  {
+    "id": "historian-1",
+    "researcher": "historian",
+    "kind": "characterization",
+    "title": "Tywin as the founder's charioteer",
+    "pitch": "",
+    "affects": [
+      "Tywin",
+      "Tiye",
+      "Ramesses III",
+      "Setnakhte",
+      "War of Succession",
+      "the harem conspiracy"
+    ],
+    "parts": [
+      {
+        "label": "characterization",
+        "text": "Tywin combines Yuya and Wu Shiyue. He is a provincial chariot officer from a cult town who backed Setnakhte early in the War of Succession and saved the young Ramesses III in it. His titles echo Yuya's: Master of the Horse and King's Lieutenant. Everything he owns (land, rank, a daughter in the khener) is a gift from the 20th Dynasty, so he thinks of the dynasty as the house he helped build and a family investment. That makes him the hardest person in the conspiracy for Tiye to bring in. She is plotting against the son of the man her father fought for, and she has to calculate whether Tywin will betray her, join her, or decide only afterward which side he was on.",
+        "refs": [
+          9,
+          18,
+          20,
+          25
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This settles the Tiye-origin question in favour of Tywin and makes him the parent still alive. Olenna can be dead and still shape Tiye (see the next proposal). It fits canon's \"visibly rich, maybe a top general\" by making him a chariotry commander rather than a Sherden commander, which keeps him apart from Tiye's possible Sherden lover.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does Tywin learn of the plot beforehand, or only once Pentawer is on the throne?",
+        "answer": ""
+      },
+      {
+        "q": "Is Tywin chariotry (an Egyptian corps) or a Sherden commander, given that a Sherden lover is also possible?",
+        "answer": ""
+      }
+    ],
+    "decision": "rejected",
+    "note": "",
+    "also_from": []
+  },
+  {
+    "id": "historian-2",
+    "researcher": "historian",
+    "kind": "world",
+    "title": "Olenna's khener: a common woman's ladder",
+    "pitch": "",
+    "affects": [
+      "Olenna",
+      "Tiye",
+      "the khener at Pi-Ramesses",
+      "the harem conspiracy"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "In this world the khener is a staffed institution and a career, not just a set of wives. It has overseers, clerks, chantresses, gatekeepers whose wives live inside, and pantry and wardrobe officers. A common-born woman can climb it, as Thuya did in the god's harem. Olenna rose from handmaiden to an overseer of the women's household, and her daughter came to the king's notice through that office. Even if Olenna is dead, Tiye inherits her mother's people: the pantry chief, the clerk, the gate-wives. Those are exactly the people the real conspiracy ran on.",
+        "refs": [
+          1,
+          11,
+          18,
+          19
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This keeps both candidate origins at once: a warrior father, and a mother who pushed her daughter through a harem office. It also gives Tiye a concrete conspiracy network drawn straight from the Turin papyrus. It does not decide whether Olenna is alive.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Did Olenna serve in the royal khener itself, or in a temple's harem of musician-women from which Tiye was noticed?",
+        "answer": "olenaa served in the royal khener "
+      }
+    ],
+    "decision": "accepted",
+    "note": "",
+    "also_from": [
+      "antiquarian"
+    ]
+  },
+  {
+    "id": "historian-3",
+    "researcher": "historian",
+    "kind": "plot",
+    "title": "The brother on the Nubian frontier",
+    "pitch": "",
+    "affects": [
+      "Tiye",
+      "Tiye's brother (new)",
+      "the Nubian nobleman",
+      "Nubia",
+      "the harem conspiracy"
+    ],
+    "parts": [
+      {
+        "label": "plot",
+        "text": "Tiye has a brother who commands archers on the Nubian frontier, like Binemwese. At the agreed signal, a letter from his sister inside the khener tells him to stir up the garrison. His revolt is the outside rising that supports the attack inside the harem. The trouble in the south draws attention and loyal troops away from Pi-Ramesses at the moment of the killing. It also ties Tiye's family to the Nubian gold-mine nobility.",
+        "refs": [
+          1,
+          11,
+          24
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This follows the real conspiracy's inside-and-outside design. It gives the open Nubian nobleman a natural point of entry, as the brother's local partner or rival. It adds a new family member to Tiye's backstory.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Once Pentawer is crowned, does the brother stay loyal, or does he become an Asaf Khan with a candidate or price of his own?",
+        "answer": ""
+      },
+      {
+        "q": "Does the brother's revolt draw one of the older princes south, which would help keep the princes away rather than dead?",
+        "answer": ""
+      }
+    ],
+    "decision": "accepted",
+    "note": "",
+    "also_from": [
+      "mythographer"
+    ]
+  },
+  {
+    "id": "antiquarian-1",
+    "researcher": "antiquarian",
+    "kind": "world",
+    "title": "Tywin as a Sherden plot-holder, rewarded Yuya-fashion",
+    "pitch": "",
+    "affects": [
+      "Tiye",
+      "Tywin",
+      "Sherden",
+      "Ramesses III",
+      "Mer-wer"
+    ],
+    "parts": [
+      {
+        "label": "world",
+        "text": "This version roots Tiye's family in the documented Sherden landholding class. They hold heritable plots of 3–5 arouras in Middle Egypt near the harem-town of Mer-wer at the mouth of the Fayum, so they are well-off farmers in service, not nobles [6, 7, 8]. Tywin's deed before the king brings the standard rewards: gold of valour given in public, captives, extra fields [10]. The prize no one else gets is his daughter's entry into the khener, the way the chariot officer Yuya's daughter rose to queen [9]. This gives the family new gold and new land, but still Sherden-farmer manners, which is exactly what the old families would sneer at.",
+        "refs": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This resolves q-8518cf12 toward Tywin, and q-fc8dfe3b toward Egypt (Middle Egypt) rather than southern Canaan. The timing fits: the Year 8 Delta battle (~1177) falls two years before Tiye's marriage (~1175). The Wilbour evidence dates to Ramesses V, a little later than 1160, so using it here is a mild anachronism.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Was the rescue at the Year 8 Sea Peoples battle or the Year 11 Libyan war?",
+        "answer": ""
+      },
+      {
+        "q": "Does Tywin's Sherden rank make Tiye's Sherden lover (if chosen) a man under her father's command?",
+        "answer": ""
+      }
+    ],
+    "decision": "accepted",
+    "note": "",
+    "also_from": []
+  },
+  {
+    "id": "psychologist-3",
+    "researcher": "psychologist",
+    "kind": "characterization",
+    "title": "Tiye keeps Pentawer clean, as Isis shields Aegon",
+    "pitch": "",
+    "affects": [
+      "Tiye",
+      "Pentawer",
+      "Isis",
+      "Aegon",
+      "Assyrian princess"
+    ],
+    "parts": [
+      {
+        "label": "characterization",
+        "text": "Tiye deliberately keeps Pentawer ignorant of the plot. Partly this is so he can never be called a parricide. Partly it is because she wants him to stay the innocent she was at fifteen. She calls it protection. In fact she is raising a king who does not know what his throne cost, and she is choosing his foreign bride for policy, exactly as she was chosen. The mirror with Isis is close: both mothers shield a son, one from his unfitness and the other from her crime, and both call it love.",
+        "refs": [],
+        "note": ""
+      },
+      {
+        "label": "integration",
+        "text": "This mirrors the canon detail that Isis shields Aegon. It also inverts the historical Pentawer, who was tried as a conspirator (divergence). It leaves open whether the Assyrian marriage was arranged by Tiye or by the nobles.",
+        "refs": [],
+        "note": ""
+      }
+    ],
+    "questions": [
+      {
+        "q": "Does Pentawer truly not know, or does he choose not to ask?",
+        "answer": ""
+      }
+    ],
+    "decision": "accepted",
+    "note": "",
+    "also_from": []
+  }
+]
