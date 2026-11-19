@@ -11,11 +11,19 @@
   ],
   "target_event_id": "",
   "models": {
-    "loremaster": "claude-opus-5-5"
+    "loremaster": "claude-opus-5-5",
+    "archivist": "claude-opus-5-5"
   },
-  "characters_present": [],
+  "characters_present": [
+    "Seti II",
+    "Amenmesse",
+    "Siptah",
+    "Twosret",
+    "Setnakhte",
+    "Ramesses III"
+  ],
   "order": null,
-  "status": "draft",
+  "status": "committed",
   "created_at": "2026-11-16T02:08:13+00:00",
-  "committed_at": null
+  "committed_at": "2026-11-19T05:39:46+00:00"
 }

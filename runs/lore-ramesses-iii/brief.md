@@ -1,0 +1,1 @@
+i want an explanation of ramesses iii including the battles he's fought in and his current state of mind

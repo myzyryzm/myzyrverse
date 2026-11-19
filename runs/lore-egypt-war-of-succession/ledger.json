@@ -1,0 +1,431 @@
+[
+  {
+    "kind": "lore",
+    "entity": "War of Succession",
+    "change": "new fact",
+    "detail": "The war was a geographical split between north and south. Seti II held Pi-Ramesses, the Delta and the northern garrisons, was crowned at Pi-Ramesses, and drew on the capital's resources. Amenmesse crowned himself at Thebes and held Thebes and Nubia, paying for the war with Nubian gold and backed by the priesthood of Amun. A Theban king could take over the southern half of the administration rather than build one from nothing.",
+    "ref_id": "",
+    "characters": [
+      "Seti II",
+      "Amenmesse"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-1",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "War of Succession",
+    "change": "course of the war",
+    "detail": "For most of its length the war was a stalemate between the two halves of Egypt. It turned on officials who changed sides, not on decisive battles. Amenmesse's death did not end it: his son Siptah inherited the southern crown and its army. How Amenmesse died is not established.",
+    "ref_id": "",
+    "characters": [
+      "Amenmesse",
+      "Siptah"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-2",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Deir el-Medina",
+    "change": "wartime past",
+    "detail": "During the War of Succession the tomb-builders' village at Thebes was fought over and ransacked. Seti II's tomb was plundered and a foreman was killed by 'the enemy'. The village still remembers this, and the memory lies behind the strike that opens the story.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-3",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Amenmesse",
+    "change": "character and position",
+    "detail": "When his father died, Amenmesse was Viceroy of Kush, commanding Nubia with access to its gold. He was seen as more of a warrior than Seti II, and his support came largely from that warrior instinct: soldiers and officials who wanted an able king rallied to him. He believed the order of birth was an accident of the gods and told himself he took what Egypt needed, not what he wanted. His grievance was about ability against birth, not about paternal favour. (Divergence: historically, Amenmesse as Viceroy of Kush is only a disputed scholarly theory.)",
+    "ref_id": "",
+    "characters": [
+      "Amenmesse"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-4",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Seti II",
+    "change": "character",
+    "detail": "Seti II was the legitimate heir by order of birth, and his strength was legitimacy: he held the capital and the established order. He was not seen as having a warrior's instinct. Many judged him hollow, but he may have been underestimated. Whatever made him seem unfit was not vice. Its exact nature is undecided, and it is meant to differ from Aegon's failings.",
+    "ref_id": "",
+    "characters": [
+      "Seti II"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-5",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Old king (son of Ramesses II)",
+    "change": "new fact",
+    "detail": "The old king (reigned 1210–~1190, name unset) fathered both claimants. He did not openly favour Amenmesse, and he did not settle the succession in a way that held after his death.",
+    "ref_id": "",
+    "characters": [
+      "Seti II",
+      "Amenmesse"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-6",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Siptah",
+    "change": "new fact",
+    "detail": "Siptah was a teenager when his father Amenmesse died. He was made king by a foreign-born chancellor, the kingmaker. Once he held the whole throne, he and Twosret had the kingmaker executed as 'the great enemy'. (Divergence: historically Siptah was a boy-king under regents and did not kill Seti II.)",
+    "ref_id": "",
+    "characters": [
+      "Siptah",
+      "Twosret"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-7",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "The kingmaker",
+    "change": "new character",
+    "detail": "The kingmaker was a foreign-born chancellor who could never wear the crown himself. He made the teenage Siptah king, carried the southern cause after Amenmesse died, arranged Siptah's marriage to Twosret, and planned the killing of Seti II. Once Siptah held the whole throne, Siptah and Twosret executed him as 'the great enemy'; it was Twosret who demanded his death. His clients, left without a patron, defected to Setnakhte, which let Setnakhte break Siptah within the year. He is unnamed. (Divergence: modelled on Chancellor Bay, who was historically executed in Siptah's Year 5 for unknown reasons.)",
+    "ref_id": "",
+    "characters": [
+      "Siptah",
+      "Twosret",
+      "Setnakhte"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-8",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Twosret",
+    "change": "new fact",
+    "detail": "The kingmaker arranged Twosret's marriage to Siptah. After Siptah took the whole throne, Twosret demanded the kingmaker's execution, and that execution led to Siptah's fall.",
+    "ref_id": "",
+    "characters": [
+      "Twosret",
+      "Siptah"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-9",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Setnakhte",
+    "change": "settlement and legitimacy",
+    "detail": "Setnakhte built his legitimacy on the role of avenger, on a Severan model. He gave Seti II a grand reburial, executed Seti's killers, and called himself Seti II's chosen heir. His regime struck Amenmesse and Siptah from the king lists, recarved their statues and erased their officials. (Divergence: historically it was Seti II, not Setnakhte, who erased Amenmesse.)",
+    "ref_id": "",
+    "characters": [
+      "Setnakhte",
+      "Seti II",
+      "Amenmesse",
+      "Siptah"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-10",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Official history of the War of Succession",
+    "change": "new fact",
+    "detail": "The official history calls the war a time of foreign gold and anarchy that Setnakhte ended, and it contains no rival kings. In 1160 temple scribes teach this version, and only old men remember otherwise.",
+    "ref_id": "",
+    "characters": [
+      "Setnakhte"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-11",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Hidden heir",
+    "change": "stakes",
+    "detail": "Because the official history erases Siptah, a living child of Siptah is more than a rival claimant. Their existence would prove that the 20th Dynasty's founding story is a lie. They also undermine Aegon's line and Pentawer's line equally, since both descend from Setnakhte.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-12",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Ramesses III",
+    "change": "psychology",
+    "detail": "Ramesses III sees the war as the first run of the Aegon question: a legitimate elder judged unfit against an able younger claimant. His contempt for Aegon has a layer of dread beneath it. He has a buried sympathy for capable younger claimants that his dynasty's founding story forbids. His obsession with legacy rests on a curated history that his father had rewritten.",
+    "ref_id": "",
+    "characters": [
+      "Ramesses III",
+      "Aegon"
+    ],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-13",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "lore",
+    "entity": "Nubian gold family",
+    "change": "wartime past",
+    "detail": "Nubian gold paid for Amenmesse's southern crown, so the Nubian gold family has a wartime past tied to the losing side. Whether they backed him to the end or changed sides is undecided.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-14",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "Deir el-Medina",
+    "change": "",
+    "detail": "Are there families in the Deir el-Medina workforce whose feud dates from the war: the line of the murdered foreman against the line of the man who profited under 'the enemy' or bought the foreman's post?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-15",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "The kingmaker",
+    "change": "",
+    "detail": "Is the kingmaker's family still alive in 1160, and on which side of the harem conspiracy do they stand? The author has left this deliberately open.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "high",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-16",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "The kingmaker",
+    "change": "",
+    "detail": "What is the kingmaker's name, and what is his foreign origin (Syrian, as Bay's was, or elsewhere)?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-17",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "egypt war of succession",
+    "change": "",
+    "detail": "What made Seti II seem unfit, if not vice, and was the judgment of him wrong?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-18",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "egypt war of succession",
+    "change": "",
+    "detail": "How did Amenmesse die?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-19",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "egypt war of succession",
+    "change": "",
+    "detail": "How and where did Siptah kill Seti II, and where was Setnakhte while Siptah held the whole throne?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-20",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "egypt war of succession",
+    "change": "",
+    "detail": "Did the Nubian gold family back Amenmesse to the end, or change sides, and is that why Pi-Ramesses distrusts or rewards them?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-21",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "egypt war of succession",
+    "change": "",
+    "detail": "Who outside the court still keeps the true king list: a Theban priestly house, the guild's archivists, or Nubian records?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-22",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "egypt war of succession",
+    "change": "",
+    "detail": "Does the official history tell a story about Twosret, for example that she died or was sent back to a fallen Hatti?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-23",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "egypt war of succession",
+    "change": "",
+    "detail": "Which side did the Sherden fight on, as Ramesses II's own corps?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-24",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "new_question",
+    "entity": "egypt war of succession",
+    "change": "",
+    "detail": "Did Ramesses III fight in the war or witness it?",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-25",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "hook",
+    "entity": "egypt war of succession",
+    "change": "",
+    "detail": "The instigators of the Deir el-Medina strike exploit an old village feud between the line of the murdered foreman and the families who profited under \"the enemy.\"",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-26",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "hook",
+    "entity": "egypt war of succession",
+    "change": "",
+    "detail": "Courtiers whisper that Aegon is Seti II and Jon is Amenmesse. Ramesses III's buried sympathy for able younger sons colours how he treats Jon's Sherden service.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-27",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "hook",
+    "entity": "egypt war of succession",
+    "change": "",
+    "detail": "A recarved statue at Thebes still shows traces of Amenmesse's cartouche, and a POV character learns what the scribes will not teach.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-28",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "hook",
+    "entity": "egypt war of succession",
+    "change": "",
+    "detail": "The kingmaker's surviving family, raised under the dynasty that rose on their patron's fall, sells its services to Tiye or to the Littlefinger figure.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-29",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "hook",
+    "entity": "egypt war of succession",
+    "change": "",
+    "detail": "The hidden heir undermines Pentawer and Aegon equally, since both descend from Setnakhte. Either side might want to use the heir or bury them.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-30",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "hook",
+    "entity": "egypt war of succession",
+    "change": "",
+    "detail": "After the coup, Pentawer's regime uses Setnakhte's own method of erasure on Ramesses III. The king obsessed with legacy is chiselled out the same way his father chiselled out others.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-31",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "hook",
+    "entity": "egypt war of succession",
+    "change": "",
+    "detail": "Twosret mirrors Isis: both princesses were spent by a brother on a foreign throne. Twosret's house collapsed behind her, which is exactly the fate Isis fears for Tyre.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-32",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  },
+  {
+    "kind": "hook",
+    "entity": "egypt war of succession",
+    "change": "",
+    "detail": "Old men who remember the rival kings become dangerous witnesses once rumours of a child of Siptah begin to spread.",
+    "ref_id": "",
+    "characters": [],
+    "confidence": "medium",
+    "source": "ai",
+    "id": "lore-egypt-war-of-succession-33",
+    "created_at": "2026-11-19T05:39:46+00:00"
+  }
+]
